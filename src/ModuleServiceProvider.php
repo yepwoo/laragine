@@ -23,6 +23,13 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->runningInConsole()) {
+            /**
+             * @todo load the commands dynamically
+             */
+            $this->commands([
+                \Yepwoo\Laragine\Commands\Install::class,
+            ]);
+        }
     }
 }
