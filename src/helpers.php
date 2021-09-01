@@ -24,8 +24,9 @@ if (!function_exists('create_config_folder')) {
      * @param string $path
      * @return string
      */
-    function create_folder($key, $path = '')
+    function create_folders(string $key, array $names = [])
     {
+
     }
 }
 
