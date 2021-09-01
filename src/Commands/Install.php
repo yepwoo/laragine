@@ -3,6 +3,7 @@
 namespace Yepwoo\Laragine\Commands;
 
 use Illuminate\Console\Command;
+use Yepwoo\Laragine\Helpers\BaseHelpers;
 
 class Install extends Command
 {
@@ -42,13 +43,13 @@ class Install extends Command
 
         $this->info('Publishing configuration...');
 
-        if(! folder_exist('app_path', 'Core')) {
-            $this->publishCoreFolder();
+        if(!folder_exist('app_path', 'Core')) {
+            BaseHelpers::CreateFolders();
             $this->info('Published configuration');
         } else {
             if($this->shouldOverwriteFolders()) {
                 $this->info('Overwriting configuration file....');
-                $this->publishCoreFolder();
+                BaseHelpers::CreateFolders();
             } else {
                 $this->info('Existing core was not overwritten');
             }
