@@ -14,5 +14,5 @@ class Base extends Model
      *
      * @var array
      */
-    protected $guarded = ['id', 'uuid'];
+    protected $guarded = ['id', 'uuid', 'created_at', 'updated_at'];
 }
