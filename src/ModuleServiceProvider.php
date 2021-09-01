@@ -28,7 +28,7 @@ class ModuleServiceProvider extends ServiceProvider
              * @todo load the commands dynamically
              */
             $this->commands([
-                \Yepwoo\Laragine\Commands\Install::class,
+                Commands\Install::class,
             ]);
         }
     }
