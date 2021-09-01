@@ -2,7 +2,7 @@
 
 namespace Core\Base\Tests\Unit;
 
-use Tests\TestCase;
+use Core\Base\Tests\TestCase;
 use Core\Base\Controllers\Web\Controller;
 
 class WebControllerTest extends TestCase
