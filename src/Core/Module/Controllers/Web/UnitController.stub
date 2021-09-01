@@ -1,0 +1,8 @@
+<?php
+
+namespace Core\#MODULE_NAME#\Controllers\Web;
+
+class #UNIT_NAME#Controller extends \Core\Base\Controllers\Web\Controller
+{
+
+}

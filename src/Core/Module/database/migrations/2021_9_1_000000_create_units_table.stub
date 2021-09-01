@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class Create#UNIT_NAME_PLURAL#Table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('#UNIT_NAME_PLURAL_LOWER_CASE#', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->uuid('uuid');
+            $table->string('name');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('#UNIT_NAME_PLURAL_LOWER_CASE#');
+    }
+}

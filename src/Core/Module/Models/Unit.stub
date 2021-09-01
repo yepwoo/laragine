@@ -1,0 +1,10 @@
+<?php
+
+namespace Core\#MODULE_NAME#\Models;
+
+use Core\Base\Models\Base;
+
+class #UNIT_NAME# extends Base
+{
+    
+}
