@@ -1,11 +1,15 @@
 <?php
 
-namespace Yepwoo\Laragine;
+namespace Core\Base;
 
 use Illuminate\Support\ServiceProvider;
+use Core\Base\Traits\ServiceProvider\File;
+use Core\Base\Traits\ServiceProvider\Module;
 
 class ModuleServiceProvider extends ServiceProvider
 {
+    use File, Module;
+
     /**
      * Register services.
      *
@@ -13,7 +17,8 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->loadFiles(__DIR__);
+        $this->registerModules();
     }
 
     /**

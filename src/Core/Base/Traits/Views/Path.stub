@@ -1,6 +1,6 @@
 <?php
 
-namespace Yepwoo\Laragine\Traits\Views;
+namespace Core\Base\Traits\Views;
 
 use Illuminate\Support\Str;
 

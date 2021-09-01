@@ -1,6 +1,6 @@
 <?php
 
-namespace Yepwoo\Laragine\Traits\ServiceProvider;
+namespace Core\Base\Traits\ServiceProvider;
 
 trait Module
 {

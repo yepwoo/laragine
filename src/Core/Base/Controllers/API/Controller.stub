@@ -1,10 +1,10 @@
 <?php
 
-namespace Yepwoo\Laragine\Controllers\API;
+namespace Core\Base\Controllers\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Database\Eloquent\Model;
-use Yepwoo\Laragine\Traits\Response\SendResponse;
+use Core\Base\Traits\Response\SendResponse;
 
 class Controller extends \App\Http\Controllers\Controller
 {

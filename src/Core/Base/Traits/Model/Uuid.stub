@@ -1,6 +1,6 @@
 <?php
 
-namespace Yepwoo\Laragine\Traits\Model;
+namespace Core\Base\Traits\Model;
 
 use Illuminate\Support\Str;
 

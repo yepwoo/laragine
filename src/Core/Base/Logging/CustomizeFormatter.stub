@@ -1,6 +1,6 @@
 <?php
 
-namespace Yepwoo\Laragine\Logging;
+namespace Core\Base\Logging;
 
 use Illuminate\Http\Request;
 use Illuminate\Log\Logger;

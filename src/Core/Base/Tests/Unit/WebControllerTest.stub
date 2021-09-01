@@ -1,9 +1,9 @@
 <?php
 
-namespace Yepwoo\Laragine\Tests\Unit;
+namespace Core\Base\Tests\Unit;
 
 use Tests\TestCase;
-use Yepwoo\Laragine\Controllers\Web\Controller;
+use Core\Base\Controllers\Web\Controller;
 
 class WebControllerTest extends TestCase
 {

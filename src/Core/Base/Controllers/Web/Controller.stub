@@ -1,9 +1,9 @@
 <?php
 
-namespace Yepwoo\Laragine\Controllers\Web;
+namespace Core\Base\Controllers\Web;
 
-use Yepwoo\Laragine\Traits\Views\Path;
-use Yepwoo\Laragine\Traits\Views\Variable;
+use Core\Base\Traits\Views\Path;
+use Core\Base\Traits\Views\Variable;
 
 class Controller extends \App\Http\Controllers\Controller
 {

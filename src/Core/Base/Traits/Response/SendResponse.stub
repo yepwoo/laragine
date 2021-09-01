@@ -1,6 +1,6 @@
 <?php
 
-namespace Yepwoo\Laragine\Traits\Response;
+namespace Core\Base\Traits\Response;
 
 trait SendResponse
 {
@@ -47,7 +47,8 @@ trait SendResponse
             report($e);
         }
 
-        $message  = 'OOPS! there is a problem in our side! we got your problem and will fix that very soon.';
+        $message  = 'OOPS! there is a problem in our side! we got your problem and will fix that very soon, ';
+        $message .= 'in the meantime you can contact us at info@yepwoo.com';
 
         return $this->sendResponse([], $message, false, 500);
     }

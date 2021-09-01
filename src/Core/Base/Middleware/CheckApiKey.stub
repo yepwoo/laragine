@@ -1,9 +1,9 @@
 <?php
 
-namespace Yepwoo\Laragine\Middleware;
+namespace Core\Base\Middleware;
 
 use Closure;
-use Yepwoo\Laragine\Traits\Response\SendResponse;
+use Core\Base\Traits\Response\SendResponse;
 
 class CheckApiKey
 {
