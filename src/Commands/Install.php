@@ -38,7 +38,34 @@ class Install extends Command
     public function handle()
     {
         // copy the Base dir into /Core
+        $this->info('Installing Laragine...');
 
+        $this->info('Publishing configuration...');
+
+        if(! folder_exist('app_path', 'Core')) {
+            $this->publishCoreFolder();
+            $this->info('Published configuration');
+        } else {
+            if($this->shouldOverwriteFolders()) {
+                $this->info('Overwriting configuration file....');
+                $this->publishCoreFolder();
+            } else {
+                $this->info('Existing core was not overwritten');
+            }
+        }
         $this->info('The installation done successfully!');
+    }
+
+    private function publishCoreFolder($forcePublish = false)
+    {
+        // here will call helper function that load all stubs file
+    }
+
+    private function shouldOverwriteFolders(): bool
+    {
+        return $this->confirm(
+            'Core folder already exists. Do you want to overwrite it?',
+            false
+        );
     }
 }
