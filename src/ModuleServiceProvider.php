@@ -13,7 +13,7 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register('Core\\Base\\ModuleServiceProvider');
     }
 
     /**
