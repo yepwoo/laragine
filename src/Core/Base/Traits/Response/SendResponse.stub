@@ -47,8 +47,7 @@ trait SendResponse
             report($e);
         }
 
-        $message  = 'OOPS! there is a problem in our side! we got your problem and will fix that very soon, ';
-        $message .= 'in the meantime you can contact us at info@yepwoo.com';
+        $message  = 'OOPS! there is a problem in our side! we got your problem and we will fix that very soon.';
 
         return $this->sendResponse([], $message, false, 500);
     }
