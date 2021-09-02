@@ -32,4 +32,28 @@ return [
         'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | The Module
+    |--------------------------------------------------------------------------
+    |
+    | The stubs and files for the new Modules
+    |
+    */
+
+    'module' => [
+        'main.php'                   => 'config/main.php',
+        'UnitApiController.stub'     => 'Controllers/API/V1/',
+        'UnitWebController.stub'     => 'Controllers/Web/',
+        'UnitFactory.stub'           => 'database/factories/',
+        'create_units_table.stub'    => 'database/migrations/',
+        'Unit.stub'                  => 'Models/',
+        'UnitRequest.stub'           => 'Requests/',
+        'UnitResource.stub'          => 'Resources/',
+        'api.stub'                   => 'routes/api.php',
+        'web.stub'                   => 'routes/web.php',
+        'UnitTest.stub'              => 'Tests/Feature/',
+        '.gitignore'                 => 'views',
+        'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
+    ],
 ];
