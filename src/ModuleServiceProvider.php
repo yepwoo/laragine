@@ -13,7 +13,8 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->register('Core\\Base\\ModuleServiceProvider');
+        $this->mergeConfigFrom(__DIR__ . '/config.php', 'laragine');
+        // $this->app->register('Core\\Base\\ModuleServiceProvider');
     }
 
     /**
