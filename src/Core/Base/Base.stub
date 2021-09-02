@@ -1,0 +1,18 @@
+<?php
+
+namespace Core\Base\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Core\Base\Traits\Model\Uuid;
+
+class Base extends Model
+{
+    use Uuid;
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id', 'uuid', 'created_at', 'updated_at'];
+}

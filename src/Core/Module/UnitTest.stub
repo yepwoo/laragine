@@ -1,0 +1,135 @@
+<?php
+
+namespace Core\#MODULE_NAME#\Tests\Feature;
+
+use Core\Base\Tests\TestCase;
+use Core\#MODULE_NAME#\Models\#UNIT_NAME# as Model;
+
+class #UNIT_NAME#Test extends TestCase
+{
+    /**
+     * the base url
+     *
+     * @var string
+     */
+    protected $base_url;
+
+    /**
+     * the data that will be sent in the request (create/update)
+     *
+     * @var array
+     */
+    protected $data;
+
+    /**
+     * the json response
+     *
+     * @var array
+     */
+    protected $json;
+
+    /**
+     * setting up
+     *
+     * @throws \ReflectionException
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->base_url     = $this->getApiBaseUrl() . '#UNIT_NAME_PLURAL_LOWER_CASE#/';
+        $this->data         = ['name' => 'Dev'];
+        $this->json         = $this->getJsonStructure();
+        $this->json['data'] = [
+            'id',
+            'name'
+        ];
+    }
+
+    /**
+     * create new entry
+     *
+     * @return Model
+     */
+    protected function getNewEntry()
+    {
+        return factory(Model::class)->create();
+    }
+
+    /**
+     * get the uuid
+     *
+     * @return string
+     */
+    protected function getUuid()
+    {
+        return $this->getNewEntry()->uuid;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
+    public function testItShouldGetListingOfTheResource()
+    {
+        $this->getNewEntry();
+        $json              = $this->json;
+        $json['data']      = [];
+        $json['data']['*'] = $this->json['data'];
+
+        $this->json('GET', $this->base_url, [], $this->getHeaders())
+             ->assertStatus(200)
+             ->assertJsonStructure($json);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return void
+     */
+    public function testItShouldStoreNewlyCreatedResource()
+    {
+        $this->json('POST', $this->base_url, $this->data, $this->getHeaders())
+             ->assertStatus(201)
+             ->assertJsonStructure($this->json);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return void
+     */
+    public function testItShouldGetSpecifiedResource()
+    {
+        $this->json('GET', $this->base_url . $this->getUuid(), [], $this->getHeaders())
+             ->assertStatus(200)
+             ->assertJsonStructure($this->json);
+    }
+
+    /**
+     * update a resource in storage.
+     *
+     * @return void
+     */
+    public function testItShouldUpdateSpecifiedResource()
+    {
+        $this->json('PUT', $this->base_url . $this->getUuid(), $this->data, $this->getHeaders())
+             ->assertStatus(200)
+             ->assertJsonStructure($this->json);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return void
+     */
+    public function testItShouldRemoveSpecifiedResource()
+    {
+        $this->json['data'] = [];
+        $this->json('DELETE', $this->base_url . $this->getUuid(), [], $this->getHeaders())
+             ->assertStatus(200)
+             ->assertJsonStructure($this->json);
+    }
+}
