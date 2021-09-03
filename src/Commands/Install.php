@@ -42,14 +42,13 @@ class Install extends Command
         $this->info('Installing Laragine...');
 
         $this->info('Publishing configuration...');
-
-        if(!folder_exist('app_path', 'Core')) {
-            BaseHelpers::CreateFolders();
+        if(!folder_exist('base_path', 'Core')) {
+            $this->publishCoreFolderAndFiles();
             $this->info('Published configuration');
         } else {
             if($this->shouldOverwriteFolders()) {
                 $this->info('Overwriting configuration file....');
-                BaseHelpers::CreateFolders();
+                $this->publishCoreFolderAndFiles();
             } else {
                 $this->info('Existing core was not overwritten');
             }
@@ -57,9 +56,11 @@ class Install extends Command
         $this->info('The installation done successfully!');
     }
 
-    private function publishCoreFolder($forcePublish = false)
+    private function publishCoreFolderAndFiles($forcePublish = false)
     {
         // here will call helper function that load all stubs file
+        BaseHelpers::createFolders();
+        BaseHelpers::createFiles();
     }
 
     private function shouldOverwriteFolders(): bool
