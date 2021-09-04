@@ -8,7 +8,7 @@ class MakeModule extends Command {
      *
      * @var string
      */
-    protected $signature = 'laramake:module {names}';
+    protected $signature = 'lara:make:module {names}';
 
     /**
      * The console command description.
