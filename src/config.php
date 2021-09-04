@@ -28,7 +28,7 @@ return [
         'Module.stub'                => 'Traits/ServiceProvider/Module.php',
         'Path.stub'                  => 'Traits/Views/Path.php',
         'Variable.stub'              => 'Traits/Views/Variable.php',
-        '.gitignore'                 => 'views',
+        '.gitignore'                 => 'views/.gitignore',
         'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
     ],
 
@@ -53,7 +53,7 @@ return [
         'api.stub'                   => 'routes/api.php',
         'web.stub'                   => 'routes/web.php',
         'UnitTest.stub'              => 'Tests/Feature/',
-        '.gitignore'                 => 'views',
+        '.gitignore'                 => 'views/.gitignore',
         'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
     ],
 ];

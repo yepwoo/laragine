@@ -40,7 +40,6 @@ class Install extends Command
     {
         // copy the Base dir into /Core
         $this->info('Installing Laragine...');
-
         $this->info('Publishing configuration...');
         if(!folder_exist('base_path', 'Core')) {
             $this->publishCoreFolderAndFiles();
