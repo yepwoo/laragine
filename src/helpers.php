@@ -46,3 +46,11 @@ if (!function_exists('folder_exist')) {
         return File::isDirectory($key($path));
     }
 }
+
+
+if (!function_exists('getStub')) {
+    function getStub(string $path): string
+    {
+        return file_get_contents($path);
+    }
+}
