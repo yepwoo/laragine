@@ -54,7 +54,7 @@ class #UNIT_NAME#Test extends TestCase
      */
     protected function getNewEntry()
     {
-        return factory(Model::class)->create();
+        return Model::factory()->create();
     }
 
     /**
