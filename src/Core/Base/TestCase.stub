@@ -33,7 +33,7 @@ class TestCase extends BaseTestCase
     {
         $data             = $data ?? $this->getUserCredentials();
         $data['password'] = bcrypt($data['password']);
-        return factory(User::class)->create($data);
+        return User::factory()->create($data);
     }
 
     /**
