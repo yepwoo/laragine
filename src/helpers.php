@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+
 if (!function_exists('dummy_function')) {
     /**
      * get the dummy function.
@@ -12,6 +13,40 @@ if (!function_exists('dummy_function')) {
     function dummy_function($dummy = '')
     {
         return $dummy;
+    }
+}
+
+if (!function_exists('client_validation_response')) {
+    /**
+     * get the validation message formatted for client side.
+     *
+     * @param array  $validations
+     * @param int    $start_code
+     * @return array
+     */
+    function client_validation_response($validations, &$start_code = 4101)
+    {
+        $array = [];
+        
+        foreach ($validations as $key => $validation) {
+            
+            if ($key == 'custom' || $key == 'attributes') {
+                continue;
+            }
+            
+            if (is_array($validation)) {
+                $array[$key] = client_validation_response($validation, $start_code);
+            } else {
+                $array[$key] = [
+                    config('laragine.validation.message') => $validation,
+                    config('laragine.validation.code')    => $start_code
+                ];
+                
+                $start_code++;
+            }
+        }
+        
+        return $array;
     }
 }
 

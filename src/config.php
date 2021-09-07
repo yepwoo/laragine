@@ -61,4 +61,19 @@ return [
         ],
 
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | The Validation
+    |--------------------------------------------------------------------------
+    |
+    | The validation attributes that will be used in the response
+    |
+    */
+
+    'validation' => [
+        'field'   => 'field',
+        'message' => 'message',
+        'code'    => 'code',
+    ],
 ];
