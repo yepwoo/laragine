@@ -24,12 +24,29 @@ if (!function_exists('client_validation_response')) {
      * @param int    $start_code
      * @return array
      */
-    function client_validation_response($validations, $start_code = 4101)
+    function client_validation_response($validations, &$start_code = 4101)
     {
-        /**
-         * @todo implementation, use config('laragine.validation.code');
-         */
-        return [];
+        $array = [];
+        
+        foreach ($validations as $key => $validation) {
+            
+            if ($key == 'custom' || $key == 'attributes') {
+                continue;
+            }
+            
+            if (is_array($validation)) {
+                $array[$key] = client_validation_response($validation, $start_code);
+            } else {
+                $array[$key] = [
+                    config('laragine.validation.message') => $validation,
+                    config('laragine.validation.code')    => $start_code
+                ];
+                
+                $start_code++;
+            }
+        }
+        
+        return $array;
     }
 }
 
