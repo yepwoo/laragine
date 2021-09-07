@@ -30,6 +30,7 @@ class ModuleServiceProvider extends ServiceProvider
              */
             $this->commands([
                 Commands\Install::class,
+                Commands\MakeModule::class
             ]);
         }
     }
