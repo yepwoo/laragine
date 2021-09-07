@@ -22,13 +22,12 @@ if (!function_exists('client_validation_response')) {
      *
      * @param array  $validations
      * @param int    $start_code
-     * @param string $code_attribute
      * @return array
      */
-    function client_validation_response($validations, $start_code = 4101, $code_attribute = 'code')
+    function client_validation_response($validations, $start_code = 4101)
     {
         /**
-         * @todo implementation
+         * @todo implementation, use config('laragine.validation.code');
          */
         return [];
     }
