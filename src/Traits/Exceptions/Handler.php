@@ -16,7 +16,7 @@ trait Handler
      *
      * @return void
      */
-    public function handle_exceptions()
+    public function handleExceptions()
     {
         $this->renderable(function (AuthenticationException $e, $request) {
             return $this->sendResponse([], $e->getMessage(), false, 401);
