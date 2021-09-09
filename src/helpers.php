@@ -142,27 +142,19 @@ if (!function_exists('createModuleFiles')) {
      * @param string $main_path
      */
     function createModuleFiles($main_files, $name, string $main_path = 'Core\\') {
+        $module_singular = Str::singular($name);
         $plural_name_lower_case = Str::plural(Str::lower($name));
-        $module_name = Str::studly($name);
+        $module_name = Str::studly($module_singular);
 
         foreach ($main_files as $key => $file) {
             $folder = substr($file, 0,strrpos($file, '/'));
             if(!folder_exist('base_path', "Core/$module_name/$folder")) {
                 mkdir(base_path("Core/$module_name/$folder"), 0777, true);
             }
-            $temp = str_replace (
-                [
-                    '#UNIT_NAME#',
-                    '#UNIT_NAME_PLURAL_LOWER_CASE#',
-                    '#MODULE_NAME#',
-                ],
-                [
-                    $module_name,
-                    $plural_name_lower_case,
-                    $module_name
-                ],
-                getStub(__DIR__ . '\\' . $main_path. '\\' . "Module". '\\' .$key)
-            );
+            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#MODULE_NAME#"];
+            $replaced_vars = [$module_name, $plural_name_lower_case, $module_name];
+            $temp = getTemplate($stubs_vars, $replaced_vars, $key);
+
             file_put_contents(base_path() . '\\Core'."\\$module_name\\$file", $temp);
         }
     }
@@ -182,5 +174,90 @@ if (!function_exists('createModuleFolders')) {
                 mkdir(base_path("Core/$module_name/$folder"), 0777, true);
             }
         }
+    }
+}
+
+
+
+/**
+ * ================== Unit functions ================
+ */
+
+if (!function_exists('createUnitFiles')) {
+    function createUnitFiles($name, $module_name, string $main_path = 'Core\\') {
+        $paths = config('laragine.module.unit_folders');
+        $unit_singular = Str::singular($name);
+        $unit_plural_name_lower_case = Str::plural(Str::lower($name));
+        $unit_studly_case = Str::studly($unit_singular);
+        $module_studly_case_name = Str::studly($module_name);
+        $module_studly_name = Str::studly($module_name);
+
+        if (is_null($module_name)) {
+            return 'nullable module';
+        }
+
+        /**
+         * Check if the unit is created or not
+         */
+        if(folder_exist('base_path', "Core/$module_name/$unit_studly_case")) {
+            return 'unit exist';
+        }
+        foreach ($paths as $file => $path) {
+            $unit_file_name = getUnitFileName($name, $file);
+            /**
+             * Check if file exist or not, if it's exist it's mean the unit created before
+             */
+            if (file_exists(base_path() . "/Core/$module_studly_name/$path$unit_file_name")) {
+                return 'unit exist';
+            }
+
+            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#MODULE_NAME#"];
+            $replaced_vars = [$unit_studly_case, $unit_plural_name_lower_case, $module_studly_case_name];
+
+            // get template
+            $temp = getTemplate($stubs_vars, $replaced_vars, $file);
+
+            file_put_contents(base_path() . '\\Core'."\\$module_studly_name\\$path\\$unit_file_name", $temp);
+        }
+        return 'done';
+    }
+}
+
+
+if (!function_exists('getTemplate')) {
+    /**
+     * Get template
+     * @param $stubs_vars
+     * @param $replaced_vars
+     * @param $file
+     * @return array|string|string[]
+     */
+    function getTemplate($stubs_vars, $replaced_vars, $file) {
+        $main_path = 'Core\\';
+        return str_replace (
+            $stubs_vars, $replaced_vars,getStub(__DIR__ . '\\' . $main_path. '\\' . "Module". '\\' .$file)
+        );
+    }
+}
+
+
+if (!function_exists('getUnitFileName')) {
+    /**
+     * Get file right name ex: UnitApiController.stub -> PostApiController.php
+     * @param $unit_name
+     * @param $stub_file
+     * @return array|string|string[]
+     */
+    function getUnitFileName($unit_name, $stub_file) {
+        $unit_singular = Str::singular($unit_name);
+        $unit_plural_name_lower_case = Str::plural(Str::lower($unit_name));
+        $unit_studly_case = Str::studly($unit_singular);
+
+        if(strpos($stub_file, 'units')) {
+            $unit_file_name = str_replace("units", $unit_plural_name_lower_case, $stub_file);
+        } else {
+            $unit_file_name = str_replace("Unit", "$unit_studly_case", $stub_file);
+        }
+        return str_replace("stub", "php", $unit_file_name);
     }
 }
