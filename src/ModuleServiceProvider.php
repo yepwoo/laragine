@@ -3,6 +3,7 @@
 namespace Yepwoo\Laragine;
 
 use Illuminate\Support\ServiceProvider;
+use Yepwoo\Laragine\Commands\MakeAttributes;
 use Yepwoo\Laragine\Commands\MakeUnit;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -32,7 +33,8 @@ class ModuleServiceProvider extends ServiceProvider
             $this->commands([
                 Commands\Install::class,
                 Commands\MakeModule::class,
-                MakeUnit::class
+                MakeUnit::class,
+                MakeAttributes::class
             ]);
         }
     }

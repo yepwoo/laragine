@@ -15,7 +15,7 @@ class MakeUnit extends Command {
      *
      * @var string
      */
-    protected $description = 'Create new module';
+    protected $description = 'Create new unit';
 
     /**
      * Create a new command instance.
@@ -32,7 +32,6 @@ class MakeUnit extends Command {
         $name = $this->argument('name');
         $module = $this->option('module');
 
-        ;
         switch (createUnitFiles($name, $module)) {
             case 'done':
                 $this->info('Unit created successfully');
