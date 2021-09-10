@@ -59,6 +59,9 @@ return [
             'UnitResource.stub'          => 'Resources/',
             'UnitTest.stub'              => 'Tests/Feature/',
         ],
+        'advance' => [
+            'Unit.json' => 'data/'
+        ]
 
     ],
 
