@@ -36,11 +36,22 @@
 
         public static function getAttributes($attributes) {
             foreach ($attributes as $key => $value) {
-
+                /**
+                 * key (column name)
+                 * $value (type, mod)
+                    * loop through $value
+                        * key(type, mod)
+                        * value (ex: enum, default)
+                            * should explode by (|), loop and get value by (:)
+                 */
             }
             exit;
         }
-        public static function g() {
+        public static function getTypeValues() {
+
+        }
+
+        public static function getModifireValues() {
 
         }
     }
