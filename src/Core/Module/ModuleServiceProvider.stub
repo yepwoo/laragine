@@ -4,7 +4,6 @@ namespace Core\#MODULE_NAME#;
 
 use Illuminate\Support\ServiceProvider;
 use Core\Base\Traits\ServiceProvider\File;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ModuleServiceProvider extends ServiceProvider
 {
