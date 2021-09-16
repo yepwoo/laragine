@@ -8,7 +8,7 @@ class MakeUnit extends Command {
      *
      * @var string
      */
-    protected $signature = 'laragine:make unit {name} {--module=}';
+    protected $signature = 'laragine:make-unit {name} {--module=} {--I|init}';
 
     /**
      * The console command description.
@@ -27,12 +27,27 @@ class MakeUnit extends Command {
         parent::__construct();
     }
 
-
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
     public function handle() {
-        $name = $this->argument('name');
-        $module = $this->option('module');
+        $name              = $this->argument('name');
+        $module            = $this->option('module');
+        $create_unit_files = null;
 
-        switch (createUnitFiles($name, $module)) {
+        if ($this->option('init')) {
+            $create_unit_files = createUnitFiles($name, $module, [
+                'UnitApiController.stub',
+                'UnitWebController.stub',
+                'Unit.stub'
+            ]);
+        } else {
+            $create_unit_files = createUnitFiles($name, $module);
+        }
+
+        switch ($create_unit_files) {
             case 'done':
                 $this->info('Unit created successfully');
                 break;

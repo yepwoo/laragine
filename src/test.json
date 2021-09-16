@@ -3,7 +3,6 @@
     "name": "type:string|default:john lee",
     "post_id": "type:foreign:posts,id|type:int|nullable|postive"
   },
-
   "relations": {
     "many_to_many":  {
       "table_name": "reply_comments",
