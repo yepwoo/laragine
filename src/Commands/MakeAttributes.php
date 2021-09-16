@@ -9,7 +9,7 @@ class MakeAttributes extends Command {
      *
      * @var string
      */
-    protected $signature = 'laragine:make attribute {--module=} {--unit=} {--attributes=*}';
+    protected $signature = 'laragine:make:attribute {--module=} {--unit=} {--attributes=*}';
 
     /**
      * The console command description.

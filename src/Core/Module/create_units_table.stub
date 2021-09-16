@@ -15,8 +15,7 @@ class Create#UNIT_NAME_PLURAL#Table extends Migration
     {
         Schema::create('#UNIT_NAME_PLURAL_LOWER_CASE#', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('uuid');
-            $table->string('name');
+            #content#
             $table->timestamps();
         });
     }

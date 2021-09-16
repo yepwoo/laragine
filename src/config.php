@@ -62,8 +62,9 @@ return [
         'advance' => [
             'Unit.json' => 'data/'
         ]
-
     ],
+
+    'type_with_given_values' => ['enum', 'float', 'double'],
 
     /*
     |--------------------------------------------------------------------------
