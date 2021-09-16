@@ -184,12 +184,21 @@ if (!function_exists('createModuleFolders')) {
  */
 
 if (!function_exists('createUnitFiles')) {
-    function createUnitFiles($name, $module_name, string $main_path = 'Core\\') {
+    function createUnitFiles($name, $module_name, array $selected = [], string $main_path = 'Core\\') {
         $paths = config('laragine.module.unit_folders');
         $advance = config('laragine.module.advance');
 
+        if (sizeof($selected) > 0) {
+            $all_paths = $paths;
+            $paths     = [];
+            foreach ($selected as $file) {
+                $paths[$file] = $all_paths[$file];
+            }
+        }
+
         $unit_singular = Str::singular($name);
         $unit_plural_name_lower_case = Str::plural(Str::lower($name));
+        $unit_plural_name_ucfirst_case = Str::ucfirst($unit_plural_name_lower_case);
         $unit_studly_case = Str::studly($unit_singular);
         $module_studly_case_name = Str::studly($module_name);
         $module_studly_name = Str::studly($module_name);
@@ -208,8 +217,13 @@ if (!function_exists('createUnitFiles')) {
                 return 'unit exist';
             }
 
-            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#MODULE_NAME#"];
-            $replaced_vars = [$unit_studly_case, $unit_plural_name_lower_case, $module_studly_case_name];
+            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_PLURAL#", "#MODULE_NAME#"];
+            $replaced_vars = [
+                $unit_studly_case,
+                $unit_plural_name_lower_case,
+                $unit_plural_name_ucfirst_case,
+                $module_studly_case_name
+            ];
 
             // get template
             $temp = getTemplate($file, $stubs_vars, $replaced_vars);
@@ -248,7 +262,7 @@ if (!function_exists('getTemplate')) {
     function getTemplate($file, array $stubs_vars = [], array $replaced_vars = []) {
         $main_path = 'Core\\';
         return str_replace (
-            $stubs_vars, $replaced_vars,getStub(__DIR__ . '\\' . $main_path. '\\' . "Module". '\\' .$file)
+            $stubs_vars, $replaced_vars, getStub(__DIR__ . '\\' . $main_path. '\\' . "Module". '\\' .$file)
         );
     }
 }

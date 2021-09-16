@@ -8,7 +8,7 @@ class MakeModule extends Command {
      *
      * @var string
      */
-    protected $signature = 'laragine:make module {names}';
+    protected $signature = 'laragine:make-module {names}';
 
     /**
      * The console command description.
