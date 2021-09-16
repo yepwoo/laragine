@@ -35,7 +35,35 @@
         }
 
         public static function getAttributes($attributes) {
+            $type_with_given_values = config('laragine.type_with_given_values');
+            $str = "";
             foreach ($attributes as $key => $value) {
+                // key -> column_name (name, phone)
+                // every key have (type, mode)
+                // load throw type & mod
+                foreach ($value as $column => $column_type) {
+                    $type_of_type = self::multiple_value_type($column_type); //single or multiple
+
+                    if($type_of_type === 'multiple') {
+                        $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
+                        foreach ($arr_types as $type_with_value) {
+                            $split_type_to_get_default_values = explode(':', $type_with_value);
+                            $type = $split_type_to_get_default_values[0];
+                            $value = $split_type_to_get_default_values[1];
+                            if ($split_type_to_get_default_values[0] === 'enum')
+                            {
+                                 $str .= '$this->'.$type.'('.$key. ',' . '['.$value.']' .')';
+                            } else
+                            {
+                                $str .= '$this->'.$type.'('.$key. ',' . $value .');';
+                            }
+
+                        }
+                    }
+
+                    $str .= "
+                    ";
+                }
                 /**
                  * key (column name)
                  * $value (type, mod)
@@ -45,7 +73,21 @@
                             * should explode by (|), loop and get value by (:)
                  */
             }
+            echo json_encode($str);exit;
             exit;
+        }
+
+        /**
+         * Check if type is regular or has values like (enum, float)
+         */
+        public static function multiple_value_type($string) {
+            $type_with_given_values = config('laragine.type_with_given_values');
+            foreach ($type_with_given_values as $value) {
+                if (strpos($string, $value) !== false) {
+                    return 'multiple';
+                }
+            }
+            return 'single';
         }
         public static function getTypeValues() {
 
