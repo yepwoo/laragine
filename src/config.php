@@ -64,7 +64,36 @@ return [
         ]
     ],
 
-    'type_with_given_values' => ['enum', 'float', 'double'],
+    'data_types' => [
+        'type_with_given_values' => [ 'enum', 'float', 'double', 'char'],
+        'type_have_array_value' => ['enum'],
+        'type_without_given_values' => [
+            'bigIncrements', 'bigInteger', 'integer', 'binary', 'boolean', 'dateTimeTz', 'dateTime', 'date', 'geometryCollection',
+            'geometry', 'increments', 'integer', 'ipAddress', 'json', 'jsonb', 'lineString', 'longText', 'macAddress', 'mediumIncrements',
+            'mediumInteger', 'mediumText', 'morphs' // still have more inputs
+        ]
+    ],
+    'modifiers' => [
+        'have_values' => [
+            'after',
+            'charset',
+            'collation',
+            'comment',
+            'default',
+            'from',
+            'storedAs',
+            'virtualAs',
+            'generatedAs'
+        ],
+        'not_have_values' => [
+            'autoIncrement',
+            'first',
+            'unsigned',
+            'useCurrent',
+            'useCurrentOnUpdate',
+            'always'
+        ]
+    ],
 
     /*
     |--------------------------------------------------------------------------
