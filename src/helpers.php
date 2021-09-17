@@ -233,9 +233,15 @@ if (!function_exists('createUnitFiles')) {
                 $unit_plural_name_lower_case,
                 $unit_plural_name_ucfirst_case,
                 $module_studly_case_name,
-                $attributes
             ];
 
+            switch ($file) {
+                case 'create_units_table.stub':
+                    array_push($replaced_vars, $attributes['migration_str']);
+                case 'UnitResource.stub':
+                    array_push($replaced_vars, $attributes['resource_str']);
+
+            }
             // get template
             $temp = getTemplate($file, $stubs_vars, $replaced_vars);
 

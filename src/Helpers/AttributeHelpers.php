@@ -34,10 +34,14 @@
             }
         }
 
-        public static function getFormatedAttributes($attributes): string
+        public static function getFormatedAttributes($attributes): array
         {
-            $migration_file_str = "";
-            $resource_file_str  = "";
+            $arr_of_files = [
+                'migration_str' => "",
+                'resource_str'  => ""
+            ];
+            $migration_file_str = &$arr_of_files['migration_str'];
+            $resource_file_str  = &$arr_of_files['resource_str'];
 
             foreach ($attributes as $key => $value) {
                 // key -> column_name (name, phone)
@@ -45,7 +49,10 @@
                 // load throw type & mod
                 foreach ($value as $column => $column_value) {
                     if ($column === 'type') {
-                        $migration_file_str = self::handleTypeCase($column_value, $key, $migration_file_str);
+                        $arr_of_files = self::handleTypeCase($column_value, $key, $arr_of_files);
+                        $resource_file_str .= <<<STR
+                                    \'$key' => \$this->$key
+                        STR;
                     }
                     else if ($column === 'mod') {
                         // $column = mod, $column_value = default:easy|nullable
@@ -54,7 +61,7 @@
                             $have_value = self::is_modifier_have_value($modifier); //single or multiple
                             if($have_value) {
                                 $arr_modifier = explode(':', $modifier);
-                                if(count($arr_modifier) < 2 || count($arr_modifier) > 2) {
+                                if (count($arr_modifier) < 2 || count($arr_modifier) > 2) {
                                     // @todo error because the user should but value for this modifier and when split by : should length = 2, not lower or higher
                                 }
                                 $migration_file_str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
@@ -69,12 +76,15 @@
 
                 $migration_file_str .= array_key_last($attributes) == $key ? ';' : ";\n" ;
             }
-            return $migration_file_str;
+            return $arr_of_files;
 
         }
 
-        public static function handleTypeCase($column_type, $key, $str): string
+        public static function handleTypeCase($column_type, $key, &$arr): array
         {
+            $migration_str = $arr['migration_str'];
+            $resource_str  = $arr['resource_str'];
+
             $type_of_type = self::multiple_value_type($column_type); //single or multiple
             // get types that have arr value
             $types_have_arr_values = config("laragine.data_types.type_have_array_value");
@@ -89,12 +99,13 @@
 
                     if (in_array(strtolower($split_type_to_get_default_values[0]), $types_have_arr_values))
                     {
-                        $str .= <<<STR
+                        $migration_str .= <<<STR
                                     \$table->$type('$key', [$value])
                         STR;
+
                     } else
                     {
-                        $str .= <<<STR
+                        $migration_str .= <<<STR
                                     \$table->$type('$key', $value)
                         STR;   
                     }
@@ -111,7 +122,7 @@
                     }
                     if (in_array(strtolower($column_type), $types_have_not_values))
                     {
-                        $str .= '$table->'.$type_without_value.'('."'$key'".')';
+                        $migration_str .= '$table->'.$type_without_value.'('."'$key'".')';
                     }
                     else {
                         // @todo error handling
@@ -120,8 +131,10 @@
 
                 }
             }
+            $arr['migration_str'] = $migration_str;
+            $arr['resource_str']  = $resource_str;
 
-            return $str;
+            return $arr;
         }
 
         /**
