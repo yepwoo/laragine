@@ -49,12 +49,14 @@ return [
             '.gitignore'                 => 'views/.gitignore',
             'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
         ],
-        'unit_folders' => [
+        'unit_main_folders' => [
             'UnitApiController.stub'     => 'Controllers/API/V1/',
             'UnitWebController.stub'     => 'Controllers/Web/',
+            'Unit.stub'                  => 'Models/',
+        ],
+        'unit_folders' => [
             'UnitFactory.stub'           => 'database/factories/',
             'create_units_table.stub'    => 'database/migrations/',
-            'Unit.stub'                  => 'Models/',
             'UnitRequest.stub'           => 'Requests/',
             'UnitResource.stub'          => 'Resources/',
             'UnitTest.stub'              => 'Tests/Feature/',
