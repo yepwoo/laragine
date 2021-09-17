@@ -38,11 +38,7 @@ class MakeUnit extends Command {
         $create_unit_files = null;
 
         if ($this->option('init')) {
-            $create_unit_files = createUnitFiles($name, $module, [
-                'UnitApiController.stub',
-                'UnitWebController.stub',
-                'Unit.stub'
-            ]);
+            $create_unit_files = createUnitFiles($name, $module, true);
         } else {
             $create_unit_files = createUnitFiles($name, $module);
         }
