@@ -35,7 +35,7 @@
         }
 
         public static function getAttributes($attributes) {
-            $type_with_given_values = config('laragine.type_with_given_values');
+            $type_with_given_values = config('laragine.data_types.type_with_given_values');
             $str = "";
             foreach ($attributes as $key => $value) {
                 // key -> column_name (name, phone)
@@ -43,6 +43,9 @@
                 // load throw type & mod
                 foreach ($value as $column => $column_type) {
                     $type_of_type = self::multiple_value_type($column_type); //single or multiple
+                    // get types that have arr value
+                    $types_have_arr_values = config("laragine.data_types.type_have_array_value");
+                    $types_have_not_values = config("laragine.data_types.type_without_given_values");
 
                     if($type_of_type === 'multiple') {
                         $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
@@ -50,12 +53,32 @@
                             $split_type_to_get_default_values = explode(':', $type_with_value);
                             $type = $split_type_to_get_default_values[0];
                             $value = $split_type_to_get_default_values[1];
-                            if ($split_type_to_get_default_values[0] === 'enum')
+
+                            if (in_array(strtolower($split_type_to_get_default_values[0]), $types_have_arr_values))
                             {
                                  $str .= '$this->'.$type.'('.$key. ',' . '['.$value.']' .')';
                             } else
                             {
                                 $str .= '$this->'.$type.'('.$key. ',' . $value .');';
+                            }
+
+                        }
+                    } else if ($type_of_type === 'single') {
+                        $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
+
+                        foreach ($arr_types as $type_without_value) {
+                            if(strpos($type_without_value, ":") !== false) {
+                                // @todo error handling
+                                // here should return error, this type doesn't have a value
+
+                            }
+                            if (in_array(strtolower($column_type), $types_have_not_values))
+                            {
+                                $str .= '$this->'.$type_without_value.'('.$key.')';
+                            }
+                            else {
+                                // @todo error handling
+                                // here should return error that the type not found
                             }
 
                         }
@@ -81,7 +104,7 @@
          * Check if type is regular or has values like (enum, float)
          */
         public static function multiple_value_type($string) {
-            $type_with_given_values = config('laragine.type_with_given_values');
+            $type_with_given_values = config('laragine.data_types.type_with_given_values');
             foreach ($type_with_given_values as $value) {
                 if (strpos($string, $value) !== false) {
                     return 'multiple';
