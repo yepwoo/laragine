@@ -36,14 +36,16 @@
 
         public static function getFormatedAttributes($attributes): string
         {
-            $str = "";
+            $migration_file_str = "";
+            $resource_file_str  = "";
+
             foreach ($attributes as $key => $value) {
                 // key -> column_name (name, phone)
                 // every key have (type, mode)
                 // load throw type & mod
                 foreach ($value as $column => $column_value) {
                     if ($column === 'type') {
-                        $str = self::handleTypeCase($column_value, $key, $str);
+                        $migration_file_str = self::handleTypeCase($column_value, $key, $migration_file_str);
                     }
                     else if ($column === 'mod') {
                         // $column = mod, $column_value = default:easy|nullable
@@ -55,20 +57,20 @@
                                 if(count($arr_modifier) < 2 || count($arr_modifier) > 2) {
                                     // @todo error because the user should but value for this modifier and when split by : should length = 2, not lower or higher
                                 }
-                                $str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
+                                $migration_file_str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
                             } else {
-                                $str .= '->' .$modifier . '()';
+                                $migration_file_str .= '->' .$modifier . '()';
                             }
                         }
 
                     }
 
                 }
-                $str.=";
+                $migration_file_str.=";
                 ";
 
             }
-            return $str;
+            return $migration_file_str;
 
         }
 
