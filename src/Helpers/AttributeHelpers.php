@@ -28,14 +28,14 @@
             foreach ($json_data as $key => $value) {
                 switch ($key) {
                     case 'attributes':
-                       return self::getAttributes($value);
+                       return self::getFormatedAttributes($value);
 
                 }
             }
         }
 
-        public static function getAttributes($attributes) {
-            $type_with_given_values = config('laragine.data_types.type_with_given_values');
+        public static function getFormatedAttributes($attributes): string
+        {
             $str = "";
             foreach ($attributes as $key => $value) {
                 // key -> column_name (name, phone)
