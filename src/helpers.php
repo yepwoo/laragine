@@ -184,24 +184,33 @@ if (!function_exists('createModuleFolders')) {
  */
 
 if (!function_exists('createUnitFiles')) {
-    function createUnitFiles($name, $module_name, array $selected = [], string $main_path = 'Core\\') {
+    function createUnitFiles($name, $module_name, $init = false, string $main_path = 'Core\\') {
         $paths = config('laragine.module.unit_folders');
         $advance = config('laragine.module.advance');
-
-        if (sizeof($selected) > 0) {
-            $all_paths = $paths;
-            $paths     = [];
-            foreach ($selected as $file) {
-                $paths[$file] = $all_paths[$file];
-            }
-        }
-
         $unit_singular = Str::singular($name);
         $unit_plural_name_lower_case = Str::plural(Str::lower($name));
         $unit_plural_name_ucfirst_case = Str::ucfirst($unit_plural_name_lower_case);
         $unit_studly_case = Str::studly($unit_singular);
         $module_studly_case_name = Str::studly($module_name);
         $module_studly_name = Str::studly($module_name);
+
+        if ($init) {
+            $paths = config('laragine.module.unit_main_folders');
+            /**
+             * === Create advance files ====
+             */
+            foreach ($advance as $file => $path) {
+                $unit_file_name = getUnitFileName($name, $file);
+                $full_path = base_path() . '\\Core'."\\$module_studly_name\\$path\\$unit_file_name";
+
+                // create data folder
+                if(!folder_exist('base_path', "Core/$module_studly_name/$path")) {
+                    mkdir(base_path("Core/$module_studly_name/$path"), 0777, true);
+                }
+                $temp = getTemplate($file);
+                file_put_contents($full_path, $temp);
+            }
+        }
 
         if (is_null($module_name)) {
             return 'nullable module';
@@ -217,12 +226,14 @@ if (!function_exists('createUnitFiles')) {
                 return 'unit exist';
             }
 
-            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_PLURAL#", "#MODULE_NAME#"];
+            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_PLURAL#", "#MODULE_NAME#", "#CONTENT"];
+            $attributes    = \Yepwoo\Laragine\Helpers\AttributeHelpers::workOnFile($module_name, $unit_studly_case);
             $replaced_vars = [
                 $unit_studly_case,
                 $unit_plural_name_lower_case,
                 $unit_plural_name_ucfirst_case,
-                $module_studly_case_name
+                $module_studly_case_name,
+                $attributes
             ];
 
             // get template
@@ -231,21 +242,7 @@ if (!function_exists('createUnitFiles')) {
             file_put_contents($full_path, $temp);
         }
 
-        /**
-         * === Create advance files ====
-         */
 
-        foreach ($advance as $file => $path) {
-            $unit_file_name = getUnitFileName($name, $file);
-            $full_path = base_path() . '\\Core'."\\$module_studly_name\\$path\\$unit_file_name";
-
-            // create data folder
-            if(!folder_exist('base_path', "Core/$module_studly_name/$path")) {
-                mkdir(base_path("Core/$module_studly_name/$path"), 0777, true);
-            }
-            $temp = getTemplate($file);
-            file_put_contents($full_path, $temp);
-        }
         return 'done';
     }
 }
