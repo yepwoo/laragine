@@ -226,7 +226,7 @@ if (!function_exists('createUnitFiles')) {
                 return 'unit exist';
             }
 
-            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_PLURAL#", "#MODULE_NAME#", "#CONTENT"];
+            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_PLURAL#", "#MODULE_NAME#", "#CONTENT#"];
             $attributes    = \Yepwoo\Laragine\Helpers\AttributeHelpers::workOnFile($module_name, $unit_studly_case);
             $replaced_vars = [
                 $unit_studly_case,

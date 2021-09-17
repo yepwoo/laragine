@@ -66,9 +66,8 @@
                     }
 
                 }
-                $migration_file_str.=";
-                ";
 
+                $migration_file_str .= array_key_last($attributes) == $key ? ';' : ";\n" ;
             }
             return $migration_file_str;
 
@@ -90,10 +89,14 @@
 
                     if (in_array(strtolower($split_type_to_get_default_values[0]), $types_have_arr_values))
                     {
-                        $str .= '$table->'.$type.'('. "'$key'". ',' . '['.$value.']' .')';
+                        $str .= <<<STR
+                                    \$table->$type('$key', [$value])
+                        STR;
                     } else
                     {
-                        $str .= '$table->'.$type.'('. "'$key'". ',' . $value .')';
+                        $str .= <<<STR
+                                    \$table->$type('$key', $value)
+                        STR;   
                     }
 
                 }
