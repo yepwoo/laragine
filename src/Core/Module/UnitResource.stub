@@ -17,6 +17,7 @@ class #UNIT_NAME#Resource extends Resource
         return [
             'id'   => $this->uuid,
             'name' => $this->name,
+            #CONTENT#
             $this->mergeWhen($request->route()->getName() == 'api.v1.#UNIT_NAME_PLURAL_LOWER_CASE#.show', [
 
             ])
