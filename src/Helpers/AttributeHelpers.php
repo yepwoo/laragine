@@ -50,8 +50,12 @@
                 foreach ($value as $column => $column_value) {
                     if ($column === 'type') {
                         $arr_of_files = self::handleTypeCase($column_value, $key, $arr_of_files);
+
+                        /**
+                         * === we don't need to put the resource str in mode just we need the column name (key)
+                         */
                         $resource_file_str .= <<<STR
-                                    \'$key' => \$this->$key
+                                    '$key' => \$this->$key
                         STR;
                     }
                     else if ($column === 'mod') {
@@ -75,6 +79,7 @@
                 }
 
                 $migration_file_str .= array_key_last($attributes) == $key ? ';' : ";\n" ;
+                $resource_file_str  .= array_key_last($attributes) == $key ? ',' : ",\n";
             }
             return $arr_of_files;
 
