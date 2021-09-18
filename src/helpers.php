@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-
+use Yepwoo\Laragine\Helpers\MigrationOperation;
+use Yepwoo\Laragine\Helpers\ResourceOperation;
 if (!function_exists('dummy_function')) {
     /**
      * get the dummy function.
@@ -227,7 +228,6 @@ if (!function_exists('createUnitFiles')) {
             }
 
             $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_PLURAL#", "#MODULE_NAME#", "#CONTENT#"];
-            $attributes    = \Yepwoo\Laragine\Helpers\AttributeHelpers::workOnFile($module_name, $unit_studly_case);
             $replaced_vars = [
                 $unit_studly_case,
                 $unit_plural_name_lower_case,
@@ -237,9 +237,22 @@ if (!function_exists('createUnitFiles')) {
 
             switch ($file) {
                 case 'create_units_table.stub':
+                    $migration_object = new MigrationOperation($module_name, $unit_studly_case);
+                    $attributes = $migration_object->getFilesStrArr();
+
                     array_push($replaced_vars, $attributes['migration_str']);
+                    break;
                 case 'UnitResource.stub':
+                    $resource_object = new ResourceOperation($module_name, $unit_studly_case);
+                    $attributes = $resource_object->getFilesStrArr();
+
                     array_push($replaced_vars, $attributes['resource_str']);
+                    break;
+                case 'UnitRequest.stub':
+                    $resource_object = new \Yepwoo\Laragine\Helpers\RequestOperation($module_name, $unit_studly_case);
+                    $attributes = $resource_object->getFilesStrArr();
+                    array_push($replaced_vars, $attributes['request_str']);
+                    break;
 
             }
             // get template
