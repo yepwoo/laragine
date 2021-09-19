@@ -34,18 +34,33 @@
             }
         }
 
-        public static function getFormatedAttributes($attributes): string
+        public static function getFormatedAttributes($attributes): array
         {
-            $migration_file_str = "";
-            $resource_file_str  = "";
+            $arr_of_files = [
+                'migration_str' => "",
+                'resource_str'  => "",
+                'request_str'   => ""
+            ];
+            $migration_file_str = &$arr_of_files['migration_str'];
+            $resource_file_str  = &$arr_of_files['resource_str'];
+            $request_file_str   = &$arr_of_files['request_str'];
 
             foreach ($attributes as $key => $value) {
+
                 // key -> column_name (name, phone)
                 // every key have (type, mode)
                 // load throw type & mod
+                $nullable = false;
                 foreach ($value as $column => $column_value) {
                     if ($column === 'type') {
-                        $migration_file_str = self::handleTypeCase($column_value, $key, $migration_file_str);
+                        $arr_of_files = self::handleTypeCase($column_value, $key, $arr_of_files);
+
+                        /**
+                         * === we don't need to put the resource str in mode, just we need the column name (key)
+                         */
+                        $resource_file_str .= <<<STR
+                                    '$key' => \$this->$key
+                        STR;
                     }
                     else if ($column === 'mod') {
                         // $column = mod, $column_value = default:easy|nullable
@@ -54,11 +69,14 @@
                             $have_value = self::is_modifier_have_value($modifier); //single or multiple
                             if($have_value) {
                                 $arr_modifier = explode(':', $modifier);
-                                if(count($arr_modifier) < 2 || count($arr_modifier) > 2) {
+                                if (count($arr_modifier) < 2 || count($arr_modifier) > 2) {
                                     // @todo error because the user should but value for this modifier and when split by : should length = 2, not lower or higher
                                 }
                                 $migration_file_str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
                             } else {
+                                if (self::isHaveNullableType($modifier)) {
+                                    $nullable = true;
+                                }
                                 $migration_file_str .= '->' .$modifier . '()';
                             }
                         }
@@ -66,19 +84,46 @@
                     }
 
                 }
+                if ($nullable) {
+                    $request_file_str .= 'nullable' . "'";
+                } else {
+                    $request_file_str .= 'required' . "'";
+                }
 
                 $migration_file_str .= array_key_last($attributes) == $key ? ';' : ";\n" ;
+                $resource_file_str  .= array_key_last($attributes) == $key ? ',' : ",\n";
+                $request_file_str   .= array_key_last($attributes) == $key ? ',' : ",\n";
             }
-            return $migration_file_str;
+            return $arr_of_files;
 
         }
 
-        public static function handleTypeCase($column_type, $key, $str): string
+        public static function handleTypeCase($column_type, $key, &$arr): array
         {
+            $migration_str = $arr['migration_str'];
+            $resource_str  = $arr['resource_str'];
+            $request_str   = $arr['request_str'];
+
             $type_of_type = self::multiple_value_type($column_type); //single or multiple
             // get types that have arr value
             $types_have_arr_values = config("laragine.data_types.type_have_array_value");
             $types_have_not_values = config("laragine.data_types.type_without_given_values");
+
+            /**
+             * === Working on Request ====
+             */
+            if (self::inRequestArray(strtolower($column_type))) {
+                $lower = strtolower($column_type);
+
+                $request_str .= <<<STR
+                                    '$key' => '$lower|
+                STR;
+            } else {
+                $request_str .= <<<STR
+                                    '$key' => '
+                STR;
+            }
+
 
             if($type_of_type === 'multiple') {
                 $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
@@ -89,12 +134,13 @@
 
                     if (in_array(strtolower($split_type_to_get_default_values[0]), $types_have_arr_values))
                     {
-                        $str .= <<<STR
+                        $migration_str .= <<<STR
                                     \$table->$type('$key', [$value])
                         STR;
+
                     } else
                     {
-                        $str .= <<<STR
+                        $migration_str .= <<<STR
                                     \$table->$type('$key', $value)
                         STR;   
                     }
@@ -111,7 +157,8 @@
                     }
                     if (in_array(strtolower($column_type), $types_have_not_values))
                     {
-                        $str .= '$table->'.$type_without_value.'('."'$key'".')';
+
+                        $migration_str .= '$table->'.$type_without_value.'('."'$key'".')';
                     }
                     else {
                         // @todo error handling
@@ -120,10 +167,45 @@
 
                 }
             }
+            $arr['migration_str'] = $migration_str;
+            $arr['resource_str']  = $resource_str;
+            $arr['request_str']  =  $request_str;
 
-            return $str;
+            return $arr;
         }
 
+        /**
+         * Check if type in (request array) -> (string - integer)
+         */
+        public static function inRequestArray($column_type): bool
+        {
+            $db_types_in_request = config('laragine.db_types_in_request');
+            foreach ($db_types_in_request as $request_type) {
+                if (strpos($request_type, $column_type) !== false) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+         * === handle working on request str ====
+         */
+
+        public static function handleWorkingOnRequest($column_type, $request_str, $key, $first = true): string
+        {
+            if ($first) {
+                if (self::inRequestArray(strtolower($column_type))) {
+                    $lower = strtolower($column_type);
+                    $request_str   .= "'$key'" . '=>' . "'$lower|";
+
+                } else {
+                  $request_str     .= "'$key'" . '=>' . "'";
+                }
+            }
+
+            return $request_str;
+        }
         /**
          * Check if type is regular or has values like (enum, float)
          */
@@ -171,8 +253,9 @@
 
         }
 
-        public static function getModifireValues() {
-
+        public static function isHaveNullableType($str): bool
+        {
+            return $str === 'nullable';
         }
     }
 

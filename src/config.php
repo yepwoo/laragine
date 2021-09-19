@@ -55,17 +55,25 @@ return [
             'Unit.stub'                  => 'Models/',
         ],
         'unit_folders' => [
-            'UnitFactory.stub'           => 'database/factories/',
             'create_units_table.stub'    => 'database/migrations/',
             'UnitRequest.stub'           => 'Requests/',
             'UnitResource.stub'          => 'Resources/',
             'UnitTest.stub'              => 'Tests/Feature/',
+            'UnitFactory.stub'           => 'database/factories/',
         ],
         'advance' => [
             'Unit.json' => 'data/'
         ]
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Configuration
+    |--------------------------------------------------------------------------
+    |
+    |
+    |
+    */
     'data_types' => [
         'type_with_given_values' => [ 'enum', 'float', 'double', 'char'],
         'type_have_array_value' => ['enum'],
@@ -97,6 +105,11 @@ return [
         ]
     ],
 
+    'db_types_in_request' => ['string', 'integer', 'nullable', 'unique'],
+
+    'factory_array' => [
+        'string' => ''
+    ],
     /*
     |--------------------------------------------------------------------------
     | The Validation

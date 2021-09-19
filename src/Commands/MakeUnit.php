@@ -53,6 +53,9 @@ class MakeUnit extends Command {
             case 'unit exist':
                 $this->info("$name is already exist");
                 break;
+            case 'ordering error':
+                $this->info("Ordering error in your json file In attributes, please write type first then mod");
+                break;
             default:
                 $this->info("Error... please try again");
         }
