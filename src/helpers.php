@@ -239,6 +239,10 @@ if (!function_exists('createUnitFiles')) {
                 case 'create_units_table.stub':
                     $migration_object = new MigrationOperation($module_name, $unit_studly_case);
                     $attributes = $migration_object->getFilesStrArr();
+                    switch ($attributes['migration_str']) {
+                        case 'ordering error':
+                            return 'ordering error';
+                    }
 
                     array_push($replaced_vars, $attributes['migration_str']);
                     break;

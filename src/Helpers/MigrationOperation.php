@@ -12,11 +12,31 @@ class MigrationOperation extends Attributes {
     }
 
     public function getFormattedAttributes() {
+        if ($this->validateAttributes($this->columns) == 'ordering error') {
+            $this->migration_file_str = 'ordering error';
+            return 'ordering error';
+        }
         foreach ($this->columns as $key => $value) { // column name
             foreach ($value as $column => $column_value) { // type name and value
                 switch ($column) {
                     case 'type':
                         $this->handleTypeCase($column_value, $key);
+                        break;
+                    case 'mod':
+                        $modifiers = explode("|", $column_value);
+                        foreach ($modifiers as $modifier) {
+                            $have_value = $this->is_modifier_have_value($modifier); //single or multiple
+                            if ($have_value) {
+                                $arr_modifier = explode(':', $modifier);
+                                if (count($arr_modifier) < 2 || count($arr_modifier) > 2) {
+                                    // @todo error because the user should but value for this modifier and when split by : should length = 2, not lower or higher
+                                }
+                                $this->migration_file_str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
+                            } else {
+                                $this->migration_file_str .= '->' .$modifier . '()';
+                            }
+                        }
+                        break;
                 }
             }
             $this->migration_file_str .= array_key_last($this->columns) == $key ? ';' : ";\n" ;

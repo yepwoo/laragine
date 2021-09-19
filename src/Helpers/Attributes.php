@@ -44,4 +44,34 @@ class Attributes {
     public function setFileStrArr($value, $key) {
         $this->str_files_arr[$key] = $value;
     }
+
+    public function is_modifier_have_value($modifier_str): bool
+    {
+        $modifiers_have_values = config('laragine.modifiers.have_values');
+        foreach ($modifiers_have_values as $modifier) {
+            if (strpos($modifier_str, $modifier) !== false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isHaveNullableType($str): bool
+    {
+        return $str === 'nullable';
+    }
+
+    public function validateAttributes($attributes): string
+    {
+        foreach ($attributes as $key => $value) {
+            foreach ($value as $column => $column_value) {
+                if (array_key_first($value) && $column !== 'type') {
+                   return 'ordering error';
+                }
+            }
+
+        }
+        exit;
+        return 'ok';
+    }
 }
