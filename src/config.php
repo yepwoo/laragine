@@ -107,6 +107,9 @@ return [
 
     'db_types_in_request' => ['string', 'integer', 'nullable', 'unique'],
 
+    'factory_array' => [
+        'string' => ''
+    ],
     /*
     |--------------------------------------------------------------------------
     | The Validation

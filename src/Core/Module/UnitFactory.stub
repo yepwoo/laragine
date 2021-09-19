@@ -23,6 +23,7 @@ class #UNIT_NAME#Factory extends Factory
     {
         return [
             'name' => $this->faker->name,
+#CONTENT#
         ];
     }
 }
