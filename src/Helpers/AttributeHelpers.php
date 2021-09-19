@@ -46,6 +46,7 @@
             $request_file_str   = &$arr_of_files['request_str'];
 
             foreach ($attributes as $key => $value) {
+
                 // key -> column_name (name, phone)
                 // every key have (type, mode)
                 // load throw type & mod

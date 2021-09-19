@@ -48,10 +48,12 @@ class RequestOperation extends Attributes
                             STR;
                         }
                         break;
-                    case 'modifier':
+                    case 'mod':
                         $modifiers = explode("|", $column_value);
-
                         foreach ($modifiers as $modifier) {
+                            if ($this->isInRequestArray(strtolower($modifier))) {
+                                $this->request_file_str .= $modifier. '|';
+                            }
                             $have_value = $this->is_modifier_have_value($modifier); //single or multiple
                             if ($have_value) {
                                 if ($this->isHaveNullableType($modifier)) {
@@ -59,6 +61,7 @@ class RequestOperation extends Attributes
                                 }
                             }
                         }
+                        break;
                 }
             }
 
@@ -71,23 +74,5 @@ class RequestOperation extends Attributes
         }
     }
 
-    public function isHaveNullableType($str): bool
-    {
-        return $str === 'nullable';
-    }
 
-    /**
-     * Check if modifier have value or not
-     */
-
-    public function is_modifier_have_value($modifier_str): bool
-    {
-        $modifiers_have_values = config('laragine.modifiers.have_values');
-        foreach ($modifiers_have_values as $modifier) {
-            if (strpos($modifier_str, $modifier) !== false) {
-                return true;
-            }
-        }
-
-    }
 }
