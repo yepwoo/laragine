@@ -55,11 +55,11 @@ return [
             'Unit.stub'                  => 'Models/',
         ],
         'unit_folders' => [
-            'UnitFactory.stub'           => 'database/factories/',
             'create_units_table.stub'    => 'database/migrations/',
             'UnitRequest.stub'           => 'Requests/',
             'UnitResource.stub'          => 'Resources/',
             'UnitTest.stub'              => 'Tests/Feature/',
+            'UnitFactory.stub'           => 'database/factories/',
         ],
         'advance' => [
             'Unit.json' => 'data/'

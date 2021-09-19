@@ -65,13 +65,11 @@ class Attributes {
     {
         foreach ($attributes as $key => $value) {
             foreach ($value as $column => $column_value) {
-                if (array_key_first($value) && $column !== 'type') {
+                if (array_key_first($value) !== 'type') {
                    return 'ordering error';
                 }
             }
-
         }
-        exit;
         return 'ok';
     }
 }
