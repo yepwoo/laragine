@@ -15,16 +15,20 @@ class FactoryOperation extends Attributes {
 
     public function handleFactoryFile() {
         $special_cases = config('laragine.factory_array.special_cases');
+        $bool = false;
+
         foreach ($this->columns as $key => $value) {
             $this->factory_file_str .= <<<STR
                         '$key' => \$this->faker->
             STR;
+
             /**
              * value: {"type": ex....., "mod": .....}
              * check if string contain a (unique) word
              */
             if ($this->containUniqueWord($value['mod'])) {
                $this->factory_file_str .= 'unique()->';
+               $bool = true;
             }
 
             /**
@@ -41,22 +45,30 @@ class FactoryOperation extends Attributes {
                         $special_case = $this->containSpecialCases($key);
                         if ($special_case !== "not contain") {
                             $this->factory_file_str .= $special_case.'()';
+                            $bool = true;
                             break;
                         }
 
                         if($this->inFactoryTextList($column_value)) {
                             $this->factory_file_str .= 'text(100)';
+                            $bool = true;
                             Break;
                         }
 
                         if ($this->inFactoryIntList($column_value)) {
                             $this->factory_file_str .= 'integer()';
+                            $bool = true;
                             Break;
                         }
                         break;
                 }
             }
 
+            if ($bool) {
+                $this->factory_file_str .= <<<STR
+                            '$key' => ''
+                 STR;
+            }
             $this->factory_file_str .= array_key_last($this->columns) == $key ? ',' : ",\n" ;
         }
     }
