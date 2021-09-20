@@ -258,6 +258,12 @@ if (!function_exists('createUnitFiles')) {
                     array_push($replaced_vars, $attributes['request_str']);
                     break;
 
+                case 'UnitFactory.stub':
+                    $resource_object = new \Yepwoo\Laragine\Helpers\FactoryOperation($module_name, $unit_studly_case);
+                    $attributes = $resource_object->getFilesStrArr();
+                    array_push($replaced_vars, $attributes['factory_str']);
+                    break;
+
             }
             // get template
             $temp = getTemplate($file, $stubs_vars, $replaced_vars);
