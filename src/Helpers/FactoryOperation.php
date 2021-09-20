@@ -28,7 +28,6 @@ class FactoryOperation extends Attributes {
              */
             if ($this->containUniqueWord($value['mod'])) {
                $this->factory_file_str .= 'unique()->';
-               $bool = true;
             }
 
             /**
@@ -64,9 +63,9 @@ class FactoryOperation extends Attributes {
                 }
             }
 
-            if ($bool) {
-                $this->factory_file_str .= <<<STR
-                            '$key' => ''
+            if (!$bool) {
+                $this->factory_file_str = <<<STR
+                             '$key' => ''
                  STR;
             }
             $this->factory_file_str .= array_key_last($this->columns) == $key ? ',' : ",\n" ;
