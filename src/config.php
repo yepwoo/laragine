@@ -66,6 +66,7 @@ return [
         ]
     ],
 
+
     /*
     |--------------------------------------------------------------------------
     | Configuration
@@ -108,7 +109,30 @@ return [
     'db_types_in_request' => ['string', 'integer', 'nullable', 'unique'],
 
     'factory_array' => [
-        'string' => ''
+        'text' => [
+            'string',
+            'lineString',
+            'text',
+            'longText',
+            'mediumText',
+            'tinyText'
+        ],
+        'integer' => [
+            'integer',
+            'mediumInteger',
+            'unsignedInteger',
+            'tinyInteger',
+            'float',
+            'double',
+            'smallInteger',
+            'bigInteger'
+        ],
+
+        'special_cases' => [
+            'email' => 'safeEmail',
+            'phone' => 'phoneNumber',
+            'url'   => 'url'
+        ]
     ],
     /*
     |--------------------------------------------------------------------------
