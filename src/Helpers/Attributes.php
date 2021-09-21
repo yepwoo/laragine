@@ -41,10 +41,12 @@ class Attributes {
         return $this->str_files_arr;
     }
 
-    public function setFileStrArr($value, $key) {
-        $this->str_files_arr[$key] = $value;
-    }
 
+    /**
+     * Check type of modifier, if it's type of (having value or not)
+     * @param $modifier_str
+     * @return bool
+     */
     public function is_modifier_have_value($modifier_str): bool
     {
         $modifiers_have_values = config('laragine.modifiers.have_values');
@@ -56,20 +58,8 @@ class Attributes {
         return false;
     }
 
-    public function isHaveNullableType($str): bool
+    public static function isHaveNullableType($str): bool
     {
         return $str === 'nullable';
-    }
-
-    public function validateAttributes($attributes): string
-    {
-        foreach ($attributes as $key => $value) {
-            foreach ($value as $column => $column_value) {
-                if (array_key_first($value) !== 'type') {
-                   return 'ordering error';
-                }
-            }
-        }
-        return 'ok';
     }
 }
