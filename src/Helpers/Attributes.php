@@ -8,11 +8,17 @@ class Attributes {
     public $json_data;
     public static $base_path = '\\Core';
     public $str_files_arr = [];
+    protected $module;
+    protected $unit;
 
     public function __construct($module, $unit) {
-        $this->readJson($module, $unit);
-        $this->analyzeData();
+        $this->unit = $unit;
+        $this->module = $module;
 
+        if($this->isRunInitCommand()) {
+            $this->readJson($module, $unit);
+            $this->analyzeData();
+        }
 
     }
 
@@ -61,5 +67,24 @@ class Attributes {
     public static function isHaveNullableType($str): bool
     {
         return $str === 'nullable';
+    }
+
+    /**
+     * Will check any file, if exist so it's mean the user run init command
+     */
+    public function isRunInitCommand(): bool
+    {
+        $init_paths = config('laragine.module.unit_main_folders');
+        $module_studly_name = Str::studly($this->module);
+        $unit_studly_case = Str::studly($this->unit);
+        $api_controller_path = $init_paths['UnitApiController.stub'];
+        $file_name = str_replace('Unit', $unit_studly_case, 'UnitApiController.stub');
+        $file_name = str_replace('stub', 'php', $file_name);
+        // create data folder
+        if(file_exists(base_path()."/Core/$module_studly_name/$api_controller_path/$file_name")) {
+            return true;
+        }
+        return false;
+
     }
 }

@@ -2,6 +2,7 @@
 namespace Yepwoo\Laragine\Helpers;
 
 class Error extends Attributes {
+
     public function __construct($module, $unit) {
         parent::__construct($module, $unit);
     }
