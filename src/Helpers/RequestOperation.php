@@ -40,11 +40,11 @@ class RequestOperation extends Attributes
                             $lower = strtolower($column_value);
 
                             $this->request_file_str .= <<<STR
-                                            '$key' => '$lower|
+                                                '$key' => '$lower|
                             STR;
                         } else {
                             $this->request_file_str .= <<<STR
-                                            '$key' => '
+                                                '$key' => '
                             STR;
                         }
                         break;
