@@ -61,6 +61,12 @@ class MakeUnit extends Command {
             case 'single type have value error':
                 $this->info("Single type shouldn't contain ':', please remove it");
                 break;
+            case 'rerun init command':
+                $this->info("You're ran init command before :)");
+                break;
+            case 'must run init command':
+                $this->info("Please run init command fist");
+                break;
             default:
                 $this->info("Error... please try again");
         }

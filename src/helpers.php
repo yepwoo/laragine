@@ -28,13 +28,13 @@ if (!function_exists('client_validation_response')) {
     function client_validation_response($validations, &$start_code = 4101)
     {
         $array = [];
-        
+
         foreach ($validations as $key => $validation) {
-            
+
             if ($key == 'custom' || $key == 'attributes') {
                 continue;
             }
-            
+
             if (is_array($validation)) {
                 $array[$key] = client_validation_response($validation, $start_code);
             } else {
@@ -42,11 +42,11 @@ if (!function_exists('client_validation_response')) {
                     config('laragine.validation.message') => $validation,
                     config('laragine.validation.code')    => $start_code
                 ];
-                
+
                 $start_code++;
             }
         }
-        
+
         return $array;
     }
 }
@@ -194,8 +194,14 @@ if (!function_exists('createUnitFiles')) {
         $unit_studly_case = Str::studly($unit_singular);
         $module_studly_case_name = Str::studly($module_name);
         $module_studly_name = Str::studly($module_name);
+        $errors_obj = new \Yepwoo\Laragine\Helpers\Error($module_name, $unit_studly_case);
+
+
 
         if ($init) {
+            if ($errors_obj->isRunInitCommand()) {
+                return 'rerun init command';
+            }
             $paths = config('laragine.module.unit_main_folders');
             /**
              * === Create advance files ====
@@ -211,12 +217,16 @@ if (!function_exists('createUnitFiles')) {
                 $temp = getTemplate($file);
                 file_put_contents($full_path, $temp);
             }
-            return 'done';
+        } else {
+            if (!$errors_obj->isRunInitCommand()) {
+                return 'must run init command';
+            }
         }
 
         if (is_null($module_name)) {
             return 'nullable module';
         }
+
 
         foreach ($paths as $file => $path) {
             $unit_file_name = getUnitFileName($name, $file);
@@ -236,44 +246,12 @@ if (!function_exists('createUnitFiles')) {
                 $module_studly_case_name,
             ];
 
-            $errors_obj = new \Yepwoo\Laragine\Helpers\Error($module_name, $unit_studly_case);
-            $validate = $errors_obj->validate();
 
-            if( handlingErrorMsg($validate) !== 'ok') {
-                return handlingErrorMsg($validate);
-            }
-
-            switch ($file) {
-                case 'create_units_table.stub':
-                    $migration_object = new MigrationOperation($module_name, $unit_studly_case);
-                    $attributes = $migration_object->getFilesStrArr();
-                    switch ($attributes['migration_str']) {
-                        case 'ordering error':
-                            return 'ordering error';
-                        case 'mod syntax error':
-                            return 'mod syntax error';
-                    }
-
-                    array_push($replaced_vars, $attributes['migration_str']);
-                    break;
-                case 'UnitResource.stub':
-                    $resource_object = new ResourceOperation($module_name, $unit_studly_case);
-                    $attributes = $resource_object->getFilesStrArr();
-
-                    array_push($replaced_vars, $attributes['resource_str']);
-                    break;
-                case 'UnitRequest.stub':
-                    $resource_object = new \Yepwoo\Laragine\Helpers\RequestOperation($module_name, $unit_studly_case);
-                    $attributes = $resource_object->getFilesStrArr();
-                    array_push($replaced_vars, $attributes['request_str']);
-                    break;
-
-                case 'UnitFactory.stub':
-                    $resource_object = new \Yepwoo\Laragine\Helpers\FactoryOperation($module_name, $unit_studly_case);
-                    $attributes = $resource_object->getFilesStrArr();
-                    array_push($replaced_vars, $attributes['factory_str']);
-                    break;
-
+            /**
+             * Not init case
+             */
+            if(!$init) {
+                 $replaced_vars = casesForNotInitCommand($name, $module_name, $replaced_vars, $errors_obj, $file);
             }
             // get template
             $temp = getTemplate($file, $stubs_vars, $replaced_vars);
@@ -336,5 +314,44 @@ if (!function_exists('getUnitFileName')) {
             $unit_file_name = str_replace("Unit", "$unit_studly_case", $stub_file);
         }
         return str_replace("stub", "php", $unit_file_name);
+    }
+}
+
+if(!function_exists('casesForNotInitCommand')) {
+    function casesForNotInitCommand($name, $module_name, $replaced_vars, $errors_obj, $file) {
+        $unit_singular = Str::singular($name);
+        $unit_studly_case = Str::studly($unit_singular);
+
+        $validate = $errors_obj->validate();
+        if( handlingErrorMsg($validate) !== 'ok') {
+            return handlingErrorMsg($validate);
+        }
+
+        switch ($file) {
+            case 'create_units_table.stub':
+                $migration_object = new MigrationOperation($module_name, $unit_studly_case);
+                $attributes = $migration_object->getFilesStrArr();
+
+                array_push($replaced_vars, $attributes['migration_str']);
+                break;
+            case 'UnitResource.stub':
+                $resource_object = new ResourceOperation($module_name, $unit_studly_case);
+                $attributes = $resource_object->getFilesStrArr();
+
+                array_push($replaced_vars, $attributes['resource_str']);
+                break;
+            case 'UnitRequest.stub':
+                $resource_object = new \Yepwoo\Laragine\Helpers\RequestOperation($module_name, $unit_studly_case);
+                $attributes = $resource_object->getFilesStrArr();
+                array_push($replaced_vars, $attributes['request_str']);
+                break;
+
+            case 'UnitFactory.stub':
+                $resource_object = new \Yepwoo\Laragine\Helpers\FactoryOperation($module_name, $unit_studly_case);
+                $attributes = $resource_object->getFilesStrArr();
+                array_push($replaced_vars, $attributes['factory_str']);
+                break;
+        }
+         return $replaced_vars;
     }
 }
