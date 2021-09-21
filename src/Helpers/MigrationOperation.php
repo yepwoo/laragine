@@ -12,10 +12,6 @@ class MigrationOperation extends Attributes {
     }
 
     public function getFormattedAttributes() {
-        if ($this->validateAttributes($this->columns) == 'ordering error') {
-            $this->migration_file_str = 'ordering error';
-            return 'ordering error';
-        }
         foreach ($this->columns as $key => $value) { // column name
             foreach ($value as $column => $column_value) { // type name and value
                 switch ($column) {
@@ -28,9 +24,6 @@ class MigrationOperation extends Attributes {
                             $have_value = $this->is_modifier_have_value($modifier); //single or multiple
                             if ($have_value) {
                                 $arr_modifier = explode(':', $modifier);
-                                if (count($arr_modifier) < 2 || count($arr_modifier) > 2) {
-                                    // @todo error because the user should but value for this modifier and when split by : should length = 2, not lower or higher
-                                }
                                 $this->migration_file_str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
                             } else {
                                 $this->migration_file_str .= '->' .$modifier . '()';
@@ -90,25 +83,16 @@ class MigrationOperation extends Attributes {
 
         }
     }
+
     private function singleTypeCase($column_type, $types_have_not_values, $key) {
         $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
 
         foreach ($arr_types as $type_without_value) {
-            if ($this->containsDots($type_without_value)) {
-                // @todo error handling
-                // here should return error, this type doesn't have a value
-
-            }
             if (in_array(strtolower($column_type), $types_have_not_values))
             {
 
                 $this->migration_file_str .= '$table->'.$type_without_value.'('."'$key'".')';
             }
-            else {
-                // @todo error handling
-                // here should return error that the type not found
-            }
-
         }
     }
 
@@ -117,12 +101,4 @@ class MigrationOperation extends Attributes {
         return strpos($string, $value) !== false;
     }
 
-
-    /**
-     * Check if string contains :
-     */
-    public function containsDots($string): bool
-    {
-        return strpos($string, ":") !== false;
-    }
 }

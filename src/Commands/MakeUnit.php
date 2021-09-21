@@ -42,7 +42,6 @@ class MakeUnit extends Command {
         } else {
             $create_unit_files = createUnitFiles($name, $module);
         }
-
         switch ($create_unit_files) {
             case 'done':
                 $this->info('Unit created successfully');
@@ -55,6 +54,12 @@ class MakeUnit extends Command {
                 break;
             case 'ordering error':
                 $this->info("Ordering error in your json file In attributes, please write type first then mod");
+                break;
+            case 'mod syntax error':
+                $this->info("Syntax error, check the mod key");
+                break;
+            case 'single type have value error':
+                $this->info("Single type shouldn't contain ':', please remove it");
                 break;
             default:
                 $this->info("Error... please try again");

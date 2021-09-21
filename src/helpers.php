@@ -211,6 +211,7 @@ if (!function_exists('createUnitFiles')) {
                 $temp = getTemplate($file);
                 file_put_contents($full_path, $temp);
             }
+            return 'done';
         }
 
         if (is_null($module_name)) {
@@ -235,6 +236,13 @@ if (!function_exists('createUnitFiles')) {
                 $module_studly_case_name,
             ];
 
+            $errors_obj = new \Yepwoo\Laragine\Helpers\Error($module_name, $unit_studly_case);
+            $validate = $errors_obj->validate();
+
+            if( handlingErrorMsg($validate) !== 'ok') {
+                return handlingErrorMsg($validate);
+            }
+
             switch ($file) {
                 case 'create_units_table.stub':
                     $migration_object = new MigrationOperation($module_name, $unit_studly_case);
@@ -242,6 +250,8 @@ if (!function_exists('createUnitFiles')) {
                     switch ($attributes['migration_str']) {
                         case 'ordering error':
                             return 'ordering error';
+                        case 'mod syntax error':
+                            return 'mod syntax error';
                     }
 
                     array_push($replaced_vars, $attributes['migration_str']);
@@ -276,7 +286,21 @@ if (!function_exists('createUnitFiles')) {
     }
 }
 
+if (!function_exists('handlingErrorMsg')) {
+    /**
+     * Return error type
+     * @param $str
+     * @return mixed|string
+     */
+    function handlingErrorMsg($str)
+    {
+        if ($str !== 'ok') {
+            return $str;
+        }
 
+        return 'ok';
+    }
+}
 if (!function_exists('getTemplate')) {
     /**
      * Get template
