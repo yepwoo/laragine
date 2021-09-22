@@ -5,7 +5,7 @@
 
     class AttributeHelpers {
 
-        public static $base_path = '\\Core';
+        public static $base_path = '\\core';
         public static $json_data = [];
 
         public static function workOnFile($module, $unit) {

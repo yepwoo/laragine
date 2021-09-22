@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 class Attributes {
     public $columns;
     public $json_data;
-    public static $base_path = '\\Core';
+    public static $base_path = '\\core';
     public $str_files_arr = [];
     protected $module;
     protected $unit;
@@ -81,7 +81,7 @@ class Attributes {
         $file_name = str_replace('Unit', $unit_studly_case, 'UnitApiController.stub');
         $file_name = str_replace('stub', 'php', $file_name);
         // create data folder
-        if(file_exists(base_path()."/Core/$module_studly_name/$api_controller_path/$file_name")) {
+        if(file_exists(base_path()."/core/$module_studly_name/$api_controller_path/$file_name")) {
             return true;
         }
         return false;

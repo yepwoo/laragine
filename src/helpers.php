@@ -117,9 +117,9 @@ if (!function_exists('createModule')) {
      * @param $name
      * @param string $main_path
      */
-    function createModule($name, string $main_path = 'Core\\') {
+    function createModule($name, string $main_path = 'core\\') {
         $module_name = Str::studly($name);
-        if(!folder_exist('base_path', "Core/$module_name")) {
+        if(!folder_exist('base_path', "core/$module_name")) {
             // create a module folder
             mkdir(base_path() . "\\$main_path/$module_name", 0777, true);
         } else {
@@ -142,21 +142,22 @@ if (!function_exists('createModuleFiles')) {
      * @param $name
      * @param string $main_path
      */
-    function createModuleFiles($main_files, $name, string $main_path = 'Core\\') {
+    function createModuleFiles($main_files, $name, string $main_path = 'core\\') {
         $module_singular = Str::singular($name);
         $plural_name_lower_case = Str::plural(Str::lower($name));
+        $unit_name_lower_case = Str::singular(Str::lower($name));
         $module_name = Str::studly($module_singular);
 
         foreach ($main_files as $key => $file) {
             $folder = substr($file, 0,strrpos($file, '/'));
-            if(!folder_exist('base_path', "Core/$module_name/$folder")) {
-                mkdir(base_path("Core/$module_name/$folder"), 0777, true);
+            if(!folder_exist('base_path', "core/$module_name/$folder")) {
+                mkdir(base_path("core/$module_name/$folder"), 0777, true);
             }
-            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#MODULE_NAME#"];
-            $replaced_vars = [$module_name, $plural_name_lower_case, $module_name];
+            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_LOWER_CASE#", "#MODULE_NAME#"];
+            $replaced_vars = [$module_name, $plural_name_lower_case, $unit_name_lower_case, $module_name];
             $temp = getTemplate($key, $stubs_vars, $replaced_vars);
 
-            file_put_contents(base_path() . '\\Core'."\\$module_name\\$file", $temp);
+            file_put_contents(base_path() . '\\core'."\\$module_name\\$file", $temp);
         }
     }
 }
@@ -171,8 +172,8 @@ if (!function_exists('createModuleFolders')) {
     function createModuleFolders($unit_folders, $name) {
         $module_name = Str::studly($name);
         foreach ($unit_folders as $key => $folder) {
-            if(!folder_exist('base_path', "Core/$module_name/$folder")) {
-                mkdir(base_path("Core/$module_name/$folder"), 0777, true);
+            if(!folder_exist('base_path', "core/$module_name/$folder")) {
+                mkdir(base_path("core/$module_name/$folder"), 0777, true);
             }
         }
     }
@@ -185,7 +186,7 @@ if (!function_exists('createModuleFolders')) {
  */
 
 if (!function_exists('createUnitFiles')) {
-    function createUnitFiles($name, $module_name, $init = false, string $main_path = 'Core\\') {
+    function createUnitFiles($name, $module_name, $init = false, string $main_path = 'core\\') {
         $paths = config('laragine.module.unit_folders');
         $advance = config('laragine.module.advance');
         $unit_singular = Str::singular($name);
@@ -208,11 +209,11 @@ if (!function_exists('createUnitFiles')) {
              */
             foreach ($advance as $file => $path) {
                 $unit_file_name = getUnitFileName($name, $file);
-                $full_path = base_path() . '\\Core'."\\$module_studly_name\\$path\\$unit_file_name";
+                $full_path = base_path() . '\\core'."\\$module_studly_name\\$path\\$unit_file_name";
 
                 // create data folder
-                if(!folder_exist('base_path', "Core/$module_studly_name/$path")) {
-                    mkdir(base_path("Core/$module_studly_name/$path"), 0777, true);
+                if(!folder_exist('base_path', "core/$module_studly_name/$path")) {
+                    mkdir(base_path("core/$module_studly_name/$path"), 0777, true);
                 }
                 $temp = getTemplate($file);
                 file_put_contents($full_path, $temp);
@@ -230,11 +231,11 @@ if (!function_exists('createUnitFiles')) {
 
         foreach ($paths as $file => $path) {
             $unit_file_name = getUnitFileName($name, $file);
-            $full_path = base_path() . '\\Core'."\\$module_studly_name\\$path\\$unit_file_name";
+            $full_path = base_path() . '\\core'."\\$module_studly_name\\$path\\$unit_file_name";
             /**
              * Check if file exist or not, if it's exist it's mean the unit created before
              */
-            if (file_exists(base_path() . "/Core/$module_studly_name/$path$unit_file_name")) {
+            if (file_exists(base_path() . "/core/$module_studly_name/$path$unit_file_name")) {
                 return 'unit exist';
             }
 
@@ -288,7 +289,7 @@ if (!function_exists('getTemplate')) {
      * @return array|string|string[]
      */
     function getTemplate($file, array $stubs_vars = [], array $replaced_vars = []) {
-        $main_path = 'Core\\';
+        $main_path = 'core\\';
         return str_replace (
             $stubs_vars, $replaced_vars, getStub(__DIR__ . '\\' . $main_path. '\\' . "Module". '\\' .$file)
         );

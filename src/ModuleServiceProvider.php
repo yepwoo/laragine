@@ -3,8 +3,6 @@
 namespace Yepwoo\Laragine;
 
 use Illuminate\Support\ServiceProvider;
-use Yepwoo\Laragine\Commands\MakeAttributes;
-use Yepwoo\Laragine\Commands\MakeUnit;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -16,7 +14,17 @@ class ModuleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/config.php', 'laragine');
-        // $this->app->register('Core\\Base\\ModuleServiceProvider');
+        
+        // instantiate the loader
+        $loader = new \Yepwoo\Laragine\Helpers\Psr4AutoloaderClass;
+        // register the autoloader
+        $loader->register();
+        // register the base directories for the namespace prefix
+        $loader->addNamespace('Core', './core');
+
+        if (class_exists('Core\\Base\\ModuleServiceProvider')) {
+            $this->app->register('Core\\Base\\ModuleServiceProvider');
+        }
     }
 
     /**
@@ -33,8 +41,7 @@ class ModuleServiceProvider extends ServiceProvider
             $this->commands([
                 Commands\Install::class,
                 Commands\MakeModule::class,
-                MakeUnit::class,
-                MakeAttributes::class
+                Commands\MakeUnit::class,
             ]);
         }
     }
