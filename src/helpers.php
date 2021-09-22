@@ -319,6 +319,8 @@ if (!function_exists('getUnitFileName')) {
             $unit_file_name = date('Y_m_d_His') . '_' . str_replace("units", $unit_plural_name_lower_case, $stub_file);
         } else {
             $unit_file_name = str_replace("Unit", "$unit_studly_case", $stub_file);
+            $unit_file_name = str_replace("Api", "", $stub_file);
+            $unit_file_name = str_replace("Web", "", $stub_file);
         }
         return str_replace("stub", "php", $unit_file_name);
     }
