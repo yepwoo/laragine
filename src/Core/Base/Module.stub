@@ -12,7 +12,8 @@ trait Module
      */
     private function registerModules($excluded_directory = 'Base', $root_namespace = 'Core')
     {
-        foreach (glob('../core/*/ModuleServiceProvider.php') as $file) {
+        $base_path = base_path() . '/core';
+        foreach (glob($base_path.'/*/ModuleServiceProvider.php') as $file) {
             if (!preg_match("/core\/{$excluded_directory}/i", $file)) {
                 $namespace = str_replace('/', '\\', str_replace('.php', '', $file));
                 $namespace = explode('core\\', $namespace)[1];
