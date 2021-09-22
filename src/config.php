@@ -55,7 +55,7 @@ return [
             'Unit.stub'                  => 'Models/',
         ],
         'unit_folders' => [
-            date('Y_m_d_His') . '_create_units_table.stub' => 'database/migrations/',
+            'create_units_table.stub' => 'database/migrations/',
             'UnitRequest.stub'                             => 'Requests/',
             'UnitResource.stub'                            => 'Resources/',
             'UnitTest.stub'                                => 'Tests/Feature/',
