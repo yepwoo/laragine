@@ -8,7 +8,7 @@ class MakeUnit extends Command {
      *
      * @var string
      */
-    protected $signature = 'laragine:make-unit {name} {--module=} {--I|init}';
+    protected $signature = 'laragine:unit {name} {--module=} {--I|init}';
 
     /**
      * The console command description.
