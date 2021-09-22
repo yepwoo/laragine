@@ -20,7 +20,7 @@ class ModuleServiceProvider extends ServiceProvider
         // register the autoloader
         $loader->register();
         // register the base directories for the namespace prefix
-        $loader->addNamespace('Core', base_path().'./core');
+        $loader->addNamespace('Core', base_path().'/core');
 
         if (class_exists('Core\\Base\\ModuleServiceProvider')) {
             $this->app->register('Core\\Base\\ModuleServiceProvider');
