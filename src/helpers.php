@@ -212,7 +212,7 @@ if (!function_exists('createUnitFiles')) {
                 $full_path = base_path() . '\\core'."\\$module_studly_name\\$path\\$unit_file_name";
 
                 // create data folder
-                if(!folder_exist('base_path', "core/$module_studly_name/$path")) {
+                if(!folder_exist('base_path', "Core/$module_studly_name/$path")) {
                     mkdir(base_path("core/$module_studly_name/$path"), 0777, true);
                 }
                 $temp = getTemplate($file);
@@ -231,11 +231,17 @@ if (!function_exists('createUnitFiles')) {
 
         foreach ($paths as $file => $path) {
             $unit_file_name = getUnitFileName($name, $file);
-            $full_path = base_path() . '\\core'."\\$module_studly_name\\$path\\$unit_file_name";
+            $full_path = base_path() . '\\Core'."\\$module_studly_name\\$path\\$unit_file_name";
+
+            // create data folder
+            if(!folder_exist('base_path', "Core/$module_studly_name/$path")) {
+                mkdir(base_path("core/$module_studly_name/$path"), 0777, true);
+            }
+
             /**
              * Check if file exist or not, if it's exist it's mean the unit created before
              */
-            if (file_exists(base_path() . "/core/$module_studly_name/$path$unit_file_name")) {
+            if (file_exists(base_path() . "/Core/$module_studly_name/$path$unit_file_name")) {
                 return 'unit exist';
             }
 
