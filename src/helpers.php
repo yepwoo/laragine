@@ -197,7 +197,9 @@ if (!function_exists('createUnitFiles')) {
         $module_studly_name = Str::studly($module_name);
         $errors_obj = new \Yepwoo\Laragine\Helpers\Error($module_name, $unit_studly_case);
 
-
+        if(!folder_exist('base_path', "core/$module_studly_name")) {
+            return 'module_not_exist';
+        }
 
         if ($init) {
             if ($errors_obj->isRunInitCommand()) {
