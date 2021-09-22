@@ -38,7 +38,7 @@ class MakeModule extends Command {
                 $this->info('Module created before');
                 break;
             default:
-                $this->info("Error... please try again");
+                $this->error("Error... please try again");
         }
     }
 
