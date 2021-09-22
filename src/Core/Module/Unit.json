@@ -1,0 +1,15 @@
+{
+  "attributes": {
+    "phone": {
+      "type": "float:8,2",
+      "mod": "unique|after:name"
+    },
+    "email": {
+      "type": "enum:2,3,4",
+      "mod": "unique|after:name"
+    }
+  },
+  "relations": {
+
+  }
+}

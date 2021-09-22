@@ -8,7 +8,7 @@ class MakeModule extends Command {
      *
      * @var string
      */
-    protected $signature = 'lara:make:module {names}';
+    protected $signature = 'laragine:module {names}';
 
     /**
      * The console command description.
@@ -38,7 +38,7 @@ class MakeModule extends Command {
                 $this->info('Module created before');
                 break;
             default:
-                $this->info("Error... please try again");
+                $this->error("Error... please try again");
         }
     }
 

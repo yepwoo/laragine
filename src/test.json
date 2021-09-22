@@ -1,0 +1,18 @@
+{
+  "attr": {
+    "name": "type:string|default:john lee",
+    "post_id": "type:foreign:posts,id|type:int|nullable|postive"
+  },
+  "relations": {
+    "many_to_many":  {
+      "table_name": "reply_comments",
+      "relation_table": "reply|comment",
+      "attr": {
+        "name": "type:string",
+        "reply_id": "foreign:reply,id|type:int|nullable",
+        "comment_id": "foreign:comment,id|type:int|nullable"
+      }
+    }
+  }
+}
+

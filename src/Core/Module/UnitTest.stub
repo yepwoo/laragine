@@ -39,12 +39,13 @@ class #UNIT_NAME#Test extends TestCase
         parent::setUp();
 
         $this->base_url     = $this->getApiBaseUrl() . '#UNIT_NAME_PLURAL_LOWER_CASE#/';
-        $this->data         = ['name' => 'Dev'];
+        $this->data         = Model::factory()->make()->toArray();
         $this->json         = $this->getJsonStructure();
-        $this->json['data'] = [
-            'id',
-            'name'
-        ];
+        $this->json['data'] = ['id'];
+
+        foreach ($this->data as $key => $value) {
+            $this->json['data'][] = $key;
+        }
     }
 
     /**
