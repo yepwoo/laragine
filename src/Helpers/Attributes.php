@@ -78,7 +78,7 @@ class Attributes {
         $module_studly_name = Str::studly($this->module);
         $unit_studly_case = Str::studly($this->unit);
         $api_controller_path = $init_paths['UnitApiController.stub'];
-        $file_name = str_replace('Unit', $unit_studly_case, 'UnitApiController.stub');
+        $file_name = str_replace('UnitApi', $unit_studly_case, 'UnitApiController.stub');
         $file_name = str_replace('stub', 'php', $file_name);
         // create data folder
         if(file_exists(base_path()."/core/$module_studly_name/$api_controller_path/$file_name")) {
