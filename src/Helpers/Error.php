@@ -21,9 +21,13 @@ class Error extends Attributes {
                 }
                 switch ($column) {
                     case 'mod':
-                        return $this->validateModifiers($column_value);
+                        $response = $this->validateModifiers($column_value);
+                        if($response !== 'ok')
+                            return $response;
                     case 'type':
-                        return $this->validateTypes($column_value);
+                        $response = $this->validateTypes($column_value);
+                        if($response !== 'ok')
+                            return $response;
                 }
             }
         }

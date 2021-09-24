@@ -81,7 +81,7 @@ return [
         'type_without_given_values' => [
             'bigIncrements', 'bigInteger', 'integer', 'binary', 'boolean', 'dateTimeTz', 'dateTime', 'date', 'geometryCollection',
             'geometry', 'increments', 'integer', 'ipAddress', 'json', 'jsonb', 'lineString', 'longText', 'macAddress', 'mediumIncrements',
-            'mediumInteger', 'mediumText', 'morphs', 'timestamps', 'timestampsTz', 'text' // still have more inputs
+            'mediumInteger', 'mediumText', 'morphs', 'timestamps', 'timestampsTz', 'text', 'string' // still have more inputs
         ]
     ],
     'modifiers' => [

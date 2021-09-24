@@ -197,6 +197,7 @@ if (!function_exists('createUnitFiles')) {
         $module_studly_name = Str::studly($module_name);
         $errors_obj = new \Yepwoo\Laragine\Helpers\Error($module_name, $unit_studly_case);
 
+
         if(!folder_exist('base_path', "core/$module_studly_name")) {
             return 'module_not_exist';
         }
@@ -261,6 +262,8 @@ if (!function_exists('createUnitFiles')) {
              */
             if(!$init) {
                  $replaced_vars = casesForNotInitCommand($name, $module_name, $replaced_vars, $errors_obj, $file);
+                 if(! is_array($replaced_vars))
+                     return $replaced_vars;
             }
             // get template
             $temp = getTemplate($file, $stubs_vars, $replaced_vars);

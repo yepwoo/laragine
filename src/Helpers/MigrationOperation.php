@@ -83,7 +83,6 @@ class MigrationOperation extends Attributes {
             }
 
         }
-        exit;
     }
 
     private function singleTypeCase($column_type, $types_have_not_values, $key) {
