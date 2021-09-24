@@ -64,6 +64,7 @@ class MigrationOperation extends Attributes {
     private function multipleTypeCase($column_type, $types_have_arr_values, $key) {
         $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
         foreach ($arr_types as $type_with_value) {
+
             $split_type_to_get_default_values = explode(':', $type_with_value);
             $type = $split_type_to_get_default_values[0];
             $value = $split_type_to_get_default_values[1];
@@ -82,6 +83,7 @@ class MigrationOperation extends Attributes {
             }
 
         }
+        exit;
     }
 
     private function singleTypeCase($column_type, $types_have_not_values, $key) {
