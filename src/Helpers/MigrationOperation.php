@@ -1,6 +1,8 @@
 <?php
 namespace Yepwoo\Laragine\Helpers;
 
+use Illuminate\Support\Str;
+
 class MigrationOperation extends Attributes {
 
     private $migration_file_str;
@@ -44,6 +46,7 @@ class MigrationOperation extends Attributes {
         switch ($type_of_type) {
             case 'multiple' :
                 $this->multipleTypeCase($column_type, $types_have_arr_values, $key);
+                break;
             case 'single':
                 $this->singleTypeCase($column_type, $types_have_not_values, $key);
         }
@@ -69,13 +72,14 @@ class MigrationOperation extends Attributes {
             $type = $split_type_to_get_default_values[0];
             $value = $split_type_to_get_default_values[1];
 
-            if (in_array(strtolower($split_type_to_get_default_values[0]), $types_have_arr_values))
+            if (in_array(Str::camel($split_type_to_get_default_values[0]), $types_have_arr_values))
             {
+                $this->rightType = true;
                 $this->migration_file_str .= <<<STR
                                     \$table->$type('$key', [$value])
                         STR;
 
-            } else
+            } else if(in_array(Str::camel($split_type_to_get_default_values[0]), $types_have_arr_values))
             {
                 $this->migration_file_str .= <<<STR
                                     \$table->$type('$key', $value)
@@ -87,12 +91,12 @@ class MigrationOperation extends Attributes {
 
     private function singleTypeCase($column_type, $types_have_not_values, $key) {
         $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
-
         foreach ($arr_types as $type_without_value) {
-            if (in_array(strtolower($column_type), $types_have_not_values))
+            if (in_array(Str::camel($column_type), $types_have_not_values))
             {
-
-                $this->migration_file_str .= '$table->'.$type_without_value.'('."'$key'".')';
+                $this->migration_file_str .= <<<STR
+                                    \$table->$type_without_value('$key')
+                        STR;
             }
         }
     }
