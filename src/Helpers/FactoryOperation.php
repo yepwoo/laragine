@@ -26,8 +26,10 @@ class FactoryOperation extends Attributes {
              * value: {"type": ex....., "mod": .....}
              * check if string contain a (unique) word
              */
-            if ($this->containUniqueWord($value['mod'])) {
-               $this->factory_file_str .= 'unique()->';
+            if(isset($value['mod'])) {
+                if ($this->containUniqueWord($value['mod'])) {
+                   $this->factory_file_str .= 'unique()->';
+                }
             }
 
             /**
