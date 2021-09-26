@@ -26,7 +26,12 @@ class MigrationOperation extends Attributes {
                             $have_value = $this->is_modifier_have_value($modifier); //single or multiple
                             if ($have_value) {
                                 $arr_modifier = explode(':', $modifier);
-                                $this->migration_file_str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
+                                if(is_numeric($arr_modifier[1])) {
+                                    $arr_modifier[1] = intval($arr_modifier[1]);
+                                } else {
+                                    $arr_modifier[1] = "'$arr_modifier[1]'";
+                                }
+                                $this->migration_file_str.= '->' . $arr_modifier[0] . '(' .$arr_modifier[1].')';
                             } else {
                                 $this->migration_file_str .= '->' .$modifier . '()';
                             }
@@ -80,11 +85,11 @@ class MigrationOperation extends Attributes {
                 // check if value int or string -> 3,1,2 | easy,hard
                 $arr_values = explode(",", $value);
                 $new_value = "";
-                foreach ($arr_values as $split_value) {
-                    if (is_numeric($split_value)) {
-                        $new_value .= $arr_values[count($arr_values) - 1] == $split_value ? intval($split_value) : intval($split_value). ",";
+                foreach ($arr_values as $value) {
+                    if (is_numeric($value)) {
+                        $new_value .= $arr_values[count($arr_values) - 1] == $value ? intval($value) : intval($value). ",";
                     } else {
-                        $new_value .= $arr_values[count($arr_values) - 1] == $split_value ? "'$split_value'" : "'$split_value'". ",";
+                        $new_value .= $arr_values[count($arr_values) - 1] == $value ? "'$value'" : "'$value'". ",";
                     }
                 }
                 $this->rightType = true;
@@ -118,5 +123,4 @@ class MigrationOperation extends Attributes {
     {
         return strpos($string, $value) !== false;
     }
-
 }
