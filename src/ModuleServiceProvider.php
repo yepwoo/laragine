@@ -14,13 +14,8 @@ class ModuleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/config.php', 'laragine');
-        
-        // instantiate the loader
-        $loader = new \Yepwoo\Laragine\Helpers\Psr4AutoloaderClass;
-        // register the autoloader
-        $loader->register();
-        // register the base directories for the namespace prefix
-        $loader->addNamespace('Core', base_path().'/core');
+
+        module_autoloader();
 
         if (class_exists('Core\\Base\\ModuleServiceProvider')) {
             $this->app->register('Core\\Base\\ModuleServiceProvider');

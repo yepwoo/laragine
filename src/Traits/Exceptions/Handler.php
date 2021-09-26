@@ -7,6 +7,10 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Core\Base\Traits\Response\SendResponse;
 
+if (!class_exists(SendResponse::class, false)) {
+    module_autoloader();
+}
+
 trait Handler
 {
     use SendResponse;

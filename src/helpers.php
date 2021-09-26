@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Yepwoo\Laragine\Helpers\MigrationOperation;
 use Yepwoo\Laragine\Helpers\ResourceOperation;
+
 if (!function_exists('dummy_function')) {
     /**
      * get the dummy function.
@@ -48,6 +49,27 @@ if (!function_exists('client_validation_response')) {
         }
 
         return $array;
+    }
+}
+
+if (!function_exists('module_autoloader')) {
+    /**
+     * Psr4 Autoloader helper.
+     *
+     * @param string $namespace
+     * @param string $dir
+     * @return void
+     */
+    function module_autoloader($namespace = 'Core', $dir = '')
+    {
+        $dir = empty($dir) ? base_path().'/core' : $dir;
+
+        // instantiate the loader
+        $loader = new \Yepwoo\Laragine\Helpers\Psr4AutoloaderClass;
+        // register the autoloader
+        $loader->register();
+        // register the base directories for the namespace prefix
+        $loader->addNamespace($namespace, $dir);
     }
 }
 
