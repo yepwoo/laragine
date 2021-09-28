@@ -3,6 +3,8 @@
 namespace Yepwoo\Laragine\Helpers;
 
 
+use Illuminate\Support\Str;
+
 class FactoryOperation extends Attributes {
     private $factory_file_str;
 
@@ -15,19 +17,22 @@ class FactoryOperation extends Attributes {
 
     public function handleFactoryFile() {
         $special_cases = config('laragine.factory_array.special_cases');
-        $bool = false;
 
         foreach ($this->columns as $key => $value) {
-            $this->factory_file_str .= <<<STR
+            $bool = false;
+            $temp_str = <<<STR
                         '$key' => \$this->faker->
             STR;
+
 
             /**
              * value: {"type": ex....., "mod": .....}
              * check if string contain a (unique) word
              */
-            if ($this->containUniqueWord($value['mod'])) {
-               $this->factory_file_str .= 'unique()->';
+            if(isset($value['mod'])) {
+                if ($this->containUniqueWord($value['mod'])) {
+                    $temp_str .= 'unique()->';
+                }
             }
 
             /**
@@ -43,19 +48,25 @@ class FactoryOperation extends Attributes {
                          */
                         $special_case = $this->containSpecialCases($key);
                         if ($special_case !== "not contain") {
-                            $this->factory_file_str .= $special_case.'()';
+                            $temp_str .= $special_case.'()';
                             $bool = true;
                             break;
                         }
 
-                        if($this->inFactoryTextList($column_value)) {
-                            $this->factory_file_str .= 'text(100)';
+                        else if($this->inFactoryTextList($column_value)) {
+                            $temp_str .= 'text(100)';
                             $bool = true;
                             Break;
                         }
 
-                        if ($this->inFactoryIntList($column_value)) {
-                            $this->factory_file_str .= 'integer()';
+                        else if ($this->inFactoryIntList($column_value)) {
+                            $temp_str.= 'integer()';
+                            $bool = true;
+                            Break;
+                        }
+
+                        else if($column_value === 'boolean') {
+                            $temp_str.= 'boolean()';
                             $bool = true;
                             Break;
                         }
@@ -64,10 +75,11 @@ class FactoryOperation extends Attributes {
             }
 
             if (!$bool) {
-                $this->factory_file_str = <<<STR
+                $temp_str= <<<STR
                              '$key' => ''
                  STR;
             }
+            $this->factory_file_str .= $temp_str;
             $this->factory_file_str .= array_key_last($this->columns) == $key ? ',' : ",\n" ;
         }
     }
@@ -94,6 +106,17 @@ class FactoryOperation extends Attributes {
         return false;
     }
 
+    private function isBoolean($column_type): bool
+    {
+        $factory_array = config('laragine.factory_array.integer');
+        foreach ($factory_array as $request_type) {
+            if (strpos($column_type, $request_type) !== false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * @param $column_name
      * Check if column name contain (email - phone - url)
@@ -101,7 +124,7 @@ class FactoryOperation extends Attributes {
     private function containSpecialCases($column_name) {
         $special_cases = config('laragine.factory_array.special_cases');
         foreach ($special_cases as $case => $factory_key) {
-            if (strpos($column_name, $case) !== false) {
+            if (strpos(Str::lower($column_name), $case) !== false) {
                return $factory_key;
             }
         }

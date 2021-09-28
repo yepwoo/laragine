@@ -70,6 +70,9 @@ class MakeUnit extends Command {
             case 'module_not_exist':
                 $this->error("Please run `laragine:module $module` first");
                 break;
+            case 'undefined type':
+                $this->error("Undefined type!, please sure this is a right type");
+                break;
             default:
                 $this->error("Error... please try again");
         }

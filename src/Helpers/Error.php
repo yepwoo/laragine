@@ -1,6 +1,8 @@
 <?php
 namespace Yepwoo\Laragine\Helpers;
 
+use Illuminate\Support\Str;
+
 class Error extends Attributes {
 
     public function __construct($module, $unit) {
@@ -19,11 +21,16 @@ class Error extends Attributes {
                 if (array_key_first($value) !== 'type') {
                     return 'ordering error';
                 }
-                switch ($column) {
-                    case 'mod':
-                        return $this->validateModifiers($column_value);
-                    case 'type':
-                        return $this->validateTypes($column_value);
+
+                if($column === 'mod') {
+                        $response = $this->validateModifiers($column_value);
+                        if($response !== 'ok')
+                            return $response;
+
+                } else if ($column === 'type') {
+                        $response = $this->validateTypes($column_value);
+                        if($response !== 'ok')
+                            return $response;
                 }
             }
         }
@@ -51,6 +58,9 @@ class Error extends Attributes {
                 return 'single type have value error';
             }
         }
+        if(!$this->isSingle($column_type) && !$this->isMultiple($column_type)) {
+            return 'undefined type';
+        }
 
         return 'ok';
     }
@@ -62,12 +72,32 @@ class Error extends Attributes {
 
         foreach ($arr_types as $type_without_value) {
             $type_arr = explode(':', $type_without_value);
-            if (in_array(strtolower($type_arr[0]), $types_have_not_values))
+            if (in_array(Str::camel($type_arr[0]), $types_have_not_values))
             {
                 return true;
             }
         }
         return false;
+    }
+
+    private function isMultiple($column_type): bool
+    {
+        $arr_types = explode('|', $column_type);
+
+        $types_with_given_values = config("laragine.data_types.type_with_given_values");
+        foreach ($arr_types as $type) {
+            $multiple_type = explode(":", $type);
+            if(count($multiple_type) > 1) { // this mean the type have multiple value
+                if (!in_array(Str::camel($multiple_type[0]), $types_with_given_values))
+                {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

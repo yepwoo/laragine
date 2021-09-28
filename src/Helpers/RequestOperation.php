@@ -4,6 +4,7 @@ namespace Yepwoo\Laragine\Helpers;
 class RequestOperation extends Attributes
 {
     private $request_file_str;
+    private $nullable;
 
     public function __construct($module, $unit)
     {
@@ -31,7 +32,7 @@ class RequestOperation extends Attributes
     public function handleRequestFile()
     {
         foreach ($this->columns as $key => $value) { // column name
-            $nullable = false;
+            $this->nullable = false;
 
             foreach ($value as $column => $column_value) { // type name and value
                 switch ($column) {
@@ -49,30 +50,32 @@ class RequestOperation extends Attributes
                         }
                         break;
                     case 'mod':
-                        $modifiers = explode("|", $column_value);
-                        foreach ($modifiers as $modifier) {
-                            if ($this->isInRequestArray(strtolower($modifier))) {
-                                $this->request_file_str .= $modifier. '|';
-                            }
-                            $have_value = $this->is_modifier_have_value($modifier); //single or multiple
-                            if ($have_value) {
-                                if ($this->isHaveNullableType($modifier)) {
-                                    $nullable = true;
-                                }
-                            }
-                        }
+                        $this->addModifiers($column_value);
                         break;
                 }
             }
-
-            if ($nullable) {
+            if ($this->nullable) {
                 $this->request_file_str .= 'nullable' . "'";
             } else {
                 $this->request_file_str .= 'required' . "'";
+
             }
+
             $this->request_file_str .= array_key_last($this->columns) == $key ? ',' : ",\n";
         }
     }
 
+    private function addModifiers($column_value) {
+        $modifiers = explode("|", $column_value);
+        foreach ($modifiers as $modifier) {
+            if ($this->isInRequestArray(strtolower($modifier))) {
+                if ($this->isHaveNullableType($modifier)) {
+                    $this->nullable = true;
+                } else {
+                    $this->request_file_str .= $modifier . '|';
+                }
+            }
+        }
+    }
 
 }

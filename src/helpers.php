@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Yepwoo\Laragine\Helpers\MigrationOperation;
 use Yepwoo\Laragine\Helpers\ResourceOperation;
+
 if (!function_exists('dummy_function')) {
     /**
      * get the dummy function.
@@ -48,6 +49,27 @@ if (!function_exists('client_validation_response')) {
         }
 
         return $array;
+    }
+}
+
+if (!function_exists('module_autoloader')) {
+    /**
+     * Psr4 Autoloader helper.
+     *
+     * @param string $namespace
+     * @param string $dir
+     * @return void
+     */
+    function module_autoloader($namespace = 'Core', $dir = '')
+    {
+        $dir = empty($dir) ? base_path().'/core' : $dir;
+
+        // instantiate the loader
+        $loader = new \Yepwoo\Laragine\Helpers\Psr4AutoloaderClass;
+        // register the autoloader
+        $loader->register();
+        // register the base directories for the namespace prefix
+        $loader->addNamespace($namespace, $dir);
     }
 }
 
@@ -197,6 +219,7 @@ if (!function_exists('createUnitFiles')) {
         $module_studly_name = Str::studly($module_name);
         $errors_obj = new \Yepwoo\Laragine\Helpers\Error($module_name, $unit_studly_case);
 
+
         if(!folder_exist('base_path', "core/$module_studly_name")) {
             return 'module_not_exist';
         }
@@ -261,6 +284,8 @@ if (!function_exists('createUnitFiles')) {
              */
             if(!$init) {
                  $replaced_vars = casesForNotInitCommand($name, $module_name, $replaced_vars, $errors_obj, $file);
+                 if(! is_array($replaced_vars))
+                     return $replaced_vars;
             }
             // get template
             $temp = getTemplate($file, $stubs_vars, $replaced_vars);

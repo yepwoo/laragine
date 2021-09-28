@@ -76,12 +76,12 @@ return [
     |
     */
     'data_types' => [
-        'type_with_given_values' => [ 'enum', 'float', 'double', 'char', 'string', 'timestamp', 'timestampTz', 'time', 'timeTz'],
+        'type_with_given_values' => [ 'enum', 'float', 'double', 'char', 'timestamp', 'timestampTz', 'time', 'timeTz'],
         'type_have_array_value' => ['enum'],
         'type_without_given_values' => [
             'bigIncrements', 'bigInteger', 'integer', 'binary', 'boolean', 'dateTimeTz', 'dateTime', 'date', 'geometryCollection',
             'geometry', 'increments', 'integer', 'ipAddress', 'json', 'jsonb', 'lineString', 'longText', 'macAddress', 'mediumIncrements',
-            'mediumInteger', 'mediumText', 'morphs', 'timestamps', 'timestampsTz', 'text' // still have more inputs
+            'mediumInteger', 'mediumText', 'morphs', 'timestamps', 'timestampsTz', 'text', 'string', 'foreignId' // still have more inputs
         ]
     ],
     'modifiers' => [
@@ -127,6 +127,8 @@ return [
             'smallInteger',
             'bigInteger'
         ],
+
+        'boolean' => 'boolean',
 
         'special_cases' => [
             'email' => 'safeEmail',

@@ -1,6 +1,8 @@
 <?php
 namespace Yepwoo\Laragine\Helpers;
 
+use Illuminate\Support\Str;
+
 class MigrationOperation extends Attributes {
 
     private $migration_file_str;
@@ -24,7 +26,12 @@ class MigrationOperation extends Attributes {
                             $have_value = $this->is_modifier_have_value($modifier); //single or multiple
                             if ($have_value) {
                                 $arr_modifier = explode(':', $modifier);
-                                $this->migration_file_str.= '->' . $arr_modifier[0] . '(' . "'$arr_modifier[1]'" .')';
+                                if(is_numeric($arr_modifier[1])) {
+                                    $arr_modifier[1] = intval($arr_modifier[1]);
+                                } else {
+                                    $arr_modifier[1] = "'$arr_modifier[1]'";
+                                }
+                                $this->migration_file_str.= '->' . $arr_modifier[0] . '(' .$arr_modifier[1].')';
                             } else {
                                 $this->migration_file_str .= '->' .$modifier . '()';
                             }
@@ -44,6 +51,7 @@ class MigrationOperation extends Attributes {
         switch ($type_of_type) {
             case 'multiple' :
                 $this->multipleTypeCase($column_type, $types_have_arr_values, $key);
+                break;
             case 'single':
                 $this->singleTypeCase($column_type, $types_have_not_values, $key);
         }
@@ -63,18 +71,33 @@ class MigrationOperation extends Attributes {
 
     private function multipleTypeCase($column_type, $types_have_arr_values, $key) {
         $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
+        $types_have_arr_values = config("laragine.data_types.type_have_array_value");
+        $types_have_multipl_values = config("laragine.data_types.type_with_given_values");
+
         foreach ($arr_types as $type_with_value) {
+
             $split_type_to_get_default_values = explode(':', $type_with_value);
             $type = $split_type_to_get_default_values[0];
             $value = $split_type_to_get_default_values[1];
 
-            if (in_array(strtolower($split_type_to_get_default_values[0]), $types_have_arr_values))
+            if (in_array(Str::camel($split_type_to_get_default_values[0]), $types_have_arr_values))
             {
+                // check if value int or string -> 3,1,2 | easy,hard
+                $arr_values = explode(",", $value);
+                $new_value = "";
+                foreach ($arr_values as $value) {
+                    if (is_numeric($value)) {
+                        $new_value .= $arr_values[count($arr_values) - 1] == $value ? intval($value) : intval($value). ",";
+                    } else {
+                        $new_value .= $arr_values[count($arr_values) - 1] == $value ? "'$value'" : "'$value'". ",";
+                    }
+                }
+                $this->rightType = true;
                 $this->migration_file_str .= <<<STR
-                                    \$table->$type('$key', [$value])
+                                    \$table->$type('$key', [$new_value])
                         STR;
 
-            } else
+            } else if(in_array(Str::camel($split_type_to_get_default_values[0]), $types_have_multipl_values))
             {
                 $this->migration_file_str .= <<<STR
                                     \$table->$type('$key', $value)
@@ -86,12 +109,12 @@ class MigrationOperation extends Attributes {
 
     private function singleTypeCase($column_type, $types_have_not_values, $key) {
         $arr_types = explode('|', $column_type); // expected be one -> ex: enum:2,8, float
-
         foreach ($arr_types as $type_without_value) {
-            if (in_array(strtolower($column_type), $types_have_not_values))
+            if (in_array(Str::camel($column_type), $types_have_not_values))
             {
-
-                $this->migration_file_str .= '$table->'.$type_without_value.'('."'$key'".')';
+                $this->migration_file_str .= <<<STR
+                                    \$table->$type_without_value('$key')
+                        STR;
             }
         }
     }
@@ -100,5 +123,4 @@ class MigrationOperation extends Attributes {
     {
         return strpos($string, $value) !== false;
     }
-
 }
