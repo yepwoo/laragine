@@ -128,6 +128,8 @@ return [
             'bigInteger'
         ],
 
+        'boolean' => 'boolean',
+
         'special_cases' => [
             'email' => 'safeEmail',
             'phone' => 'phoneNumber',
