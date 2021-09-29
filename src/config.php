@@ -32,6 +32,10 @@ return [
         'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
     ],
 
+    'views' => [
+        'layouts', 'partials'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | The Module

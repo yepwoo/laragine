@@ -1,12 +1,19 @@
 {
   "attributes": {
-    "phone": {
-      "type": "float:8,2",
-      "mod": "unique|after:name"
+    "name": {
+      "type": "string"
     },
-    "email": {
-      "type": "enum:2,3,4",
-      "mod": "unique|after:name"
+    "description": {
+      "type": "text",
+      "mod": "nullable"
+    },
+    "priority": {
+      "type": "enum:low,medium,high",
+      "mod": "nullable|default:medium"
+    },
+    "is_done": {
+      "type": "boolean",
+      "mod": "default:false"
     }
   },
   "relations": {

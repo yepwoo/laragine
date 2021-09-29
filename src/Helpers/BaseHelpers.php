@@ -39,4 +39,15 @@ class BaseHelpers {
             file_put_contents(base_path() . '\\' .$main_path."$file", $temp);
         }
     }
+
+    public static function createViewsFolders() {
+        $folders = config('laragine.views');
+        $main_path = base_path().'/core/Base/views';
+
+        foreach ($folders as $folder) {
+            if (!folder_exist('base_path', "core/Base/views/$folder")) {
+                mkdir("$main_path/$folder", 0777, true);
+            }
+        }
+    }
 }
