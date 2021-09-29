@@ -12,7 +12,7 @@ class Install extends Command
      *
      * @var string
      */
-    protected $signature = 'laragine:install {--view}';
+    protected $signature = 'laragine:install';
 
     /**
      * The console command description.
@@ -43,14 +43,13 @@ class Install extends Command
         $this->info('Publishing configuration...');
         if(!folder_exist('base_path', 'Core')) {
             $this->publishCoreFolderAndFiles();
-            if($this->option('view')) {
-                $this->publishViewsFoldersAndFiles();
-            }
+            $this->publishViewsFoldersAndFiles();
             $this->info('Published configuration');
         } else {
             if($this->shouldOverwriteFolders()) {
                 $this->info('Overwriting configuration file....');
                 $this->publishCoreFolderAndFiles();
+                $this->publishViewsFoldersAndFiles();
             } else {
                 $this->info('Existing core was not overwritten');
             }
@@ -74,6 +73,8 @@ class Install extends Command
     }
 
     private function publishViewsFoldersAndFiles() {
-        BaseHelpers::createViewsFolders();
+        if(BaseHelpers::createViewsFolders() == 'success') {
+            BaseHelpers::createViewsFiles();
+        };
     }
 }
