@@ -215,6 +215,7 @@ if (!function_exists('createUnitFiles')) {
         $unit_plural_name_lower_case = Str::plural(Str::lower($name));
         $unit_plural_name_ucfirst_case = Str::ucfirst($unit_plural_name_lower_case);
         $unit_studly_case = Str::studly($unit_singular);
+        $unit_studly_case_lower = Str::lower($unit_studly_case);
         $module_studly_case_name = Str::studly($module_name);
         $module_studly_name = Str::studly($module_name);
         $errors_obj = new \Yepwoo\Laragine\Helpers\Error($module_name, $unit_studly_case);
@@ -237,7 +238,7 @@ if (!function_exists('createUnitFiles')) {
                 $full_path = base_path() . '\\core'."\\$module_studly_name\\$path\\$unit_file_name";
 
                 // create data folder
-                if(!folder_exist('base_path', "Core/$module_studly_name/$path")) {
+                if(!folder_exist('base_path', "core/$module_studly_name/$path")) {
                     mkdir(base_path("core/$module_studly_name/$path"), 0777, true);
                 }
                 $temp = getTemplate($file);
@@ -247,6 +248,9 @@ if (!function_exists('createUnitFiles')) {
             if (!$errors_obj->isRunInitCommand()) {
                 return 'must run init command';
             }
+            
+            //copy the unit views
+            File::copyDirectory(base_path().'/core/Base/unit_template', base_path()."/core/$module_studly_name/views/$unit_studly_case_lower");
         }
 
         if (is_null($module_name)) {
@@ -256,17 +260,17 @@ if (!function_exists('createUnitFiles')) {
 
         foreach ($paths as $file => $path) {
             $unit_file_name = getUnitFileName($name, $file);
-            $full_path = base_path() . '\\Core'."\\$module_studly_name\\$path\\$unit_file_name";
+            $full_path = base_path() . '\\core'."\\$module_studly_name\\$path\\$unit_file_name";
 
             // create data folder
-            if(!folder_exist('base_path', "Core/$module_studly_name/$path")) {
+            if(!folder_exist('base_path', "core/$module_studly_name/$path")) {
                 mkdir(base_path("core/$module_studly_name/$path"), 0777, true);
             }
 
             /**
              * Check if file exist or not, if it's exist it's mean the unit created before
              */
-            if (file_exists(base_path() . "/Core/$module_studly_name/$path$unit_file_name")) {
+            if (file_exists(base_path() . "/core/$module_studly_name/$path$unit_file_name")) {
                 return 'unit exist';
             }
 

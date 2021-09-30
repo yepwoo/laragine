@@ -68,7 +68,7 @@ class BaseHelpers {
         foreach ($folders as $folder => $files) {
             foreach ($files as $file) {
                 $destination = $main_path . "/views/" . $folder . "/$file";
-                $source     = __DIR__ . '/../'.'Core/Base/views/' . $folder . '/' . $file;
+                $source     = __DIR__ . '/../'.'core/Base/views/' . $folder . '/' . $file;
                 $data = file_get_contents($source);
                 file_put_contents($destination, $data);
             }
@@ -79,7 +79,7 @@ class BaseHelpers {
          * index - create - update - show - form
          */
 
-        foreach (glob( __DIR__ . '/../'.'Core/Base/unit_template/*.php') as $file_path) {
+        foreach (glob( __DIR__ . '/../'.'core/Base/unit_template/*.php') as $file_path) {
             $file_name = pathinfo($file_path);
             $destination = $main_path . "/" . "unit_template/". $file_name['basename'];
             $data = file_get_contents($file_path);
