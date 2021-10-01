@@ -75,23 +75,23 @@ class Controller extends \App\Http\Controllers\Controller
     /**
      * Display the specified resource.
      *
-     * @param  string $id
+     * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        return $this->sendResponse(new $this->resource($this->getModel($id)));
+        return $this->sendResponse(new $this->resource($this->model->find($id)));
     }
 
     /**
      * Update a resource in storage.
      *
-     * @param  string $id
+     * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function update($id)
     {
-        $model = $this->getModel($id);
+        $model = $this->model->find($id);
         $model->update($this->request->all());
         return $this->sendResponse(new $this->resource($model), 'successfully updated.');
     }
@@ -99,27 +99,14 @@ class Controller extends \App\Http\Controllers\Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string $id
+     * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
     public function destroy($id)
     {
-        $model = $this->getModel($id);
+        $model = $this->model->find($id);
         $model->delete();
         return $this->sendResponse([], 'successfully deleted.');
-    }
-
-    /**
-     * get the model by specific column
-     * 
-     * @codeCoverageIgnore
-     * @param  string $id
-     * @param  string $column
-     * @return Model
-     */
-    protected function getModel($id, $column = 'uuid')
-    {
-        return $this->model->where($column, $id)->first();
     }
 }
