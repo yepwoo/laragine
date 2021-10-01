@@ -39,4 +39,51 @@ class BaseHelpers {
             file_put_contents(base_path() . '\\' .$main_path."$file", $temp);
         }
     }
+
+    public static function createViewsFolders(): string
+    {
+        $folders = config('laragine.main_views');
+        $main_path = base_path().'/core/Base';
+        foreach ($folders as $folder => $files) {
+            if (!folder_exist('base_path', "core/Base/views/$folder")) {
+                mkdir("$main_path/views/$folder", 0777, true);
+            }
+        }
+        /**
+         * == Create unit_template folder ====
+         */
+        if (!folder_exist('base_path', "core/Base/unit_template")) {
+            mkdir("$main_path/unit_template", 0777, true);
+        }
+        return 'success';
+    }
+
+    public static function createViewsFiles() {
+        $folders = config('laragine.main_views');
+        $main_path = base_path().'/core/Base';
+
+        /**
+         * === Main folders ===
+         */
+        foreach ($folders as $folder => $files) {
+            foreach ($files as $file) {
+                $destination = $main_path . "/views/" . $folder . "/$file";
+                $source     = __DIR__ . '/../'.'core/Base/views/' . $folder . '/' . $file;
+                $data = file_get_contents($source);
+                file_put_contents($destination, $data);
+            }
+        }
+
+        /**
+         * ==== Unit templates files ====
+         * index - create - update - show - form
+         */
+
+        foreach (glob( __DIR__ . '/../'.'core/Base/unit_template/*.php') as $file_path) {
+            $file_name = pathinfo($file_path);
+            $destination = $main_path . "/" . "unit_template/". $file_name['basename'];
+            $data = file_get_contents($file_path);
+            file_put_contents($destination, $data);
+        }
+    }
 }

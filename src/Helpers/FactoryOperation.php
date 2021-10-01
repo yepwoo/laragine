@@ -31,7 +31,7 @@ class FactoryOperation extends Attributes {
              */
             if(isset($value['mod'])) {
                 if ($this->containUniqueWord($value['mod'])) {
-                    $temp_str .= 'unique()->';
+                    $temp_str .= "unique()->";
                 }
             }
 
@@ -65,6 +65,24 @@ class FactoryOperation extends Attributes {
                             Break;
                         }
 
+                        else if($this->isEnum($column_value)) {
+                            $split_arr = explode(":", $column_value);
+                            $enum_value_arr = explode(",", $split_arr[1]);
+
+                            $temp_str .= 'randomElement([';
+                            foreach ($enum_value_arr as $enum_value) {
+                                if(is_numeric($enum_value)) {
+                                    $temp_str .= $enum_value_arr[count($enum_value_arr) - 1] === $enum_value ? intval($enum_value) : intval($enum_value) . ',';
+                                } else {
+                                    $temp_str .= $enum_value_arr[count($enum_value_arr) - 1] === $enum_value ? "'$enum_value'" : "'$enum_value'" . ',';
+
+                                }
+                            }
+
+                            $temp_str .= '])';
+                            $bool = true;
+                            break;
+                        }
                         else if($column_value === 'boolean') {
                             $temp_str.= 'boolean()';
                             $bool = true;
@@ -135,8 +153,16 @@ class FactoryOperation extends Attributes {
      * @param $str
      * Check if the value contain unique word
      */
-    private function containUniqueWord($str) {
+    private function containUniqueWord($str): bool
+    {
         if(strpos($str, 'unique') !== false) {
+            return true;
+        }
+        return false;
+    }
+
+    private function isEnum($str) {
+        if(strpos($str, 'enum') !== false) {
             return true;
         }
         return false;

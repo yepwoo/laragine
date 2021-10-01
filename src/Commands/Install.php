@@ -43,11 +43,13 @@ class Install extends Command
         $this->info('Publishing configuration...');
         if(!folder_exist('base_path', 'Core')) {
             $this->publishCoreFolderAndFiles();
+            $this->publishViewsFoldersAndFiles();
             $this->info('Published configuration');
         } else {
             if($this->shouldOverwriteFolders()) {
                 $this->info('Overwriting configuration file....');
                 $this->publishCoreFolderAndFiles();
+                $this->publishViewsFoldersAndFiles();
             } else {
                 $this->info('Existing core was not overwritten');
             }
@@ -68,5 +70,11 @@ class Install extends Command
             'Core folder already exists. Do you want to overwrite it?',
             false
         );
+    }
+
+    private function publishViewsFoldersAndFiles() {
+        if(BaseHelpers::createViewsFolders() == 'success') {
+            BaseHelpers::createViewsFiles();
+        };
     }
 }

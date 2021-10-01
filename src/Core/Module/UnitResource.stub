@@ -15,7 +15,7 @@ class #UNIT_NAME#Resource extends Resource
     public function toArray($request)
     {
         return [
-            'id'   => $this->uuid,
+            'id'   => $this->id,
 #CONTENT#
             $this->mergeWhen($request->route()->getName() == 'api.v1.#UNIT_NAME_PLURAL_LOWER_CASE#.show', [
 

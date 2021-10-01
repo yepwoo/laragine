@@ -22,7 +22,6 @@ class #UNIT_NAME#Factory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
 #CONTENT#
         ];
     }

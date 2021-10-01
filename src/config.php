@@ -32,6 +32,11 @@ return [
         'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
     ],
 
+    'main_views' => [
+        'layouts'  => ['master.blade.php'],
+        'layouts/partials' => ['_navbar.blade.php', '_sidebar.blade.php']
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | The Module

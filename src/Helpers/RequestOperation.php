@@ -1,6 +1,8 @@
 <?php
 namespace Yepwoo\Laragine\Helpers;
 
+use Illuminate\Support\Str;
+
 class RequestOperation extends Attributes
 {
     private $request_file_str;
@@ -72,7 +74,10 @@ class RequestOperation extends Attributes
                 if ($this->isHaveNullableType($modifier)) {
                     $this->nullable = true;
                 } else {
-                    $this->request_file_str .= $modifier . '|';
+                    if($modifier == "unique")
+                        $this->request_file_str .= $modifier . ':' . Str::lower(Str::plural($this->unit)) . '|';
+                    else
+                        $this->request_file_str .= $modifier . '|';
                 }
             }
         }
