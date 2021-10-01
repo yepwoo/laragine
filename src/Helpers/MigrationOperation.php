@@ -15,9 +15,11 @@ class MigrationOperation extends Attributes {
 
     public function getFormattedAttributes() {
         foreach ($this->columns as $key => $value) { // column name
+            $type_value = "";
             foreach ($value as $column => $column_value) { // type name and value
                 switch ($column) {
                     case 'type':
+                        $type_value = $column_value;
                         $this->handleTypeCase($column_value, $key);
                         break;
                     case 'mod':
@@ -26,12 +28,25 @@ class MigrationOperation extends Attributes {
                             $have_value = $this->is_modifier_have_value($modifier); //single or multiple
                             if ($have_value) {
                                 $arr_modifier = explode(':', $modifier);
+                                // handle is modifier value is number
                                 if(is_numeric($arr_modifier[1])) {
                                     $arr_modifier[1] = intval($arr_modifier[1]);
-                                } else {
-                                    $arr_modifier[1] = "'$arr_modifier[1]'";
+                                    $this->migration_file_str.= '->' . $arr_modifier[0] . '(' .$arr_modifier[1].')';
+                                } else if ($this->isBoolean($type_value)) {
+                                    if($arr_modifier[1] == "false") {
+                                        $arr_modifier[1] = false;
+                                    }
+                                    else if($arr_modifier[1] == "true")
+                                        $arr_modifier[1] = true;
+
+                                    $this->migration_file_str.= '->' . $arr_modifier[0] . '(' .json_encode($arr_modifier[1]).')';
                                 }
-                                $this->migration_file_str.= '->' . $arr_modifier[0] . '(' .$arr_modifier[1].')';
+                                else {
+                                    $arr_modifier[1] = "'$arr_modifier[1]'";
+                                    $this->migration_file_str.= '->' . $arr_modifier[0] . '(' .$arr_modifier[1].')';
+                                }
+
+
                             } else {
                                 $this->migration_file_str .= '->' .$modifier . '()';
                             }
@@ -122,5 +137,10 @@ class MigrationOperation extends Attributes {
     private function isMultipleType($string, $value): bool
     {
         return strpos($string, $value) !== false;
+    }
+
+    private function isBoolean($column_value): bool
+    {
+        return strpos($column_value, 'boolean') !== false;
     }
 }
