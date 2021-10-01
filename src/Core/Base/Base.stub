@@ -4,11 +4,10 @@ namespace Core\Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Core\Base\Traits\Model\Uuid;
 
 class Base extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory;
 
     /**
      * The attributes that aren't mass assignable.

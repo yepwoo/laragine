@@ -59,13 +59,13 @@ class #UNIT_NAME#Test extends TestCase
     }
 
     /**
-     * get the uuid
+     * get the id
      *
-     * @return string
+     * @return int
      */
-    protected function getUuid()
+    protected function getId()
     {
-        return $this->getNewEntry()->uuid;
+        return $this->getNewEntry()->id;
     }
 
     /**
@@ -104,7 +104,7 @@ class #UNIT_NAME#Test extends TestCase
      */
     public function testItShouldGetSpecifiedResource()
     {
-        $this->json('GET', $this->base_url . $this->getUuid(), [], $this->getHeaders())
+        $this->json('GET', $this->base_url . $this->getId(), [], $this->getHeaders())
              ->assertStatus(200)
              ->assertJsonStructure($this->json);
     }
@@ -116,7 +116,7 @@ class #UNIT_NAME#Test extends TestCase
      */
     public function testItShouldUpdateSpecifiedResource()
     {
-        $this->json('PUT', $this->base_url . $this->getUuid(), $this->data, $this->getHeaders())
+        $this->json('PUT', $this->base_url . $this->getId(), $this->data, $this->getHeaders())
              ->assertStatus(200)
              ->assertJsonStructure($this->json);
     }
@@ -129,7 +129,7 @@ class #UNIT_NAME#Test extends TestCase
     public function testItShouldRemoveSpecifiedResource()
     {
         $this->json['data'] = [];
-        $this->json('DELETE', $this->base_url . $this->getUuid(), [], $this->getHeaders())
+        $this->json('DELETE', $this->base_url . $this->getId(), [], $this->getHeaders())
              ->assertStatus(200)
              ->assertJsonStructure($this->json);
     }
