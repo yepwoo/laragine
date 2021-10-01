@@ -1,10 +1,10 @@
 <?php
 
-Route::group(['prefix' => 'api', 'middleware' => ['auth:api']], function () {
+Route::group(['prefix' => 'api', 'middleware' => []], function () {
     # V1
     Route::namespace('Core\#MODULE_NAME#\Controllers\API\V1')->prefix('v1')->name('api.v1.')->group(function () {
-        #*** START: #UNIT_NAME# ***#
-        Route::apiResource('#UNIT_NAME_PLURAL_LOWER_CASE#', '#UNIT_NAME#Controller');
+        #*** Ex: START: #UNIT_NAME# ***#
+        // Route::apiResource('#UNIT_NAME_PLURAL_LOWER_CASE#', '#UNIT_NAME#Controller');
         #*** END: #UNIT_NAME# ***#
     });
 });
