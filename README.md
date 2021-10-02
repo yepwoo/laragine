@@ -41,3 +41,36 @@ After including Laragine, you have to install it by running the following comman
 ```bash
 php artisan laragine:install
 ```
+
+### Notes
+
+* Laragine directory will be in the root directory under `Core` directory
+
+* The system response (inclding errors response if you applied what's in `Error Handeling` section) to any request will be as in below examples (`status_code` is the http status code):
+
+**Success Response:**
+
+```json
+{
+  "is_success": true,
+  "status_code": 200,
+  "message": "Success.",
+  "data": ...,
+  "links": ...,
+  "meta": ...
+}
+```
+
+`links` and `meta` will be provided if the data is **paginated**.
+
+
+**Error Response:**
+
+```json
+{
+  "is_success": false,
+  "status_code": 401,
+  "message": "Error.",
+  "errors": ...
+}
+```
