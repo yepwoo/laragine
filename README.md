@@ -33,3 +33,11 @@ composer require yepwoo/laragine
 ```
 
 Note that: Laragine currently is working on **Laravel 8** (`^8.0`).
+
+### Install the package
+
+After including Laragine, you have to install it by running the following command:
+
+```bash
+php artisan laragine:install
+```
