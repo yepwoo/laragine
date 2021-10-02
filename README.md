@@ -74,3 +74,72 @@ php artisan laragine:install
   "errors": ...
 }
 ```
+
+### Commands
+
+Needed commands to start using the package:
+
+`php artisan laragine:install`
+
+To install the package.
+
+`php artisan laragine:module {ModuleName}`
+
+To create new module, here is an example:
+
+```bash
+php artisan laragine:module Todo
+```
+
+`php artisan laragine:unit {UnitName} {--module=ModuleName} {--init}`
+
+To initialize the unit with basic stuff (model, API controller and Web Controller) and after running the command you can configure the unit, here is an example:
+
+```bash
+php artisan laragine:unit Task --module=Todo --init
+```
+
+then navigate to `core/Todo/data/Task.json` and update it like in the following:
+
+```json
+{
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text",
+      "mod": "nullable"
+    },
+    "priority": {
+      "type": "enum:low,medium,high",
+      "mod": "nullable|default:medium"
+    },
+    "is_done": {
+      "type": "boolean",
+      "mod": "default:false"
+    }
+  },
+  "relations": {
+
+  }
+}
+```
+
+Please note the following:
+
+`attributes`: contains the unit attributes (you can think of attributes as the columns of the table in the database).
+
+`type`: the type of the attribute, please check all available types [here](https://laravel.com/docs/8.x/migrations#available-column-types)
+
+`mod`: it holds the column modifiers in the database, please check all available modifiers from [here](https://laravel.com/docs/8.x/migrations#column-modifiers)
+
+You may have noticed that the values in `type` and `mod` are designed the same way as we do in the validation rules.
+
+`php artisan laragine:unit {UnitName} {--module=ModuleName}`
+
+To create all the related stuff (migration, request, resource, factory, unit test ...etc) based on the previous command:
+
+```bash
+php artisan laragine:unit Task --module=Todo
+```
