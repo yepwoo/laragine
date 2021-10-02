@@ -13,3 +13,6 @@ It's very important to know why to use Laragine, here is why:
 * One clear response for the client side (for example: API response)
 
 * Many helper functions/traits/classes that will come in handy while you develop! (error handeling, adding more info to the logs, security helpers ...etc)
+
+
+### Getting Started
