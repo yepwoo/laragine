@@ -23,3 +23,13 @@ Please note that Laragine source code isn't in its best version yet, currently o
 Any contribution including pull requests, issues, suggestions or any thing that will make Laragine better is welcomed and much appreciated.
 
 ### Apart from reading the documentation you can also check the below sections to get an idea
+
+#### Introduction
+
+To get started, require the package:
+
+```bash
+composer require yepwoo/laragine
+```
+
+Note that: Laragine currently is working on **Laravel 8** (`^8.0`).
