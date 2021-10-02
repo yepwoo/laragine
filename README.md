@@ -16,3 +16,4 @@ It's very important to know why to use Laragine, here is why:
 
 
 ### Getting Started
+To get started please check the [documentation](https://yepwoo.com/laragine/docs/index.html)
