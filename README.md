@@ -121,7 +121,7 @@ then navigate to `core/Todo/data/Task.json` and update it like in the following:
     }
   },
   "relations": {
-
+      this feature will be released soon...
   }
 }
 ```
