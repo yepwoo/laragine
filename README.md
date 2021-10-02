@@ -21,3 +21,5 @@ To get started please check the [documentation](https://yepwoo.com/laragine/docs
 Please note that Laragine source code isn't in its best version yet, currently our first priority is to rewrite the whole source code again so we can scale fast.
 
 Any contribution including pull requests, issues, suggestions or any thing that will make Laragine better is welcomed and much appreciated.
+
+### Apart from reading the documentation you can also check the below sections to get an idea
