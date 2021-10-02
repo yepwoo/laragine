@@ -24,7 +24,7 @@ Any contribution including pull requests, issues, suggestions or any thing that 
 
 ### Apart from reading the documentation you can also check the below sections to get an idea
 
-#### Introduction
+### Introduction
 
 To get started, require the package:
 
