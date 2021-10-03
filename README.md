@@ -150,7 +150,7 @@ php artisan laragine:unit Task --module=Todo
 
 ### Error Handling
 
-We recommend to use Laragine to handle the errors in your application, as the package contains one clear structure to send the response back to the clinet side (mobile app, third party system, web app ...etc) so in order for you to do so, you have to do the following:
+We recommend to use Laragine to handle the errors in your application, as the package contains one clear structure to send the response back to the client side (mobile app, third party system, web app ...etc) so in order for you to do so, you have to do the following:
 
 
 in `app\Exceptions\Handler.php` use this trait `Yepwoo\Laragine\Traits\Exceptions\Handler` after that use this method `handleExceptions()` inside the `register()` method, here is the full code snippet:
