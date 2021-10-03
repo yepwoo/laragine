@@ -12,7 +12,9 @@ It's very important to know why to use Laragine, here is why:
 
 * One clear response for the client side (for example: API response)
 
-* Many helper functions/traits/classes that will come in handy while you develop! (error handeling, adding more info to the logs, security helpers ...etc)
+* Many helper functions/traits/classes that will come in handy while you develop! (error handling, adding more info to the logs, security helpers ...etc)
+
+* Configuration! each module has its own configuration
 
 ### Getting Started
 To get started please check the [documentation](https://yepwoo.com/laragine/docs/index.html)
@@ -46,7 +48,7 @@ php artisan laragine:install
 
 * Laragine directory will be in the root directory under `Core` directory
 
-* The system response (inclding errors response if you applied what's in `Error Handeling` section) to any request will be as in below examples (`status_code` is the http status code):
+* The system response (including errors response if you applied what's in `Error Handling` section) to any request will be as in below examples (`status_code` is the http status code):
 
 **Success Response:**
 
@@ -82,6 +84,10 @@ Needed commands to start using the package:
 `php artisan laragine:install`
 
 To install the package.
+
+After installing the package you will find a directory called `unit_template` inside `core/Base`, that's the directory that has the default views that will be included in every unit you generate (after running this command `php artisan laragine:unit {UnitName} {--module=ModuleName}` keep reading to learn more about this command).
+
+Please take a look at the blade files inside `core/Base/views` and `core/Base/unit_template` you will notice that `$global` variable is shared across all the views.
 
 `php artisan laragine:module {ModuleName}`
 
@@ -144,9 +150,9 @@ To create all the related stuff (migration, request, resource, factory, unit tes
 php artisan laragine:unit Task --module=Todo
 ```
 
-### Error Handeling
+### Error Handling
 
-We recommend to use Laragine to handle the errors in your application, as the package contains one clear structure to send the response back to the clinet side (mobile app, third party system, web app ...etc) so in order for you to do so, you have to do the following:
+We recommend to use Laragine to handle the errors in your application, as the package contains one clear structure to send the response back to the client side (mobile app, third party system, web app ...etc) so in order for you to do so, you have to do the following:
 
 
 in `app\Exceptions\Handler.php` use this trait `Yepwoo\Laragine\Traits\Exceptions\Handler` after that use this method `handleExceptions()` inside the `register()` method, here is the full code snippet:
@@ -175,7 +181,7 @@ class Handler extends ExceptionHandler
 }
 ```
 
-Now, we need to use this helper function `client_validation_response` (it accepts 2 arguments, the first is the rules array and the second (optional) is the start error code) in the validation file `resources\lang\en\validation.php` by assigning the array to a vairable and then return the helper function, here is the full code snippet:
+Now, we need to use this helper function `client_validation_response` (it accepts 2 arguments, the first is the rules array and the second (optional) is the start error code) in the validation file `resources\lang\en\validation.php` by assigning the array to a variable and then return the helper function, here is the full code snippet:
 
 ```php
 $array = [
@@ -200,8 +206,6 @@ $array = [
 return client_validation_response($array);
 ```
 
-You may do the same in `auth.php`
-
 ### Middlewares
 
 Useful middlewares to help you protect the system and for better security:
@@ -210,7 +214,7 @@ Useful middlewares to help you protect the system and for better security:
 
 to check if the client side includes a valid `api-key` header in any API request.
 
-to use it, first add `API_KEY=your_api_key_here` in `.env` file, second in the **kernal** (`app\Http\Kernel.php`) add it in `$routeMiddleware` as below:
+to use it, first add `API_KEY=your_api_key_here` in `.env` file, second in the **Kernel** (`app\Http\Kernel.php`) add it in `$routeMiddleware` as below:
 
 ```php
 protected $routeMiddleware = [
@@ -325,6 +329,10 @@ return [
 
 ];
 ```
+
+### Config
+
+You will notice in any module you generate, a `config` directory, so basically you can add configuration for the module, and you can access it in this form: `config('core_modulename.some_key')` for example: `config('core_base.api_key')`
 
 ### Testing
 
