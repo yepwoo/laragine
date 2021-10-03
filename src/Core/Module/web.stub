@@ -1,9 +1,9 @@
 <?php
 
 Route::namespace('Core\#MODULE_NAME#\Controllers\Web')->prefix('admin')->name('admin.')->group(function () {
-    #*** START: #UNIT_NAME# ***#
-    Route::resource('#UNIT_NAME_PLURAL_LOWER_CASE#', '#UNIT_NAME#Controller')->except([
-        'store', 'update', 'destroy'
-    ]);
+    #*** Ex: START: #UNIT_NAME# ***#
+    // Route::resource('#UNIT_NAME_PLURAL_LOWER_CASE#', '#UNIT_NAME#Controller')->except([
+    //    'store', 'update', 'destroy'
+    // ]);
     #*** END: #UNIT_NAME# ***#
 });
