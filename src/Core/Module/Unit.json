@@ -1,20 +1,6 @@
 {
   "attributes": {
-    "name": {
-      "type": "string"
-    },
-    "description": {
-      "type": "text",
-      "mod": "nullable"
-    },
-    "priority": {
-      "type": "enum:low,medium,high",
-      "mod": "nullable|default:medium"
-    },
-    "is_done": {
-      "type": "boolean",
-      "mod": "default:false"
-    }
+
   },
   "relations": {
 
