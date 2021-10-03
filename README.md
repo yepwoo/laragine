@@ -328,7 +328,7 @@ return [
 ];
 ```
 
-### configuration
+### Config
 
 ### Testing
 
