@@ -330,6 +330,8 @@ return [
 
 ### Config
 
+You will notice in any module you generate, a `config` directory, so basically you can add configuration for the module.
+
 ### Testing
 
 This section is very important and it's **`required`** to apply all the instructions here, in order for you to run the tests correctly.
