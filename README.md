@@ -46,7 +46,7 @@ php artisan laragine:install
 
 * Laragine directory will be in the root directory under `Core` directory
 
-* The system response (including errors response if you applied what's in `Error Handeling` section) to any request will be as in below examples (`status_code` is the http status code):
+* The system response (including errors response if you applied what's in `Error Handling` section) to any request will be as in below examples (`status_code` is the http status code):
 
 **Success Response:**
 
