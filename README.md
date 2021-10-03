@@ -148,7 +148,7 @@ To create all the related stuff (migration, request, resource, factory, unit tes
 php artisan laragine:unit Task --module=Todo
 ```
 
-### Error Handeling
+### Error Handling
 
 We recommend to use Laragine to handle the errors in your application, as the package contains one clear structure to send the response back to the clinet side (mobile app, third party system, web app ...etc) so in order for you to do so, you have to do the following:
 
