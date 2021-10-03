@@ -204,8 +204,6 @@ $array = [
 return client_validation_response($array);
 ```
 
-You may do the same in `auth.php`
-
 ### Middlewares
 
 Useful middlewares to help you protect the system and for better security:
