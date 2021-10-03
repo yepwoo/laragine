@@ -14,7 +14,7 @@ It's very important to know why to use Laragine, here is why:
 
 * Many helper functions/traits/classes that will come in handy while you develop! (error handling, adding more info to the logs, security helpers ...etc)
 
-* configuration!
+* Configuration!
 
 ### Getting Started
 To get started please check the [documentation](https://yepwoo.com/laragine/docs/index.html)
