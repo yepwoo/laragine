@@ -330,7 +330,7 @@ return [
 
 ### Config
 
-You will notice in any module you generate, a `config` directory, so basically you can add configuration for the module.
+You will notice in any module you generate, a `config` directory, so basically you can add configuration for the module, and you can access it in this form: `config('core_modulename.some_key')` for example: `config('core_base.api_key')`
 
 ### Testing
 
