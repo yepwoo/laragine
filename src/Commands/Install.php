@@ -3,6 +3,7 @@
 namespace Yepwoo\Laragine\Commands;
 
 use Illuminate\Console\Command;
+use Yepwoo\Laragine\Generators\Payloads\GeneratorFactory;
 use Yepwoo\Laragine\Helpers\BaseHelpers;
 
 class Install extends Command
@@ -60,8 +61,16 @@ class Install extends Command
     private function publishCoreFolderAndFiles($forcePublish = false)
     {
         // here will call helper function that load all stubs file
-        BaseHelpers::createFolders();
-        BaseHelpers::createFiles();
+        $payload = GeneratorFactory::create('install');
+        $payload->createFolders();
+        $payload->createFiles();
+
+        /**
+         * === Olding code ===
+         */
+//
+//        BaseHelpers::createFolders();
+//        BaseHelpers::createFiles();
     }
 
     private function shouldOverwriteFolders(): bool
