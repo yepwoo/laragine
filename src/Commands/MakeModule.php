@@ -1,6 +1,7 @@
 <?php
 namespace Yepwoo\Laragine\Commands;
 use Illuminate\Console\Command;
+use Yepwoo\Laragine\Generators\Payloads\GeneratorFactory;
 
 class MakeModule extends Command {
     /**
@@ -8,7 +9,7 @@ class MakeModule extends Command {
      *
      * @var string
      */
-    protected $signature = 'laragine:module {names}';
+    protected $signature = 'laragine:module {name}';
 
     /**
      * The console command description.
@@ -29,13 +30,15 @@ class MakeModule extends Command {
 
 
     public function handle() {
-        $names = $this->argument('names');
-        switch (makeModules($names)) {
+        $name = $this->argument('name');
+        $object = ['module' => $name];
+        $module = GeneratorFactory::create('MakeModule', $object);
+        switch ($module->callback) {
             case 'done':
                 $this->info('Module created');
                 break;
             case 'created before':
-                $this->info('Module created before');
+                $this->error('Module created before');
                 break;
             default:
                 $this->error("Error... please try again");
