@@ -11,6 +11,8 @@ class Attributes {
     protected $module;
     protected $unit;
 
+    public $callback = 'done';
+
     public function __construct($module, $unit) {
         $this->unit = $unit;
         $this->module = $module;
