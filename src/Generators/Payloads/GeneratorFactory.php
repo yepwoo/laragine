@@ -2,18 +2,16 @@
 namespace Yepwoo\Laragine\Generators\Payloads;
 
 use Illuminate\Support\Str;
-use Yepwoo\Laragine\Generators\Payloads\Commands\Install;
-use Yepwoo\Laragine\Generators\Payloads\Commands\MakeModule;
-use Yepwoo\Laragine\Generators\Payloads\Commands\MakeUnit;
 
 class GeneratorFactory
 {
+    public static $message;
 
-    public static function create(string $command): GeneratorInterface
+    public static function create(string $command, $object): GeneratorInterface
     {
         $namespace = self::getNameSpace();
         $class = "{$namespace}".Str::studly($command);
-        return new $class();
+        return new $class($object);
     }
 
     private static function getNameSpace(): string
