@@ -6,7 +6,7 @@ use Yepwoo\Laragine\Generators\Payloads\GeneratorInterface;
 class Install implements GeneratorInterface {
 
     protected $files;
-    public function __construct() {
+    public function __construct($object = null) {
         $this->files = config('laragine.base');
     }
     public function createFolders()
