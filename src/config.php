@@ -10,7 +10,7 @@ return [
     | The root directory that will be used to push the modules to
     |
     */
-    'root_dir' => 'core',
+    'root_dir' => base_path() . '/core',
 
 
     /*
@@ -39,7 +39,8 @@ return [
         'Module.stub'                => 'Traits/ServiceProvider/Module.php',
         'Path.stub'                  => 'Traits/Views/Path.php',
         'Variable.stub'              => 'Traits/Views/Variable.php',
-        '.gitignore'                 => 'views/.gitignore',
+        'views'                      => 'views/*',
+        'unit_template'              => 'unit_template/*',
         'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
     ],
 
@@ -62,7 +63,6 @@ return [
             'main.php'                   => 'config/main.php',
             'api.stub'                   => 'routes/api.php',
             'web.stub'                   => 'routes/web.php',
-            '.gitignore'                 => 'views/.gitignore',
             'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
         ],
         'unit_main_folders' => [
@@ -71,11 +71,12 @@ return [
             'Unit.stub'                  => 'Models/',
         ],
         'unit_folders' => [
-            'create_units_table.stub' => 'database/migrations/',
+            'create_units_table.stub'                      => 'database/migrations/',
             'UnitRequest.stub'                             => 'Requests/',
             'UnitResource.stub'                            => 'Resources/',
             'UnitTest.stub'                                => 'Tests/Feature/',
             'UnitFactory.stub'                             => 'database/factories/',
+            // base_path() . '/../Base/unit_template'         => 'views/'
         ],
         'advance' => [
             'Unit.json' => 'data/'
