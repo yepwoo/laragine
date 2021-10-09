@@ -39,6 +39,21 @@ class Install extends Command
      */
     public function handle()
     {
+        \Yepwoo\Laragine\Logic\FileManipulator::generate_2(
+            __DIR__ . '/../Core/Base',
+            config('laragine.root_dir') . '/Base',
+            config('laragine.base'),
+            [
+                'file'    => ['stub'],
+            ],
+            [
+                'file'    => ['php'],
+            ]
+        );
+
+        $this->info('DONE');
+        exit;
+
         // copy the Base dir into /Core
         $this->info('Installing Laragine...');
         $this->info('Publishing configuration...');
