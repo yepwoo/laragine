@@ -25,28 +25,37 @@ class FileManipulator
             $full_path = $source_dir . '/' .$file;
             $content   = '';
 
-            if (strpos($destination, '.') !== false) {
-                if (strpos($destination, '/') !== false) {
-                    $file        = substr($destination, strrpos($destination, '/') + 1);
-                    $destination = substr($destination, 0, strrpos($destination, '/')) . '/';
+            if (strpos($destination, '*') !== false) {
+                $file        = '';
+                $destination = substr($destination, 0, strrpos($destination, '*'));
+            } else {
+                if (strpos($destination, '.') !== false) {
+                    if (strpos($destination, '/') !== false) {
+                        $file        = substr($destination, strrpos($destination, '/') + 1);
+                        $destination = substr($destination, 0, strrpos($destination, '/')) . '/';
+                    } else {
+                        $file        = $destination;
+                        $destination = '';
+                    }
+                }
+                
+                if (isset($search['file']) && isset($replace['file'])) {
+                    $file = str_replace($search['file'], $replace['file'], $file);
+                }
+    
+                if (isset($search['content']) && isset($replace['content'])) {
+                    $content = str_replace($search['content'], $replace['content'], file_get_contents($full_path));
                 } else {
-                    $file        = $destination;
-                    $destination = '';
+                    $content = file_get_contents($full_path);
                 }
             }
             
-            if (isset($search['file']) && isset($replace['file'])) {
-                $file = str_replace($search['file'], $replace['file'], $file);
-            }
-
-            if (isset($search['content']) && isset($replace['content'])) {
-                $content = str_replace($search['content'], $replace['content'], file_get_contents($full_path));
-            } else {
-                $content = file_get_contents($full_path);
-            }
-
             File::makeDirectory("$destination_dir/{$destination}", $mode = 0775, true, true);
-            file_put_contents("$destination_dir/{$destination}{$file}", $content);
+            if ($file == '') {
+                File::copyDirectory("$source_dir/{$destination}", "$destination_dir/{$destination}");
+            } else {
+                file_put_contents("$destination_dir/{$destination}{$file}", $content);
+            }
         }
     }
 
