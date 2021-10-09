@@ -28,7 +28,7 @@ class FileManipulator
             if (strpos($destination, '.') !== false) {
                 if (strpos($destination, '/') !== false) {
                     $file        = substr($destination, strrpos($destination, '/') + 1);
-                    $destination = 'get string before slash';
+                    $destination = substr($destination, 0, strrpos($destination, '/'));
                 } else {
                     $file        = $destination;
                     $destination = '';
