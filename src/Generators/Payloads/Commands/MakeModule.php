@@ -22,7 +22,7 @@ class MakeModule extends Attributes implements GeneratorInterface {
             $this->callback = 'created before';
         }
 
-        $this->createFolders();
+        // $this->createFolders();
         $this->createFiles();
 
     }
@@ -37,17 +37,43 @@ class MakeModule extends Attributes implements GeneratorInterface {
 
     public function createFiles()
     {
-        foreach ($this->config['main_files'] as $key => $file) {
-            $folder = substr($file, 0,strrpos($file, '/'));
+        $source_dir      = __DIR__ . '/../../../Core/Module';
+        $destination_dir = config('laragine.root_dir') . '/'. $this->module_collection['studly'];
+        $files           = $this->config['main_files'];
+        
+        // $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_LOWER_CASE#", "#MODULE_NAME#"];
+        $repalce =  [
+                        $this->module_collection['studly'], 
+                        $this->module_collection['plural_lower_case'], 
+                        $this->module_collection['singular_lower_case'],
+                        $this->module_collection['studly']
+        ];
 
-            if(!folder_exist('base_path', "core/".$this->module_collection['studly']."/$folder")) {
-                mkdir(base_path("core/".$this->module_collection['studly']."/$folder"), 0777, true);
-            }
-            $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_LOWER_CASE#", "#MODULE_NAME#"];
+        $search = 
+        [
+            'file'    => ['stub'],
+            'content' => ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_LOWER_CASE#", "#MODULE_NAME#"]
+        ];
 
-            $path = base_path() . '\\core'."\\".$this->module_collection['singular']."\\$file";
-            FileManipulator::generate($key, $stubs_vars, $this->module_collection, $path);
-        }
+        $repalce = 
+        [
+            'file'    => ['php'],
+            'content' => $repalce
+        ];
+
+        FileManipulator::generate_2($source_dir, $destination_dir, $files, $search, $repalce);
+
+        // foreach ($this->config['main_files'] as $key => $file) {
+        //     $folder = substr($file, 0,strrpos($file, '/'));
+
+        //     if(!folder_exist('base_path', "core/".$this->module_collection['studly']."/$folder")) {
+        //         mkdir(base_path("core/".$this->module_collection['studly']."/$folder"), 0777, true);
+        //     }
+        //     $stubs_vars    = ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_LOWER_CASE#", "#MODULE_NAME#"];
+
+        //     $path = base_path() . '\\core'."\\".$this->module_collection['singular']."\\$file";
+        //     FileManipulator::generate($key, $stubs_vars, $this->module_collection, $path);
+        // }
     }
 
     function createModuleFolder(): bool
