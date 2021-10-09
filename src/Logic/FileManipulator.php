@@ -21,27 +21,31 @@ class FileManipulator
     public function generate_2($source_dir, $destination_dir, $files, $search = [], $replace = [])
     {
         foreach ($files as $name => $destination) {
-            $file = $name;
-            $data = $source_dir . '/' .$file;
+            $file    = $name;
+            $content = $source_dir . '/' .$file;
 
             if (strpos($destination, '.') !== false) {
                 if (strpos($destination, '/') !== false) {
-                    $file = substr($destination, strrpos($destination, '/') + 1);
+                    $file        = substr($destination, strrpos($destination, '/') + 1);
+                    $destination = 'get string before slash';
                 } else {
-                    $file = $destination;
+                    $file        = $destination;
+                    $destination = '';
                 }
             } else if (isset($search['file']) && isset($replace['file'])) {
                 $file = str_replace($search['file'], $replace['file'], $file);
             }
 
-            if (isset($search['data']) && isset($replace['data'])) {
-                $data = str_replace($search['data'], $replace['data'], file_get_contents($data));
+            if (isset($search['content']) && isset($replace['content'])) {
+                $content = str_replace($search['content'], $replace['content'], file_get_contents($content));
+            } else {
+                $content = file_get_contents($content);
             }
 
             /**
              * @todo replace with func to create folders and files (lv helper)
              */
-            file_put_contents("$destination_dir/$destination/$file", $data);
+            file_put_contents("$destination_dir/{$destination}{$file}", $content);
         }
     }
 
