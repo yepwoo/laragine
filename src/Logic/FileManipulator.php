@@ -2,6 +2,8 @@
 
 namespace Yepwoo\Laragine\Logic;
 
+use Illuminate\Support\Facades\File;
+
 class FileManipulator
 {
     protected static $main_path;

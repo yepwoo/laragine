@@ -9,7 +9,7 @@ class StringManipulator
     /**
      * get all possible shapes of a string
      * 
-     * @param string $string
+     * @param  string $string
      * @return string[]
      */
     static public function generate(string $string): array
