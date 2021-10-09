@@ -21,8 +21,9 @@ class FileManipulator
     public function generate_2($source_dir, $destination_dir, $files, $search = [], $replace = [])
     {
         foreach ($files as $name => $destination) {
-            $file    = $name;
-            $content = $source_dir . '/' .$file;
+            $file      = $name;
+            $full_path = $source_dir . '/' .$file;
+            $content   = '';
 
             if (strpos($destination, '.') !== false) {
                 if (strpos($destination, '/') !== false) {
@@ -32,14 +33,16 @@ class FileManipulator
                     $file        = $destination;
                     $destination = '';
                 }
-            } else if (isset($search['file']) && isset($replace['file'])) {
+            }
+            
+            if (isset($search['file']) && isset($replace['file'])) {
                 $file = str_replace($search['file'], $replace['file'], $file);
             }
 
             if (isset($search['content']) && isset($replace['content'])) {
-                $content = str_replace($search['content'], $replace['content'], file_get_contents($content));
+                $content = str_replace($search['content'], $replace['content'], file_get_contents($full_path));
             } else {
-                $content = file_get_contents($content);
+                $content = file_get_contents($full_path);
             }
 
             /**
