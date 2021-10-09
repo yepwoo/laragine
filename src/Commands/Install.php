@@ -39,6 +39,7 @@ class Install extends Command
      */
     public function handle()
     {
+        
         \Yepwoo\Laragine\Logic\FileManipulator::generate_2(
             __DIR__ . '/../Core/Base',
             config('laragine.root_dir') . '/Base',
@@ -57,6 +58,7 @@ class Install extends Command
         // copy the Base dir into /Core
         $this->info('Installing Laragine...');
         $this->info('Publishing configuration...');
+
         if(!folder_exist('base_path', 'Core')) {
             $this->publishCoreFolderAndFiles();
             $this->publishViewsFoldersAndFiles();

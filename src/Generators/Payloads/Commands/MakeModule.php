@@ -17,14 +17,10 @@ class MakeModule extends Attributes implements GeneratorInterface {
         $this->config['main_files'] = config('laragine.module.main_files');
         $this->config['unit_folders'] = config('laragine.module.unit_folders');
         $this->module_collection = StringManipulator::generate($object['module']);
-        if(!$this->createModuleFolder())
-        {
-            $this->callback = 'created before';
-        }
-
-        // $this->createFolders();
+    
         $this->createFiles();
-
+        
+        
     }
     public function createFolders()
     {
