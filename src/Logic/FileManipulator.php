@@ -18,7 +18,7 @@ class FileManipulator
      * @param  string[] $replace str_replace second param
      * @return void
      */
-    public function generate_2($source_dir, $destination_dir, $files, $search = [], $replace = [])
+    public static function generate_2($source_dir, $destination_dir, $files, $search = [], $replace = [])
     {
         foreach ($files as $name => $destination) {
             $file      = $name;
@@ -28,7 +28,7 @@ class FileManipulator
             if (strpos($destination, '.') !== false) {
                 if (strpos($destination, '/') !== false) {
                     $file        = substr($destination, strrpos($destination, '/') + 1);
-                    $destination = substr($destination, 0, strrpos($destination, '/'));
+                    $destination = substr($destination, 0, strrpos($destination, '/')) . '/';
                 } else {
                     $file        = $destination;
                     $destination = '';
@@ -45,9 +45,7 @@ class FileManipulator
                 $content = file_get_contents($full_path);
             }
 
-            /**
-             * @todo replace with func to create folders and files (lv helper)
-             */
+            File::makeDirectory("$destination_dir/{$destination}", $mode = 0775, true, true);
             file_put_contents("$destination_dir/{$destination}{$file}", $content);
         }
     }
