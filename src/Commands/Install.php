@@ -37,7 +37,7 @@ class Install extends Command
      */
     public function handle()
     {
-        $command = new \Yepwoo\Laragine\Generators\Payloads\Commands\Install();
+        $command = GeneratorFactory::create('Install');
         $command->run();
         $this->info('The installation done successfully!');
     }
