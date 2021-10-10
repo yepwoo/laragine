@@ -71,11 +71,11 @@ return [
             'Unit.stub'                  => 'Models/',
         ],
         'unit_folders' => [
-            'create_units_table.stub'                      => 'database/migrations/',
+            'create_units_table.stub'                      => 'Database/Migrations/',
             'UnitRequest.stub'                             => 'Requests/',
             'UnitResource.stub'                            => 'Resources/',
             'UnitTest.stub'                                => 'Tests/Feature/',
-            'UnitFactory.stub'                             => 'database/factories/',
+            'UnitFactory.stub'                             => 'Database/Factories/',
             // base_path() . '/../Base/unit_template'         => 'views/'
         ],
         'advance' => [
