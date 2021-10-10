@@ -29,6 +29,7 @@ class BaseValidator
         $this->callback['flag'] = 'info';
         $this->callback['msg']  = 'Done!';
     }
+    
     /**
      * check if file exists
      * 
