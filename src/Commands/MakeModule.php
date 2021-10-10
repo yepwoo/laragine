@@ -34,25 +34,24 @@ class MakeModule extends Command {
 
         $validatorFactory = \Yepwoo\Laragine\Logic\Validators\ValidatorFactory::create('module', $name);
         $callback = $validatorFactory->valid();
-        $object = ['module' => $name];
-
+        
         switch ($callback['flag']) {
             case 'error':
                 $this->{$callback['flag']}($callback['msg']);
                 break;
             case 'info' :
-                $module = GeneratorFactory::create('MakeModule', $object);
+                $module = GeneratorFactory::create('MakeModule', $name);
                 $this->{$callback['flag']}($callback['msg']);
                 break;
             case 'confirm':
                 if ($this->confirm($callback['msg'], true)) {
-                    $module = GeneratorFactory::create('MakeModule', $object);
+                    $module = GeneratorFactory::create('MakeModule', $name);
                     $this->info("Done...");
                 }
                 break;
         }
         exit;
-        $module = GeneratorFactory::create('MakeModule', $object);
+        $module = GeneratorFactory::create('MakeModule', $name);
         switch ($module->callback) {
             case 'done':
                 $this->info('Module created');

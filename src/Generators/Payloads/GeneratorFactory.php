@@ -5,13 +5,11 @@ use Illuminate\Support\Str;
 
 class GeneratorFactory
 {
-    public static $message;
-
-    public static function create(string $command, $object): GeneratorInterface
+    public static function create(string $command, ...$args): GeneratorInterface
     {
         $namespace = self::getNameSpace();
         $class = "{$namespace}".Str::studly($command);
-        return new $class($object);
+        return new $class($args);
     }
 
     private static function getNameSpace(): string

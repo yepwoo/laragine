@@ -7,11 +7,22 @@ use Yepwoo\Laragine\Logic\StringManipulator;
 
 class MakeModule implements GeneratorInterface 
 {
-    protected $module_collection;
+    /**
+     * all the args passed
+     * 
+     * @var array
+     */
+    protected $args;
     
-    public function __construct($object = null)
+    /**
+     * init
+     * 
+     * @param  array $args
+     * @return void
+     */
+    public function __construct($args)
     {
-
+        $this->args = $args;
     }
 
     /**
@@ -21,23 +32,28 @@ class MakeModule implements GeneratorInterface
      */
     public function run()
     {
-        $this->module_collection = StringManipulator::generate($object['module']);
-        $source_dir      = __DIR__ . '/../../../Core/Module';
-        $destination_dir = config('laragine.root_dir') . '/'. $this->module_collection['studly'];
-        $files           = $this->config['main_files'];
+        $module_collection = StringManipulator::generate($this->args[0]);
+        $source_dir        = __DIR__ . '/../../../Core/Module';
+        $destination_dir   = config('laragine.root_dir') . '/'. $module_collection['studly'];
+        $files             = $this->config['main_files'];
 
         $search = [
             'file'    => ['stub'],
-            'content' => ["#UNIT_NAME#", "#UNIT_NAME_PLURAL_LOWER_CASE#", "#UNIT_NAME_LOWER_CASE#", "#MODULE_NAME#"]
+            'content' => [
+                "#UNIT_NAME#",
+                "#UNIT_NAME_PLURAL_LOWER_CASE#",
+                "#UNIT_NAME_LOWER_CASE#",
+                "#MODULE_NAME#"
+            ]
         ];
 
         $replace = [
             'file'    => ['php'],
             'content' => [
-                $this->module_collection['studly'], 
-                $this->module_collection['plural_lower_case'], 
-                $this->module_collection['singular_lower_case'],
-                $this->module_collection['studly']
+                $module_collection['studly'], 
+                $module_collection['plural_lower_case'], 
+                $module_collection['singular_lower_case'],
+                $module_collection['studly']
             ]
         ];
 
