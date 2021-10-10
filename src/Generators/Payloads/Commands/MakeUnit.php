@@ -3,15 +3,15 @@ namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 
 use Yepwoo\Laragine\Generators\Payloads\GeneratorInterface;
 
-class MakeUnit implements GeneratorInterface {
-
-    public function createFolders()
+class MakeUnit implements GeneratorInterface 
+{
+    /**
+     * run the logic
+     * 
+     * @return string[]
+     */
+    public function run()
     {
-        // TODO: Implement createFolders() method.
-    }
-
-    public function createFiles()
-    {
-        // TODO: Implement createFiles() method.
+        
     }
 }
