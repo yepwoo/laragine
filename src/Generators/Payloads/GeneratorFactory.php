@@ -1,4 +1,5 @@
 <?php
+
 namespace Yepwoo\Laragine\Generators\Payloads;
 
 use Illuminate\Console\Command;
