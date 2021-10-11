@@ -1,5 +1,7 @@
 <?php
+
 namespace Yepwoo\Laragine\Commands;
+
 use Illuminate\Console\Command;
 
 class MakeUnit extends Command {
@@ -32,7 +34,8 @@ class MakeUnit extends Command {
      *
      * @return int
      */
-    public function handle() {
+    public function handle()
+    {
         $name              = $this->argument('name');
         $module            = $this->option('module');
         $create_unit_files = null;
@@ -77,5 +80,4 @@ class MakeUnit extends Command {
                 $this->error("Error... please try again");
         }
     }
-
 }

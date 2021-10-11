@@ -1,4 +1,5 @@
 <?php
+
 namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 
 use Yepwoo\Laragine\Generators\Payloads\GeneratorInterface;
