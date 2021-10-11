@@ -37,8 +37,7 @@ class Install extends Command
      */
     public function handle()
     {
-        $command = GeneratorFactory::create('Install');
+        $command = GeneratorFactory::create($this, 'Install');
         $command->run();
-        $this->info('The installation done successfully!');
     }
 }
