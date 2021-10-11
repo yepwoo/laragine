@@ -1,34 +1,15 @@
 <?php
 namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 
-use Yepwoo\Laragine\Generators\Payloads\GeneratorInterface;
 use Yepwoo\Laragine\Logic\FileManipulator;
 use Yepwoo\Laragine\Logic\StringManipulator;
 
-class MakeModule implements GeneratorInterface 
+class MakeModule extends Base
 {
-    /**
-     * all the args passed
-     * 
-     * @var array
-     */
-    protected $args;
-    
-    /**
-     * init
-     * 
-     * @param  array $args
-     * @return void
-     */
-    public function __construct($args)
-    {
-        $this->args = $args;
-    }
-
     /**
      * run the logic
      * 
-     * @return string[]
+     * @return void
      */
     public function run()
     {
@@ -58,5 +39,7 @@ class MakeModule implements GeneratorInterface
         ];
 
         FileManipulator::generate_2($source_dir, $destination_dir, $files, $search, $replace);
+        
+        $this->command->info('Module created');
     }
 }

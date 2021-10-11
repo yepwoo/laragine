@@ -1,15 +1,14 @@
 <?php
 namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 
-use Yepwoo\Laragine\Generators\Payloads\GeneratorInterface;
 use Yepwoo\Laragine\Logic\FileManipulator;
 
-class Install implements GeneratorInterface
+class Install extends Base
 {
     /**
      * run the logic
      * 
-     * @return string[]
+     * @return void
      */
     public function run()
     {
@@ -24,5 +23,7 @@ class Install implements GeneratorInterface
                 'file' => ['php'],
             ]
         );
+
+        $this->command->info('The installation done successfully!');
     }
 }

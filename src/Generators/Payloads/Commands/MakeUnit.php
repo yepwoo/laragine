@@ -1,14 +1,12 @@
 <?php
 namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 
-use Yepwoo\Laragine\Generators\Payloads\GeneratorInterface;
-
-class MakeUnit implements GeneratorInterface 
+class MakeUnit extends Base 
 {
     /**
      * run the logic
      * 
-     * @return string[]
+     * @return void
      */
     public function run()
     {
