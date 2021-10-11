@@ -4,7 +4,8 @@ namespace Yepwoo\Laragine\Commands;
 
 use Illuminate\Console\Command;
 
-class MakeUnit extends Command {
+class MakeUnit extends Command
+{
     /**
      * The name and signature of the console command.
      *

@@ -5,7 +5,8 @@ namespace Yepwoo\Laragine\Commands;
 use Illuminate\Console\Command;
 use Yepwoo\Laragine\Generators\Payloads\GeneratorFactory;
 
-class MakeModule extends Command {
+class MakeModule extends Command 
+{
     /**
      * The name and signature of the console command.
      *
