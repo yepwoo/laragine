@@ -65,7 +65,7 @@ class FileManipulator
      * @param  string $path
      * @return bool
      */
-    public function exists($path)
+    public static function exists($path)
     {
         return File::exists($path);
     }
