@@ -33,4 +33,13 @@ class Base implements GeneratorInterface
         $this->command = $command;
         $this->args    = $args;
     }
+
+    /**
+     * run the logic
+     *
+     * @return void
+     */
+    public function run()
+    {
+    }
 }
