@@ -14,7 +14,7 @@ class Install extends Base
     public function run()
     {
         FileManipulator::generate_2(
-            __DIR__ . '/../Core/Base',
+            __DIR__ . '/../../../Core/Base',
             config('laragine.root_dir') . '/Base',
             config('laragine.base'),
             [
