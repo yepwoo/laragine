@@ -3,6 +3,7 @@
 namespace Yepwoo\Laragine\Commands;
 
 use Illuminate\Console\Command;
+use Yepwoo\Laragine\Generators\Payloads\GeneratorFactory;
 
 class MakeUnit extends Command
 {

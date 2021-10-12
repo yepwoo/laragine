@@ -41,5 +41,6 @@ class Base implements GeneratorInterface
      */
     public function run()
     {
+        //
     }
 }
