@@ -59,6 +59,17 @@ class FileManipulator
         }
     }
 
+    /**
+     * check if dir/file exists
+     * 
+     * @param  string $path
+     * @return bool
+     */
+    public function exists($path)
+    {
+        return File::exists($path);
+    }
+
     public static function getTemplate($file, $stubs_vars, $object)
     {
         $replaced_vars = [$object['studly'], $object['plural_lower_case'], $object['singular_lower_case']];

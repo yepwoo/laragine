@@ -2,7 +2,6 @@
 
 namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 
-use Illuminate\Support\Facades\File;
 use Yepwoo\Laragine\Logic\FileManipulator;
 use Yepwoo\Laragine\Logic\StringManipulator;
 
@@ -25,7 +24,7 @@ class MakeModule extends Base
 
         $path = config('laragine.root_dir').'/'.$module_collection['studly'];
 
-        if (File::exists($path)) {
+        if (FileManipulator::exists($path)) {
             if (!$this->command->confirm("do you want to override it?", true)) {
                 exit;
             }
