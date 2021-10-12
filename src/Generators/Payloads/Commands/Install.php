@@ -13,6 +13,19 @@ class Install extends Base
      */
     public function run()
     {
+        $path = base_path('core');
+        if (FileManipulator::exists($path)) {
+            if (!$this->command->confirm("The core folder already exists, do you want to override it?", true)) {
+                $this->command->info("Existing core folder was not overwritten");
+                
+            } else {
+                $this->publistCoreFolder();
+            }
+        } else {
+            $this->publistCoreFolder();
+        }
+    }
+    public function publistCoreFolder() {
         FileManipulator::generate_2(
             __DIR__ . '/../../../Core/Base',
             config('laragine.root_dir') . '/Base',
@@ -24,7 +37,8 @@ class Install extends Base
                 'file' => ['php'],
             ]
         );
-
+    
         $this->command->info('The installation done successfully!');
-    }
+    } 
 }
+
