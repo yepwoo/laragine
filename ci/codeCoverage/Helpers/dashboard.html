@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\xampp-7.4\htdocs\yepwoo\laragine\src\Helpers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">C:\xampp-7.4\htdocs\yepwoo\laragine\src</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Helpers</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AttributeHelpers.php.html#6">Yepwoo\Laragine\Helpers\AttributeHelpers</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#6">Yepwoo\Laragine\Helpers\Attributes</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#5">Yepwoo\Laragine\Helpers\BaseHelpers</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#6">Yepwoo\Laragine\Helpers\Error</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#8">Yepwoo\Laragine\Helpers\FactoryOperation</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#6">Yepwoo\Laragine\Helpers\MigrationOperation</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RequestOperation.php.html#6">Yepwoo\Laragine\Helpers\RequestOperation</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ResourceOperation.php.html#4">Yepwoo\Laragine\Helpers\ResourceOperation</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AttributeHelpers.php.html#6">Yepwoo\Laragine\Helpers\AttributeHelpers</a></td><td class="text-right">1980</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#8">Yepwoo\Laragine\Helpers\FactoryOperation</a></td><td class="text-right">1190</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#6">Yepwoo\Laragine\Helpers\MigrationOperation</a></td><td class="text-right">1056</td></tr>
+       <tr><td><a href="Error.php.html#6">Yepwoo\Laragine\Helpers\Error</a></td><td class="text-right">756</td></tr>
+       <tr><td><a href="RequestOperation.php.html#6">Yepwoo\Laragine\Helpers\RequestOperation</a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#5">Yepwoo\Laragine\Helpers\BaseHelpers</a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="Attributes.php.html#6">Yepwoo\Laragine\Helpers\Attributes</a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="ResourceOperation.php.html#4">Yepwoo\Laragine\Helpers\ResourceOperation</a></td><td class="text-right">20</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="AttributeHelpers.php.html#11"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::workOnFile">workOnFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#9"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#83"><abbr title="Yepwoo\Laragine\Helpers\Error::isMultiple">isMultiple</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#106"><abbr title="Yepwoo\Laragine\Helpers\Error::containsDots">containsDots</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#11"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#18"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::handleFactoryFile">handleFactoryFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#105"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::inFactoryTextList">inFactoryTextList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#116"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::inFactoryIntList">inFactoryIntList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#127"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::isBoolean">isBoolean</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#142"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::containSpecialCases">containSpecialCases</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#156"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::containUniqueWord">containUniqueWord</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#164"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::isEnum">isEnum</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#16"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::getFormattedAttributes">getFormattedAttributes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#54"><abbr title="Yepwoo\Laragine\Helpers\Error::validateTypes">validateTypes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#61"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::handleTypeCase">handleTypeCase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#76"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::multipleOrSingle">multipleOrSingle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#87"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::multipleTypeCase">multipleTypeCase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#125"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::singleTypeCase">singleTypeCase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#137"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::isMultipleType">isMultipleType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#142"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::isBoolean">isBoolean</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RequestOperation.php.html#11"><abbr title="Yepwoo\Laragine\Helpers\RequestOperation::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RequestOperation.php.html#23"><abbr title="Yepwoo\Laragine\Helpers\RequestOperation::isInRequestArray">isInRequestArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RequestOperation.php.html#34"><abbr title="Yepwoo\Laragine\Helpers\RequestOperation::handleRequestFile">handleRequestFile</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="RequestOperation.php.html#70"><abbr title="Yepwoo\Laragine\Helpers\RequestOperation::addModifiers">addModifiers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ResourceOperation.php.html#7"><abbr title="Yepwoo\Laragine\Helpers\ResourceOperation::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#68"><abbr title="Yepwoo\Laragine\Helpers\Error::isSingle">isSingle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#40"><abbr title="Yepwoo\Laragine\Helpers\Error::validateModifiers">validateModifiers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#15"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::readJson">readJson</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#17"><abbr title="Yepwoo\Laragine\Helpers\Error::validateAttributes">validateAttributes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#26"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::analyzeData">analyzeData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#37"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::getFormatedAttributes">getFormatedAttributes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#101"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::handleTypeCase">handleTypeCase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#180"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::inRequestArray">inRequestArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#195"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::handleWorkingOnRequest">handleWorkingOnRequest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#212"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::multiple_value_type">multiple_value_type</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#227"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::is_modifier_have_value">is_modifier_have_value</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#241"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::handleModifierCase">handleModifierCase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#248"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::containsDots">containsDots</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#252"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::getTypeValues">getTypeValues</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#256"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::isHaveNullableType">isHaveNullableType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#16"><abbr title="Yepwoo\Laragine\Helpers\Attributes::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#27"><abbr title="Yepwoo\Laragine\Helpers\Attributes::readJson">readJson</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#37"><abbr title="Yepwoo\Laragine\Helpers\Attributes::analyzeData">analyzeData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#47"><abbr title="Yepwoo\Laragine\Helpers\Attributes::getFilesStrArr">getFilesStrArr</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#58"><abbr title="Yepwoo\Laragine\Helpers\Attributes::is_modifier_have_value">is_modifier_have_value</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#69"><abbr title="Yepwoo\Laragine\Helpers\Attributes::isHaveNullableType">isHaveNullableType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Attributes.php.html#77"><abbr title="Yepwoo\Laragine\Helpers\Attributes::isRunInitCommand">isRunInitCommand</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#9"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createFolders">createFolders</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#32"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createFiles">createFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#43"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createViewsFolders">createViewsFolders</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#61"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createViewsFiles">createViewsFiles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#8"><abbr title="Yepwoo\Laragine\Helpers\Error::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Error.php.html#12"><abbr title="Yepwoo\Laragine\Helpers\Error::validate">validate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ResourceOperation.php.html#15"><abbr title="Yepwoo\Laragine\Helpers\ResourceOperation::getFormattedResourceStr">getFormattedResourceStr</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Psr4AutoloaderClass.php.html#80"><abbr title="Yepwoo\Laragine\Helpers\Psr4AutoloaderClass::addNamespace">addNamespace</abbr></a></td><td class="text-right">87%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="FactoryOperation.php.html#18"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::handleFactoryFile">handleFactoryFile</abbr></a></td><td class="text-right">306</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#37"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::getFormatedAttributes">getFormatedAttributes</abbr></a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#16"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::getFormattedAttributes">getFormattedAttributes</abbr></a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#101"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::handleTypeCase">handleTypeCase</abbr></a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#87"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::multipleTypeCase">multipleTypeCase</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Error.php.html#17"><abbr title="Yepwoo\Laragine\Helpers\Error::validateAttributes">validateAttributes</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="RequestOperation.php.html#34"><abbr title="Yepwoo\Laragine\Helpers\RequestOperation::handleRequestFile">handleRequestFile</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="RequestOperation.php.html#70"><abbr title="Yepwoo\Laragine\Helpers\RequestOperation::addModifiers">addModifiers</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Error.php.html#54"><abbr title="Yepwoo\Laragine\Helpers\Error::validateTypes">validateTypes</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#9"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createFolders">createFolders</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#61"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createViewsFiles">createViewsFiles</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Error.php.html#83"><abbr title="Yepwoo\Laragine\Helpers\Error::isMultiple">isMultiple</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Error.php.html#40"><abbr title="Yepwoo\Laragine\Helpers\Error::validateModifiers">validateModifiers</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#43"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createViewsFolders">createViewsFolders</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#142"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::containSpecialCases">containSpecialCases</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#127"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::isBoolean">isBoolean</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#61"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::handleTypeCase">handleTypeCase</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#76"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::multipleOrSingle">multipleOrSingle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="MigrationOperation.php.html#125"><abbr title="Yepwoo\Laragine\Helpers\MigrationOperation::singleTypeCase">singleTypeCase</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="RequestOperation.php.html#23"><abbr title="Yepwoo\Laragine\Helpers\RequestOperation::isInRequestArray">isInRequestArray</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#26"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::analyzeData">analyzeData</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Error.php.html#68"><abbr title="Yepwoo\Laragine\Helpers\Error::isSingle">isSingle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#116"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::inFactoryIntList">inFactoryIntList</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#105"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::inFactoryTextList">inFactoryTextList</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Attributes.php.html#58"><abbr title="Yepwoo\Laragine\Helpers\Attributes::is_modifier_have_value">is_modifier_have_value</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Attributes.php.html#37"><abbr title="Yepwoo\Laragine\Helpers\Attributes::analyzeData">analyzeData</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#227"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::is_modifier_have_value">is_modifier_have_value</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#212"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::multiple_value_type">multiple_value_type</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#195"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::handleWorkingOnRequest">handleWorkingOnRequest</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="AttributeHelpers.php.html#180"><abbr title="Yepwoo\Laragine\Helpers\AttributeHelpers::inRequestArray">inRequestArray</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="ResourceOperation.php.html#15"><abbr title="Yepwoo\Laragine\Helpers\ResourceOperation::getFormattedResourceStr">getFormattedResourceStr</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="BaseHelpers.php.html#32"><abbr title="Yepwoo\Laragine\Helpers\BaseHelpers::createFiles">createFiles</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#156"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::containUniqueWord">containUniqueWord</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="FactoryOperation.php.html#164"><abbr title="Yepwoo\Laragine\Helpers\FactoryOperation::isEnum">isEnum</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Attributes.php.html#77"><abbr title="Yepwoo\Laragine\Helpers\Attributes::isRunInitCommand">isRunInitCommand</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Attributes.php.html#16"><abbr title="Yepwoo\Laragine\Helpers\Attributes::__construct">__construct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Psr4AutoloaderClass.php.html#80"><abbr title="Yepwoo\Laragine\Helpers\Psr4AutoloaderClass::addNamespace">addNamespace</abbr></a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.6</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.22</a> with <a href="https://xdebug.org/">Xdebug 2.8.1</a> and <a href="https://phpunit.de/">PHPUnit 9.5.9</a> at Wed Oct 13 8:54:00 UTC 2021.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js" type="text/javascript"></script>
+  <script src="../_js/d3.min.js" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([8,0,0,0,0,0,0,0,0,0,1,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([54,0,0,0,0,0,0,0,0,1,0,4], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,44,"<a href=\"AttributeHelpers.php.html#6\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers<\/a>"],[0,13,"<a href=\"Attributes.php.html#6\">Yepwoo\\Laragine\\Helpers\\Attributes<\/a>"],[0,15,"<a href=\"BaseHelpers.php.html#5\">Yepwoo\\Laragine\\Helpers\\BaseHelpers<\/a>"],[0,27,"<a href=\"Error.php.html#6\">Yepwoo\\Laragine\\Helpers\\Error<\/a>"],[0,34,"<a href=\"FactoryOperation.php.html#8\">Yepwoo\\Laragine\\Helpers\\FactoryOperation<\/a>"],[0,32,"<a href=\"MigrationOperation.php.html#6\">Yepwoo\\Laragine\\Helpers\\MigrationOperation<\/a>"],[96.7741935483871,13,"<a href=\"Psr4AutoloaderClass.php.html#49\">Yepwoo\\Laragine\\Helpers\\Psr4AutoloaderClass<\/a>"],[0,17,"<a href=\"RequestOperation.php.html#6\">Yepwoo\\Laragine\\Helpers\\RequestOperation<\/a>"],[0,4,"<a href=\"ResourceOperation.php.html#4\">Yepwoo\\Laragine\\Helpers\\ResourceOperation<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"AttributeHelpers.php.html#11\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::workOnFile<\/a>"],[0,1,"<a href=\"AttributeHelpers.php.html#15\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::readJson<\/a>"],[0,3,"<a href=\"AttributeHelpers.php.html#26\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::analyzeData<\/a>"],[0,14,"<a href=\"AttributeHelpers.php.html#37\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::getFormatedAttributes<\/a>"],[0,9,"<a href=\"AttributeHelpers.php.html#101\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::handleTypeCase<\/a>"],[0,3,"<a href=\"AttributeHelpers.php.html#180\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::inRequestArray<\/a>"],[0,3,"<a href=\"AttributeHelpers.php.html#195\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::handleWorkingOnRequest<\/a>"],[0,3,"<a href=\"AttributeHelpers.php.html#212\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::multiple_value_type<\/a>"],[0,3,"<a href=\"AttributeHelpers.php.html#227\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::is_modifier_have_value<\/a>"],[0,1,"<a href=\"AttributeHelpers.php.html#241\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::handleModifierCase<\/a>"],[0,1,"<a href=\"AttributeHelpers.php.html#248\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::containsDots<\/a>"],[0,1,"<a href=\"AttributeHelpers.php.html#252\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::getTypeValues<\/a>"],[0,1,"<a href=\"AttributeHelpers.php.html#256\">Yepwoo\\Laragine\\Helpers\\AttributeHelpers::isHaveNullableType<\/a>"],[0,2,"<a href=\"Attributes.php.html#16\">Yepwoo\\Laragine\\Helpers\\Attributes::__construct<\/a>"],[0,1,"<a href=\"Attributes.php.html#27\">Yepwoo\\Laragine\\Helpers\\Attributes::readJson<\/a>"],[0,3,"<a href=\"Attributes.php.html#37\">Yepwoo\\Laragine\\Helpers\\Attributes::analyzeData<\/a>"],[0,1,"<a href=\"Attributes.php.html#47\">Yepwoo\\Laragine\\Helpers\\Attributes::getFilesStrArr<\/a>"],[0,3,"<a href=\"Attributes.php.html#58\">Yepwoo\\Laragine\\Helpers\\Attributes::is_modifier_have_value<\/a>"],[0,1,"<a href=\"Attributes.php.html#69\">Yepwoo\\Laragine\\Helpers\\Attributes::isHaveNullableType<\/a>"],[0,2,"<a href=\"Attributes.php.html#77\">Yepwoo\\Laragine\\Helpers\\Attributes::isRunInitCommand<\/a>"],[0,5,"<a href=\"BaseHelpers.php.html#9\">Yepwoo\\Laragine\\Helpers\\BaseHelpers::createFolders<\/a>"],[0,2,"<a href=\"BaseHelpers.php.html#32\">Yepwoo\\Laragine\\Helpers\\BaseHelpers::createFiles<\/a>"],[0,4,"<a href=\"BaseHelpers.php.html#43\">Yepwoo\\Laragine\\Helpers\\BaseHelpers::createViewsFolders<\/a>"],[0,4,"<a href=\"BaseHelpers.php.html#61\">Yepwoo\\Laragine\\Helpers\\BaseHelpers::createViewsFiles<\/a>"],[0,1,"<a href=\"Error.php.html#8\">Yepwoo\\Laragine\\Helpers\\Error::__construct<\/a>"],[0,1,"<a href=\"Error.php.html#12\">Yepwoo\\Laragine\\Helpers\\Error::validate<\/a>"],[0,8,"<a href=\"Error.php.html#17\">Yepwoo\\Laragine\\Helpers\\Error::validateAttributes<\/a>"],[0,4,"<a href=\"Error.php.html#40\">Yepwoo\\Laragine\\Helpers\\Error::validateModifiers<\/a>"],[0,5,"<a href=\"Error.php.html#54\">Yepwoo\\Laragine\\Helpers\\Error::validateTypes<\/a>"],[0,3,"<a href=\"Error.php.html#68\">Yepwoo\\Laragine\\Helpers\\Error::isSingle<\/a>"],[0,4,"<a href=\"Error.php.html#83\">Yepwoo\\Laragine\\Helpers\\Error::isMultiple<\/a>"],[0,1,"<a href=\"Error.php.html#106\">Yepwoo\\Laragine\\Helpers\\Error::containsDots<\/a>"],[0,1,"<a href=\"FactoryOperation.php.html#11\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::__construct<\/a>"],[0,17,"<a href=\"FactoryOperation.php.html#18\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::handleFactoryFile<\/a>"],[0,3,"<a href=\"FactoryOperation.php.html#105\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::inFactoryTextList<\/a>"],[0,3,"<a href=\"FactoryOperation.php.html#116\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::inFactoryIntList<\/a>"],[0,3,"<a href=\"FactoryOperation.php.html#127\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::isBoolean<\/a>"],[0,3,"<a href=\"FactoryOperation.php.html#142\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::containSpecialCases<\/a>"],[0,2,"<a href=\"FactoryOperation.php.html#156\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::containUniqueWord<\/a>"],[0,2,"<a href=\"FactoryOperation.php.html#164\">Yepwoo\\Laragine\\Helpers\\FactoryOperation::isEnum<\/a>"],[0,1,"<a href=\"MigrationOperation.php.html#9\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::__construct<\/a>"],[0,12,"<a href=\"MigrationOperation.php.html#16\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::getFormattedAttributes<\/a>"],[0,3,"<a href=\"MigrationOperation.php.html#61\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::handleTypeCase<\/a>"],[0,3,"<a href=\"MigrationOperation.php.html#76\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::multipleOrSingle<\/a>"],[0,8,"<a href=\"MigrationOperation.php.html#87\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::multipleTypeCase<\/a>"],[0,3,"<a href=\"MigrationOperation.php.html#125\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::singleTypeCase<\/a>"],[0,1,"<a href=\"MigrationOperation.php.html#137\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::isMultipleType<\/a>"],[0,1,"<a href=\"MigrationOperation.php.html#142\">Yepwoo\\Laragine\\Helpers\\MigrationOperation::isBoolean<\/a>"],[100,1,"<a href=\"Psr4AutoloaderClass.php.html#64\">Yepwoo\\Laragine\\Helpers\\Psr4AutoloaderClass::register<\/a>"],[87.5,3,"<a href=\"Psr4AutoloaderClass.php.html#80\">Yepwoo\\Laragine\\Helpers\\Psr4AutoloaderClass::addNamespace<\/a>"],[100,3,"<a href=\"Psr4AutoloaderClass.php.html#108\">Yepwoo\\Laragine\\Helpers\\Psr4AutoloaderClass::loadClass<\/a>"],[100,4,"<a href=\"Psr4AutoloaderClass.php.html#146\">Yepwoo\\Laragine\\Helpers\\Psr4AutoloaderClass::loadMappedFile<\/a>"],[100,2,"<a href=\"Psr4AutoloaderClass.php.html#180\">Yepwoo\\Laragine\\Helpers\\Psr4AutoloaderClass::requireFile<\/a>"],[0,1,"<a href=\"RequestOperation.php.html#11\">Yepwoo\\Laragine\\Helpers\\RequestOperation::__construct<\/a>"],[0,3,"<a href=\"RequestOperation.php.html#23\">Yepwoo\\Laragine\\Helpers\\RequestOperation::isInRequestArray<\/a>"],[0,8,"<a href=\"RequestOperation.php.html#34\">Yepwoo\\Laragine\\Helpers\\RequestOperation::handleRequestFile<\/a>"],[0,5,"<a href=\"RequestOperation.php.html#70\">Yepwoo\\Laragine\\Helpers\\RequestOperation::addModifiers<\/a>"],[0,1,"<a href=\"ResourceOperation.php.html#7\">Yepwoo\\Laragine\\Helpers\\ResourceOperation::__construct<\/a>"],[0,3,"<a href=\"ResourceOperation.php.html#15\">Yepwoo\\Laragine\\Helpers\\ResourceOperation::getFormattedResourceStr<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
