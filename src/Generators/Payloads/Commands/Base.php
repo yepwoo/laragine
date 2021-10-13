@@ -20,7 +20,7 @@ class Base implements GeneratorInterface
      * @var array
      */
     protected $args;
-    
+
     /**
      * init
      * 
@@ -30,8 +30,8 @@ class Base implements GeneratorInterface
      */
     public function __construct(Command $command, $args)
     {
-        $this->command = $command;
-        $this->args    = $args;
+        $this->command    = $command;
+        $this->args       = $args;
     }
 
     /**
