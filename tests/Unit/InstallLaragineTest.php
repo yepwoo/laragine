@@ -10,7 +10,7 @@ class InstallLaragineTest extends TestCase
 {
     /**
      * the root directory
-     * 
+     *
      * @var string
      */
     protected $root_dir;
@@ -27,7 +27,7 @@ class InstallLaragineTest extends TestCase
     public function test_the_install_command_create_root_directory()
     {
         // make sure we're starting from a clean state
-        if(File::exists($this->root_dir)) {
+        if(File::isDirectory($this->root_dir)) {
             File::deleteDirectory($this->root_dir);
         }
 
@@ -37,7 +37,7 @@ class InstallLaragineTest extends TestCase
 
     public function test_when_root_directory_exists_users_can_choose_to_override_it()
     {
-        if(!File::exists($this->root_dir)) {
+        if(!File::isDirectory($this->root_dir)) {
             Artisan::call('laragine:install');
         }
 
@@ -52,7 +52,7 @@ class InstallLaragineTest extends TestCase
 
     public function test_when_root_directory_exists_users_can_choose_to_not_override_it()
     {
-        if(!File::exists($this->root_dir)) {
+        if(!File::isDirectory($this->root_dir)) {
             Artisan::call('laragine:install');
         }
 
@@ -61,7 +61,7 @@ class InstallLaragineTest extends TestCase
         $command->expectsConfirmation(
             'The root directory already exists, do you want to override it?', 'no'
         );
-        
+
         $command->expectsOutput('Existing root directory was not overwritten');
     }
 
