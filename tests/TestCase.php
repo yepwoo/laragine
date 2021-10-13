@@ -2,9 +2,6 @@
 
 namespace Yepwoo\Laragine\Tests;
 
-// use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-// use Orchestra\Testbench\Concerns\CreatesApplication;
-
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     /**
@@ -20,5 +17,4 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'Yepwoo\Laragine\ModuleServiceProvider',
         ];
     }
-
 }
