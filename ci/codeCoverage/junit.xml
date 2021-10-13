@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="3" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="25.323714">
+    <testsuite name="Unit" tests="3" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="25.323714">
+      <testsuite name="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" file="C:\xampp-7.4\htdocs\yepwoo\laragine\tests\Unit\InstallLaragineTest.php" tests="3" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="25.323714">
+        <testcase name="test_the_install_command_create_root_directory" class="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" classname="Yepwoo.Laragine.Tests.Unit.InstallLaragineTest" file="C:\xampp-7.4\htdocs\yepwoo\laragine\tests\Unit\InstallLaragineTest.php" line="27" assertions="1" time="8.998499"/>
+        <testcase name="test_when_root_directory_exists_users_can_choose_to_override_it" class="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" classname="Yepwoo.Laragine.Tests.Unit.InstallLaragineTest" file="C:\xampp-7.4\htdocs\yepwoo\laragine\tests\Unit\InstallLaragineTest.php" line="38" assertions="2" time="8.591334"/>
+        <testcase name="test_when_root_directory_exists_users_can_choose_to_not_override_it" class="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" classname="Yepwoo.Laragine.Tests.Unit.InstallLaragineTest" file="C:\xampp-7.4\htdocs\yepwoo\laragine\tests\Unit\InstallLaragineTest.php" line="53" assertions="2" time="7.733881"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
