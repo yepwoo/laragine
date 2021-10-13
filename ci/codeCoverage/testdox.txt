@@ -1,5 +1,0 @@
-Install Laragine (Yepwoo\Laragine\Tests\Unit\InstallLaragine)
- [x] The install command create root directory
- [x] When root directory exists users can choose to override it
- [x] When root directory exists users can choose to not override it
-
