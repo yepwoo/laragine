@@ -47,13 +47,17 @@ class MakeModule extends Base
 
     /**
      * run the logic
-     * 
+     *
      * @return void
      */
     public function run()
     {
         $allow_publish = true;
 
+        if(!FileManipulator::exists($this->root_dir)) {
+            $this->command->error("Please run install command first");
+            die();
+        }
         if (FileManipulator::exists($this->module_dir)) {
             if ($this->command->confirm("the module directory already exists, do you want to override it?", true)) {
                 $allow_publish = true;
