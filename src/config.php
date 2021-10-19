@@ -92,6 +92,368 @@ return [
     |
     |
     */
+
+    'config_name' => [ // @todo will name the name of the array
+        'types' => [
+            'integer' => [
+              'have_value' => false,
+              'request'    => '',
+              'factorial'  => '',
+              'migration'  => '',
+              'resource'   => '',
+            ],
+            'bigIncrements' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'bigInteger' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'binary' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'boolean' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'dateTimeTz' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'dateTime' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'date' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'geometryCollection' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'geometry' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'ipAddress' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'json' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'jsonb' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'lineString' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'longText' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'macAddress' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'mediumIncrements' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'mediumInteger' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'mediumText' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'morphs' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'timestamps' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'timestampsTz' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'text' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'string' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'foreignId' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'increments' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+
+            // with value
+            'enum' => [
+                'have_value' => true,
+                'is_array'   => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'float' => [
+                'have_value' => true,
+                'is_array'   => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'double' => [
+                'have_value' => true,
+                'is_array'   => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'char' => [
+                'have_value' => true,
+                'is_array'   => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'timestamp' => [
+                'have_value' => true,
+                'is_array'   => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'timestampTz' => [
+                'have_value' => true,
+                'is_array'   => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'time' => [
+                'have_value' => true,
+                'is_array'   => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'timeTz' => [
+                'have_value' => true,
+                'is_array'   => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+        ],
+        'modifiers' => [
+            'autoIncrement' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'first' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'unsigned' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'useCurrent' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'useCurrentOnUpdate' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'always' => [
+                'have_value' => false,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+
+            // with value
+            'after' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'charset' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'collation' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'comment' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'default' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'from' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'storedAs' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'virtualAs' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+            'generatedAs' => [
+                'have_value' => true,
+                'request'    => '',
+                'factorial'  => '',
+                'migration'  => '',
+                'resource'   => '',
+            ],
+        ]
+    ],
     'data_types' => [
         'type_with_given_values' => [ 'enum', 'float', 'double', 'char', 'timestamp', 'timestampTz', 'time', 'timeTz'],
         'type_have_array_value' => ['enum'],
@@ -99,8 +461,63 @@ return [
             'bigIncrements', 'bigInteger', 'integer', 'binary', 'boolean', 'dateTimeTz', 'dateTime', 'date', 'geometryCollection',
             'geometry', 'increments', 'integer', 'ipAddress', 'json', 'jsonb', 'lineString', 'longText', 'macAddress', 'mediumIncrements',
             'mediumInteger', 'mediumText', 'morphs', 'timestamps', 'timestampsTz', 'text', 'string', 'foreignId' // still have more inputs
-        ]
+        ],
+
+        /*
+
+            'with_value' => [
+                'integer' => [
+                    'reg' => 'int',
+                    'fact'=> ''
+                ],
+
+                'bigIncrement' => [
+
+                ]
+            ]
+
+            'with_value' => [
+                'enum' => 'array'
+                'float' => 'comma_seperated',
+                'double' => 'float_comma_seperate',
+                'char',
+                'timestamp',
+                'timestampTz' => [ // @todo like this structure
+                    has_value => true,
+                    type => array,
+                    request_value => integer
+                    factory_value =>
+                ]
+                'time',
+                'timeTz'
+            ]
+
+            'without_value' => [
+
+            ]
+
+
+            request => [
+                'int' => 'integer',
+                'flt' => 'dobule'
+            ]
+
+            == types ===
+            - multiple -> put type multiple, put value #validation
+
+            - single
+            - contain dot: return error
+            - be sure writing all type & modifiers from laravel
+            - check if write type & modifier include in config or not
+            - must write one type, by pipe '|'
+            - mutiple -> check put value, check valid multiple type
+         */
+
     ],
+
+    /**
+     * modifier case: with value, without value
+     */
     'modifiers' => [
         'have_values' => [
             'after',
