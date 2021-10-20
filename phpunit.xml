@@ -9,7 +9,7 @@
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
-    <coverage processUncoveredFiles="true">
+    <!-- <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./src</directory>
         </include>
@@ -17,13 +17,13 @@
             <clover outputFile="./ci/codeCoverage/codeCoverage.xml"/>
             <html outputDirectory="./ci/codeCoverage/" lowUpperBound="50" highLowerBound="90"/>
         </report>
-    </coverage>
-    <logging>
+    </coverage> -->
+    <!-- <logging>
         <junit outputFile="./ci/codeCoverage/junit.xml"/>
         <testdoxHtml outputFile="./ci/codeCoverage/testdox.html"/>
         <testdoxText outputFile="./ci/codeCoverage/testdox.txt"/>
         <testdoxXml outputFile="./ci/testResults.xml"/>
-    </logging>
+    </logging> -->
     <php>
         <server name="APP_ENV" value="testing"/>
     </php>
