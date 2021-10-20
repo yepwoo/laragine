@@ -4,6 +4,9 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
+    <extensions>
+        <extension class="Yepwoo\Laragine\Tests\Extension"/>
+    </extensions>
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests</directory>

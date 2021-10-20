@@ -2,7 +2,6 @@
 
 namespace Yepwoo\Laragine\Tests\Unit;
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Yepwoo\Laragine\Tests\TestCase;
 
@@ -26,21 +25,12 @@ class InstallLaragineTest extends TestCase
 
     public function test_the_install_command_create_root_directory()
     {
-        // make sure we're starting from a clean state
-        if(File::isDirectory($this->root_dir)) {
-            File::deleteDirectory($this->root_dir);
-        }
-
-        Artisan::call('laragine:install');
+        $this->artisan('laragine:install');
         $this->assertTrue(File::exists($this->root_dir));
     }
 
     public function test_when_root_directory_exists_users_can_choose_to_override_it()
     {
-        if(!File::isDirectory($this->root_dir)) {
-            Artisan::call('laragine:install');
-        }
-
         $command = $this->artisan('laragine:install');
 
         $command->expectsConfirmation(
@@ -52,10 +42,6 @@ class InstallLaragineTest extends TestCase
 
     public function test_when_root_directory_exists_users_can_choose_to_not_override_it()
     {
-        if(!File::isDirectory($this->root_dir)) {
-            Artisan::call('laragine:install');
-        }
-
         $command = $this->artisan('laragine:install');
 
         $command->expectsConfirmation(
