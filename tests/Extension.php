@@ -21,12 +21,7 @@ final class Extension implements BeforeFirstTestHook, AfterLastTestHook
      */
     public function executeAfterLastTest(): void
     {
-        /**
-         * $root_dir assigned that way as config() can't be read from here
-         * 
-         * @todo read root dir from the config directly
-         */
-        $root_dir = base_path() . '/core';
-        File::deleteDirectory($root_dir);
+        $config = require __DIR__ . '/../src/config.php';
+        File::deleteDirectory($config['root_dir']);
     }
 }
