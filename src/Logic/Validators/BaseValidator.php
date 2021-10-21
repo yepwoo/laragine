@@ -58,4 +58,10 @@ class BaseValidator
     protected function stillValid() {
         return $this->callback['flag'] === 'info';
     }
+
+    public static function columnDefinition() 
+    {
+        $rc = new \ReflectionClass('\Illuminate\Database\Schema\ColumnDefinition');
+        print_r($rc->getDocComment());
+    }
 }
