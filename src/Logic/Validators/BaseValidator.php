@@ -64,4 +64,9 @@ class BaseValidator
         $rc = new \ReflectionClass('\Illuminate\Database\Schema\ColumnDefinition');
         print_r($rc->getDocComment());
     }
+
+    public static function blueprint() 
+    {
+        print_r(get_class_methods('\Illuminate\Database\Schema\Blueprint'));
+    }
 }
