@@ -1,5 +1,5 @@
 <?php
-namespace Yepwoo\Laragine\Logic\Coomands\validators;
+namespace Yepwoo\Laragine\Logic\Validators;
 
 use Illuminate\Support\Str;
 
