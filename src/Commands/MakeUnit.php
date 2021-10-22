@@ -40,6 +40,10 @@ class MakeUnit extends Command
     {
         $name              = $this->argument('name');
         $module            = $this->option('module');
+
+        $command = GeneratorFactory::create($this, 'MakeUnit', $module, $name, $this->option('init'));
+        $command->run();
+
         $create_unit_files = null;
 
         if ($this->option('init')) {
