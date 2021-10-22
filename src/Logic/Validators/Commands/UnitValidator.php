@@ -1,27 +1,61 @@
 <?php
 namespace Yepwoo\Laragine\Logic\Validators\Commands;
 
-use Yepwoo\Laragine\Logic\Validators\BaseValidator;
+use Yepwoo\Laragine\Logic\ErrorCollection;
+use Yepwoo\Laragine\Logic\FileManipulator;
+use Yepwoo\Laragine\Logic\StringManipulator;
+use Yepwoo\Laragine\Logic\Validators\ValidatorInterface;
 
 
-class UnitValidator {
-
+class UnitValidator implements ValidatorInterface {
+    /**
+     * module
+     *
+     * @var array
+     */
     protected $module;
 
+    /**
+     * unit
+     *
+     * @var array
+     */
     protected $unit;
 
-    public function __construct($module, $unit)
-    {
-        $this->module = $module;
-        $this->unit   = $unit;
-    }
+    /**
+     * Command
+     *
+     * @var mixed
+     */
+    protected $command;
 
     /**
-     * Validate ordering keys in JSON file in case we want from user to write it with specific order
+     * module
      *
-     * @todo Ask Mahmood if we need this or not
+     * @var array
      */
-    public function ordering() {
+    protected $root_dir;
+
+    /**
+     * module collection
+     *
+     * @var array
+     */
+    protected $module_collection;
+
+    /**
+     * module collection
+     *
+     * @var array
+     */
+    protected $unit_collection;
+
+    /**
+     * error collection
+     *
+     * @var @array
+     */
+    protected $error_collection;
 
     }
 }
