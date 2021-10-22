@@ -122,3 +122,12 @@ class UnitValidator implements ValidatorInterface {
     }
 
 }
+
+/**
+ * For memories will move it later
+ * ============= Errors ===============
+ * (1) Check if the user run init command at first or not
+ * (2) Check if the user run module command at first or not
+ * (3) Check if the user run Init option at first or not
+ * (4) Check if the user fill module name in command or not
+ */
