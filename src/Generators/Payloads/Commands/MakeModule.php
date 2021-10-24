@@ -18,7 +18,7 @@ class MakeModule extends Base
         $module_collection = StringManipulator::generate($this->args[0]);
         $module_dir        = $this->root_dir . '/' . $module_collection['studly'];
 
-        if(!FileManipulator::exists($this->root_dir)) {
+        if (!FileManipulator::exists($this->root_dir)) {
             $allow_publish = false;
             $this->command->error('Please run install command first');
         }
