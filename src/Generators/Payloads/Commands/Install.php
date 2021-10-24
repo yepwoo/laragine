@@ -14,7 +14,7 @@ class Install extends Base
     public function run()
     {
         $allow_publish = true;
-        if (FileManipulator::exists(config('laragine.root_dir'))) {
+        if (FileManipulator::exists($this->root_dir)) {
             if ($this->command->confirm('The root directory already exists, do you want to override it?', true)) {
                 $allow_publish = true;
             } else {
@@ -36,7 +36,7 @@ class Install extends Base
     protected function publishRootDirectory() {
         FileManipulator::generate_2(
             __DIR__ . '/../../../Core/Base',
-            config('laragine.root_dir') . '/Base',
+            $this->root_dir . '/Base',
             config('laragine.base'),
             [
                 'file' => ['stub'],

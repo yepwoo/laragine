@@ -22,6 +22,13 @@ class Base implements GeneratorInterface
     protected $args;
 
     /**
+     * the root dir
+     *
+     * @var string
+     */
+    protected $root_dir;
+
+    /**
      * init
      * 
      * @param  Command $command
@@ -30,8 +37,9 @@ class Base implements GeneratorInterface
      */
     public function __construct(Command $command, $args)
     {
-        $this->command    = $command;
-        $this->args       = $args;
+        $this->command  = $command;
+        $this->args     = $args;
+        $this->root_dir = config('laragine.root_dir');
     }
 
     /**
