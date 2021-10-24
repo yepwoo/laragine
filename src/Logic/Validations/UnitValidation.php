@@ -40,7 +40,7 @@ class UnitValidation
     public function __call($method, $args)
     {
         if (!method_exists($this, $method)) {
-            throw new Exception("Call to undefined method ".__CLASS__."::$method()");
+            throw new \Exception("Call to undefined method ".__CLASS__."::$method()");
         }
 
         call_user_func_array([$this, $method], $args);
