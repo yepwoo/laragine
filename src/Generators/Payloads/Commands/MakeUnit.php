@@ -47,10 +47,11 @@ class MakeUnit extends Base
         $this->unit_collection   = StringManipulator::generate($this->args[0]);
         $this->module_collection = StringManipulator::generate($this->args[1]);
         $this->init              = $this->args[2];
-        $module_dir        = $this->root_dir . '/' . $this->module_collection['studly'];
+        $module_dir              = $this->root_dir . '/' . $this->module_collection['studly'];
         $validation = new UnitValidation($this->command);
         $validation->checkModule($module_dir)
-                   ->checkUnit($module_dir, $this->unit_collection, $this->init);
+                   ->checkUnit($module_dir, $this->unit_collection, $this->init)
+                   ->checkAttributes($this->root_dir, $this->module_collection, $this->unit_collection);
 
         if(!$this->init) {
             $this->json_data   = StringManipulator::readJson($this->root_dir . '/' .  $this->module_collection['studly'] . '/data/' . $this->unit_collection['studly'].'.json');
@@ -69,9 +70,16 @@ class MakeUnit extends Base
     {
         if($this->init) {
             $this->publishUnitInitCase();
+        } else {
+            $this->serializeJsonData();
         }
     }
 
+    /**
+     * publish unit folders in init case
+     *
+     * @return void
+     */
     private function publishUnitInitCase() {
         $source_dir        = __DIR__ . '/../../../Core/Module';
         $destination_dir   = $this->root_dir . '/'. $this->module_collection['studly'];

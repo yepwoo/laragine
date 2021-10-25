@@ -4,6 +4,7 @@ namespace Yepwoo\Laragine\Logic\Validations;
 
 use Illuminate\Console\Command;
 use Yepwoo\Laragine\Logic\FileManipulator;
+use Yepwoo\Laragine\Logic\StringManipulator;
 
 class UnitValidation
 {
@@ -20,6 +21,11 @@ class UnitValidation
      * @var Command
      */
     protected $command;
+
+    /**
+     * Json data
+     */
+    protected $attributes;
 
     /**
      * init
@@ -96,5 +102,32 @@ class UnitValidation
                 }
             }
         }
+    }
+
+    /**
+     * check attributes
+     *
+     * @param $root_dir
+     * @param $module_collection
+     * @param $unit_collection
+     */
+    protected function checkAttributes($root_dir, $module_collection, $unit_collection) {
+        $this->attributes   = StringManipulator::readJson($root_dir . '/' .  $module_collection['studly'] . '/data/' . $unit_collection['studly'].'.json')->attributes ?? null;
+        if ($this->attributes == null) {
+            $this->allow_proceed = false;
+            $this->command->error('Please be sure that you write attribute property in JSON file');
+        } else {
+            foreach ($this->attributes as $column_name => $column_value) {
+                if(!isset($column_value->type)) {
+                    $this->allow_proceed = false;
+                    $this->command->error("Please write type property in '$column_name' property in " .$unit_collection['studly']. ".json file");
+                }
+            }
+        }
+
+
+
+
+
     }
 }
