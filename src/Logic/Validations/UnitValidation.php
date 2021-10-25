@@ -74,7 +74,7 @@ class UnitValidation
     protected function checkUnit($module_dir, $unit_collection, $init)
     {
         if ($init) {
-            if (FileManipulator::exists("{$module_dir}/data/{$unit_collection['studly']}.json")) {
+            if (FileManipulator::exists("{$module_dir}/Controllers/Api/V1/{$unit_collection['studly']}Controller.php")) {
                 $this->allow_proceed = false;
                 $this->command->error('You already ran this command before');
             }
