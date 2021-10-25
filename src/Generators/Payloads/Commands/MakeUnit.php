@@ -3,7 +3,7 @@
 namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 
 use Yepwoo\Laragine\Logic\StringManipulator;
-use Yepwoo\Laragine\Validations\UnitValidation;
+use Yepwoo\Laragine\Logic\Validations\UnitValidation;
 
 class MakeUnit extends Base
 {
@@ -31,7 +31,7 @@ class MakeUnit extends Base
 
     /**
      * publish unit
-     * 
+     *
      * @return void
      */
     protected function publishUnit()

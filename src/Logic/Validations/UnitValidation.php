@@ -1,6 +1,6 @@
 <?php
 
-namespace Yepwoo\Laragine\Validations;
+namespace Yepwoo\Laragine\Logic\Validations;
 
 use Illuminate\Console\Command;
 use Yepwoo\Laragine\Logic\FileManipulator;
@@ -9,21 +9,21 @@ class UnitValidation
 {
     /**
      * a flag to move forward or not
-     * 
+     *
      * @var bool
      */
     public $allow_proceed = true;
 
     /**
      * related command
-     * 
+     *
      * @var Command
      */
     protected $command;
 
     /**
      * init
-     * 
+     *
      * @param  Command $command
      * @return void
      */
@@ -34,8 +34,9 @@ class UnitValidation
 
     /**
      * magic method __call
-     * 
+     *
      * @return $this
+     * @throws \Exception
      */
     public function __call($method, $args)
     {
@@ -50,7 +51,7 @@ class UnitValidation
 
     /**
      * check if the module exists or not
-     * 
+     *
      * @param  string $module_dir
      * @return void
      */
@@ -64,7 +65,7 @@ class UnitValidation
 
     /**
      * check the unit
-     * 
+     *
      * @param  string   $module_dir
      * @param  string[] $unit_collection
      * @param  boolean  $init
@@ -82,7 +83,7 @@ class UnitValidation
                 $this->allow_proceed = false;
                 $this->command->error('Please type --init at the end of the command');
             }
-    
+
             /**
              * @todo check migrations, factories, requests, resources and tests as it's currently check for requests
              */
