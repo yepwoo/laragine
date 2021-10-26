@@ -9,7 +9,7 @@ class FileManipulator
     protected static $main_path;
 
     /**
-     * generate the files (I will call it generate_2 for now as there is another static method called generate)
+     * generate the files
      * 
      * @param  string   $source_dir
      * @param  string   $destination_dir
@@ -18,7 +18,7 @@ class FileManipulator
      * @param  string[] $replace str_replace second param
      * @return void
      */
-    public static function generate_2($source_dir, $destination_dir, $files, $search = [], $replace = [])
+    public static function generate($source_dir, $destination_dir, $files, $search = [], $replace = [])
     {
         foreach ($files as $name => $destination) {
             $file      = $name;
@@ -78,7 +78,7 @@ class FileManipulator
         );
     }
 
-    public static function generate($file, $stubs_vars, $object, $path)
+    public static function generate_2($file, $stubs_vars, $object, $path)
     {
         self::setMainPath();
         $template = self::getTemplate($file, $stubs_vars, $object);

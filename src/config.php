@@ -10,8 +10,8 @@ return [
     | The root directory that will be used to push the modules to
     |
     */
-    'root_dir' => base_path() . '/core',
 
+    'root_dir' => base_path() . '/core',
 
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +43,6 @@ return [
         'unit_template'              => 'unit_template/*',
         'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
     ],
-
     'main_views' => [
         'layouts'  => ['master.blade.php'],
         'layouts/partials' => ['_navbar.blade.php', '_sidebar.blade.php']
@@ -84,6 +83,17 @@ return [
         ]
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Messages
+    |--------------------------------------------------------------------------
+    |
+    | The messages that will be outputted in the console
+    |
+    */
+    'messages' => [
+        
+    ],
 
     /*
     |--------------------------------------------------------------------------

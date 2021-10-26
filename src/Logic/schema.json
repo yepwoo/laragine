@@ -1,0 +1,42 @@
+{
+    "types": {
+        "integer": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "",
+            "resource" : ""
+        },
+        "string": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "",
+            "resource" : ""
+        },
+        "bigInteger": {
+            "has_value": false,
+            "request": "",
+            "factory": "same_as_integer",
+            "migration": "",
+            "resource" : ""
+        },
+        "enum" : {
+            "has_value": true,
+            "value_type": "array",
+            "request": "",
+            "factory": "",
+            "migration": "",
+            "resource" : ""
+        }
+    },
+    "definitions": {
+        "default": {
+            "has_value": true,
+            "value_type": "one_value_argument"
+        },
+        "nullable": {
+            "has_value": false
+        }
+    }
+}

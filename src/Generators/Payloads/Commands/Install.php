@@ -34,7 +34,7 @@ class Install extends Base
      * @return void
      */
     protected function publishRootDirectory() {
-        FileManipulator::generate_2(
+        FileManipulator::generate(
             __DIR__ . '/../../../Core/Base',
             $this->root_dir . '/Base',
             config('laragine.base'),

@@ -69,7 +69,7 @@ class MakeModule extends Base
             ]
         ];
 
-        FileManipulator::generate_2($source_dir, $destination_dir, $files, $search, $replace);
+        FileManipulator::generate($source_dir, $destination_dir, $files, $search, $replace);
         $this->command->info('Module created successfully!');
     }
 }

@@ -89,4 +89,17 @@ class Attributes {
         return false;
 
     }
+
+    // temp ... just to remmember the class (-_-)
+    public static function columnDefinition() 
+    {
+        $rc = new \ReflectionClass('\Illuminate\Database\Schema\ColumnDefinition');
+        print_r($rc->getDocComment());
+    }
+    
+    // temp ... just to remmember the class (-_-)
+    public static function blueprint() 
+    {
+        print_r(get_class_methods('\Illuminate\Database\Schema\Blueprint'));
+    }
 }
