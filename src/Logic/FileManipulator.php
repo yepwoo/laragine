@@ -60,6 +60,18 @@ class FileManipulator
     }
 
     /**
+     * get the schema
+     * 
+     * @param  string $path
+     * @return array
+     */
+    public static function getSchema($path = __DIR__ . '/schema.json')
+    {
+        $json = file_get_contents($path);
+        return json_decode($json, true);
+    }    
+
+    /**
      * check if dir/file exists
      * 
      * @param  string $path
