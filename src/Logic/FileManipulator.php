@@ -67,9 +67,20 @@ class FileManipulator
      */
     public static function getSchema($path = __DIR__ . '/schema.json')
     {
+        return self::readJson($path);
+    }    
+
+    /**
+     * read json file
+     * 
+     * @param  string $path
+     * @return array
+     */
+    public static function readJson($path)
+    {
         $json = file_get_contents($path);
         return json_decode($json, true);
-    }    
+    } 
 
     /**
      * check if dir/file exists

@@ -112,7 +112,7 @@ class UnitValidation
      * @param $unit_collection
      */
     protected function checkAttributes($root_dir, $module_collection, $unit_collection) {
-        $this->attributes   = StringManipulator::readJson($root_dir . '/' .  $module_collection['studly'] . '/data/' . $unit_collection['studly'].'.json')->attributes ?? null;
+        $this->attributes   = FileManipulator::readJson($root_dir . '/' .  $module_collection['studly'] . '/data/' . $unit_collection['studly'].'.json')['attributes'] ?? null;
         if ($this->attributes == null) {
             $this->allow_proceed = false;
             $this->command->error('Please be sure that you write attribute property in JSON file');
