@@ -2,8 +2,8 @@
 
 namespace Yepwoo\Laragine\Tests\Unit;
 
-use Illuminate\Support\Facades\File;
 use Yepwoo\Laragine\Tests\TestCase;
+use Yepwoo\Laragine\Logic\FileManipulator;
 
 class InstallLaragineTest extends TestCase
 {
@@ -26,7 +26,7 @@ class InstallLaragineTest extends TestCase
     public function test_the_install_command_create_root_directory()
     {
         $this->artisan('laragine:install');
-        $this->assertTrue(File::exists($this->root_dir));
+        $this->assertTrue(FileManipulator::exists($this->root_dir));
     }
 
     public function test_when_root_directory_exists_users_can_choose_to_override_it()

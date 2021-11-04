@@ -2,8 +2,8 @@
 
 namespace Yepwoo\Laragine\Tests\Unit;
 
-use Illuminate\Support\Facades\File;
 use Yepwoo\Laragine\Tests\TestCase;
+use Yepwoo\Laragine\Logic\FileManipulator;
 
 class MakeModuleTest extends TestCase
 {
@@ -42,7 +42,7 @@ class MakeModuleTest extends TestCase
     public function test_the_module_command_create_module_directory()
     {
         $this->artisan("laragine:module $this->module");
-        $this->assertTrue(File::exists($this->module_dir));
+        $this->assertTrue(FileManipulator::exists($this->module_dir));
     }
 
     public function test_when_module_directory_exists_users_can_choose_to_override_it()
