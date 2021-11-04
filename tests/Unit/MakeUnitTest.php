@@ -63,14 +63,8 @@ class MakeUnitTest extends TestCase
 
     public function test_the_unit_command_init_case_in_specified_module()
     {
-        $this->artisan("laragine:unit $this->unit --module=$this->module --init");
-        $files = config('laragine.module.unit_main_folders');
-        $exist = true;
-        foreach ($files as $name => $path) {
-            if(!FileManipulator::exists($this->module_dir.'/'.$path.'/'.str_replace("Unit", "$this->unit", $name)))
-                $exist = false;
-        }
-        $this->assertTrue($exist);
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module --init");
+        $command->expectsOutput('Unit created successfully');
     }
 
     public function test_the_unit_command_repeat_init_case_in_specified_module()
