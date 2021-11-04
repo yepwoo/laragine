@@ -53,7 +53,7 @@ class MakeUnit extends Base
                    ->checkAttributes($this->root_dir, $this->module_collection, $this->unit_collection);
 
         if(!$this->init) {
-            $this->json_data   = StringManipulator::readJson($this->root_dir . '/' .  $this->module_collection['studly'] . '/data/' . $this->unit_collection['studly'].'.json');
+            $this->json_data = FileManipulator::readJson($this->root_dir . '/' .  $this->module_collection['studly'] . '/data/' . $this->unit_collection['studly'].'.json');
         }
         if ($validation->allow_proceed) {
             $this->publishUnit();
