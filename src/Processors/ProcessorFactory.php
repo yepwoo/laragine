@@ -1,33 +1,39 @@
 <?php
 
-namespace Yepwoo\Laragine\Generators\Payloads\Commands;
+namespace Yepwoo\Laragine\Processors;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Yepwoo\Laragine\Generators\Payloads\Commands\Operations\BaseOperation;
+use Yepwoo\Laragine\Logic\FileManipulator;
 
-class OperationFactory
+class ProcessorFactory
 {
     /**
      * operation
      *
      */
-    public OperationInterface $operation;
+    public ProcessorInterface $operation;
     /**
      * create new instance
      *
      * @param $units_data
      * @param array $args
-     * @return OperationFactory
+     * @return ProcessorFactory
      */
-    public static function create($units_data, array $operations = []): OperationFactory
+    public static function create($units_data, array $processors = []): ProcessorFactory
     {
-        array_map(function ($operation) use ($units_data){
+        $data = array();
+        array_map(function ($processor) use ($units_data){
             $namespace = self::getNameSpace();
-            $class = "{$namespace}". $operation.'Operation';
+            $class = "{$namespace}". $processor.'Processor';
             $operations = new $class($units_data['module_dir'], $units_data['module_collection'], $units_data['unit_collection']);
-            $operations->run();
-        }, $operations);
+            $result_str = $operations->process();
+            $data[strtolower($processor).'_str'] = $result_str;
+        }, $processors);
+
+
+        // prepare to call file manipulate
         exit;
     }
 
@@ -38,6 +44,6 @@ class OperationFactory
      */
     private static function getNameSpace(): string
     {
-        return "Yepwoo\Laragine\Generators\Payloads\Commands\Operations\\";
+        return "Yepwoo\Laragine\Processors\\";
     }
 }

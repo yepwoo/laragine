@@ -7,53 +7,83 @@ use Yepwoo\Laragine\Logic\FileManipulator;
 class Processor
 {
     /**
-     * schema data
-     * 
-     * @var array
+     * module names (collection)
+     *
+     * @var
      */
-    protected $schema;
+    public $module_collection;
 
     /**
-     * unit data (its data includes the attributes)
-     * 
-     * @var array
+     * module dir
+     *
+     * @var
      */
-    protected $unit;
+    public $module_dir;
 
     /**
-     * returned data
-     * 
-     * @var array
+     * unit names (collection)
+     *
+     * @var
      */
-    protected $data = [
-        'search' => [
-            'file'    => ['stub', 'Unit'],
-            'content' => ['#UNIT_NAME#', '#MODULE_NAME#', '#CONTENT#']
-        ],
-        'replace' => [
-            'file'    => ['php', 'unit studly'],
-            'content' => ['unit studly', 'module studly', '']
-        ]
-    ];
+    public $unit_collection;
 
     /**
-     * init
-     * 
-     * @param array $unit_path
+     * schema
+     *
+     * @var
      */
-    public function __construct($unit_path)
+    public $schema;
+
+    /**
+     * Json
+     *
+     * @var
+     */
+    public $json;
+
+    /**
+     * processors
+     *
+     * @var
+     */
+    public $processors;
+
+    public function __construct(...$args)
     {
-        $this->schema = FileManipulator::getSchema();
-        $this->unit   = FileManipulator::readJson($unit_path);
+        $this->module_dir          = $args[0];
+        $this->module_collection   = $args[1];
+        $this->unit_collection     = $args[2];
+        $json_path = $this->module_dir . '/data/' . $this->unit_collection['studly'].'.json';
+
+        $this->getData()->setSchema()->setJson($json_path);
     }
 
     /**
-     * start processing
-     * 
-     * @return string[]
+     * get data
+     *
+     * @return Processor
      */
-    public function process()
+    public function getData(): Processor
     {
-        return $this->data;
+        $this->processors = [
+            'migration_str' => '',
+            'resource_str'  => '',
+            'request_str'   => '',
+            'factory_str'   => ''
+        ];
+
+        return $this;
+    }
+
+    public function setSchema(): Processor
+    {
+        $this->schema = FileManipulator::getSchema();
+        return $this;
+    }
+
+    public function setJson($path): Processor
+    {
+        $this->json = FileManipulator::readJson($path);
+        return $this;
     }
 }
