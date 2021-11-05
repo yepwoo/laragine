@@ -16,6 +16,13 @@ class MakeUnit extends Base
     public $module_collection;
 
     /**
+     * module dir
+     *
+     * @var
+     */
+    public $module_dir;
+
+    /**
      * unit names (collection)
      *
      * @var
@@ -39,10 +46,10 @@ class MakeUnit extends Base
         $this->unit_collection   = StringManipulator::generate($this->args[0]);
         $this->module_collection = StringManipulator::generate($this->args[1]);
         $this->init              = $this->args[2];
-        $module_dir              = $this->root_dir . '/' . $this->module_collection['studly'];
+        $this->module_dir              = $this->root_dir . '/' . $this->module_collection['studly'];
         $validation              = new UnitValidation($this->command);
-        $validation->checkModule($module_dir)
-                   ->checkUnit($module_dir, $this->unit_collection, $this->init)
+        $validation->checkModule($this->module_dir)
+                   ->checkUnit($this->module_dir, $this->unit_collection, $this->init)
                    ->checkAttributes($this->root_dir, $this->module_collection, $this->unit_collection);
 
         if ($validation->allow_proceed) {
@@ -66,6 +73,14 @@ class MakeUnit extends Base
             $resource = new \Yepwoo\Laragine\Processors\ResourceProcessor($data);
             // FileManipulator::generate($source_dir, $destination_dir, $files, $resource['search'], $resource['replace']);
             $this->command->info('Other stuff in the unit created successfully');
+            
+            $unit_data = [
+                'module_dir'        => $this->module_dir,
+                'module_collection' => $this->module_collection,
+                'unit_collection'   => $this->unit_collection
+            ];
+            $operations = ['Migration'];
+            OperationFactory::create($unit_data, $operations);exit;
         }
     }
 
