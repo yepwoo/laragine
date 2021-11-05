@@ -45,7 +45,6 @@ class Processor
     {
         $this->schema = FileManipulator::getSchema();
         $this->unit   = FileManipulator::readJson($unit_path);
-        $this->process();
     }
 
     /**
