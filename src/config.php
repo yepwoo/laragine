@@ -53,7 +53,7 @@ return [
     | The Module
     |--------------------------------------------------------------------------
     |
-    | The stubs and files for the new Modules
+    | The stubs and files for the new Modules & Units
     |
     */
 

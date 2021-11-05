@@ -5,7 +5,7 @@ namespace Yepwoo\Laragine\Tests\Unit;
 use Yepwoo\Laragine\Tests\TestCase;
 use Yepwoo\Laragine\Logic\FileManipulator;
 
-class InstallLaragineTest extends TestCase
+class InstallTest extends TestCase
 {
     /**
      * the root directory

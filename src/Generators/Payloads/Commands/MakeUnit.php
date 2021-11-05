@@ -9,13 +9,6 @@ use Yepwoo\Laragine\Logic\Validations\UnitValidation;
 class MakeUnit extends Base
 {
     /**
-     * save data from json file
-     *
-     * @var
-     */
-    public $json_data;
-
-    /**
      * module names (collection)
      *
      * @var
@@ -52,9 +45,6 @@ class MakeUnit extends Base
                    ->checkUnit($module_dir, $this->unit_collection, $this->init)
                    ->checkAttributes($this->root_dir, $this->module_collection, $this->unit_collection);
 
-        if(!$this->init) {
-            $this->json_data = FileManipulator::readJson($this->root_dir . '/' .  $this->module_collection['studly'] . '/data/' . $this->unit_collection['studly'].'.json');
-        }
         if ($validation->allow_proceed) {
             $this->publishUnit();
         }
@@ -70,7 +60,12 @@ class MakeUnit extends Base
         if($this->init) {
             $this->publishUnitInitCase();
         } else {
-            $this->serializeJsonData();
+            $file_name = $this->unit_collection['studly'] . '.json';
+            $data      = $this->root_dir . '/' .  $this->module_collection['studly'] . '/data/' . $file_name;
+
+            $resource = new \Yepwoo\Laragine\Processors\ResourceProcessor($data);
+            // FileManipulator::generate($source_dir, $destination_dir, $files, $resource['search'], $resource['replace']);
+            $this->command->info('Other stuff in the unit created successfully');
         }
     }
 
