@@ -22,7 +22,7 @@ class #UNIT_NAME#Factory extends Factory
     public function definition()
     {
         return [
-#CONTENT#
+#FACTORY_STR#
         ];
     }
 }
