@@ -9,16 +9,15 @@ class ResourceProcessor extends Processor
      *
      * @return string[]
      */
-    public function process()
+    public function process(): array
     {
         foreach ($this->json['attributes'] as $key => $value) {
-            echo json_encode($key);exit;
-//            $this->data['replace']['content'][2] .= <<<CONTENT
-//                                                        '$key' => \$this->$key
-//                                                    CONTENT;
-//            $this->data['replace']['content'][2] .= array_key_last($this->unit['attributes']) == $key ? ',' : ",\n";
+            $this->processors['resource_str'] .= <<<STR
+                                    '$key' => \$this->$key
+                        STR;
+            $this->processors['resource_str']  .= array_key_last($this->json['attributes']) == $key ? ',' : ",\n";
         }
 
-        return $this->json;
+        return $this->processors;
     }
 }

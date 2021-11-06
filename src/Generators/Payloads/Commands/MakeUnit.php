@@ -71,18 +71,14 @@ class MakeUnit extends Base
             $file_name = $this->unit_collection['studly'] . '.json';
             $data      = $this->root_dir . '/' .  $this->module_collection['studly'] . '/data/' . $file_name;
 
-//            $resource = new \Yepwoo\Laragine\Processors\ResourceProcessor($data);
-//            print_r($resource->process());
-            // FileManipulator::generate($source_dir, $destination_dir, $files, $resource['search'], $resource['replace']);
-            $this->command->info('Other stuff in the unit created successfully');
-
             $unit_data = [
                 'module_dir'        => $this->module_dir,
                 'module_collection' => $this->module_collection,
                 'unit_collection'   => $this->unit_collection
             ];
             $operations = ['Resource'];
-            ProcessorFactory::create($unit_data, $operations);exit;
+            ProcessorFactory::create($unit_data, $operations);
+            $this->command->info('Other stuff in the unit created successfully');
         }
     }
 

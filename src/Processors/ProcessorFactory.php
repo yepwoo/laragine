@@ -2,39 +2,59 @@
 
 namespace Yepwoo\Laragine\Processors;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Str;
-use Yepwoo\Laragine\Generators\Payloads\Commands\Operations\BaseOperation;
 use Yepwoo\Laragine\Logic\FileManipulator;
 
 class ProcessorFactory
 {
     /**
-     * operation
+     * processors_data
      *
      */
-    public ProcessorInterface $operation;
+    public array $processors_data;
+
     /**
      * create new instance
      *
      * @param $units_data
-     * @param array $args
+     * @param array $processors
      * @return ProcessorFactory
      */
-    public static function create($units_data, array $processors = []): ProcessorFactory
+    public static function create($units_data, array $processors = [])
     {
-        $data = array();
-        array_map(function ($processor) use ($units_data){
+        $data2 = array();
+        foreach ($processors as $processor) {
             $namespace = self::getNameSpace();
             $class = "{$namespace}". $processor.'Processor';
             $operations = new $class($units_data['module_dir'], $units_data['module_collection'], $units_data['unit_collection']);
             $result_str = $operations->process();
-            $data[strtolower($processor).'_str'] = $result_str;
-        }, $processors);
+            $data2 = $result_str;
+        }
 
+        /**
+         * Prepare to call file manipulate
+         */
+        $source_dir = __DIR__ . '/../Core/Module';;
+        $destination_dir   = $units_data['module_dir'];
 
-        // prepare to call file manipulate
-        exit;
+        $files      = config('laragine.module.unit_folders');
+        $search = [
+            'file'    => ['stub', 'Api', 'Web', 'Unit'],
+            'content' => [
+                '#UNIT_NAME#',
+                '#MODULE_NAME#',
+                '#RESOURCE_STR'
+            ]
+        ];
+
+        $replace = [
+            'file'    => ['php', '', '', $units_data['unit_collection']['studly']],
+            'content' => [
+                $units_data['unit_collection']['studly'],
+                $units_data['unit_collection']['studly'],
+                $data2['resource_str']
+            ]
+        ];
+        FileManipulator::generate($source_dir, $destination_dir, $files, $search, $replace);
     }
 
     /**
