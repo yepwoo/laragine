@@ -21,13 +21,13 @@ class ProcessorFactory
      */
     public static function create($units_data, array $processors = [])
     {
-        $data2 = array();
+        $data = array();
         foreach ($processors as $processor) {
             $namespace = self::getNameSpace();
             $class = "{$namespace}". $processor.'Processor';
             $operations = new $class($units_data['module_dir'], $units_data['module_collection'], $units_data['unit_collection']);
             $result_str = $operations->process();
-            $data2 = $result_str;
+            $data = $result_str;
         }
 
         /**
@@ -51,7 +51,7 @@ class ProcessorFactory
             'content' => [
                 $units_data['unit_collection']['studly'],
                 $units_data['unit_collection']['studly'],
-                $data2['resource_str']
+                $data['resource_str']
             ]
         ];
         FileManipulator::generate($source_dir, $destination_dir, $files, $search, $replace);
