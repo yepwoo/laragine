@@ -7,63 +7,65 @@ use Yepwoo\Laragine\Logic\FileManipulator;
 class Processor
 {
     /**
-     * module names (collection)
+     * module forms (collection)
      *
      * @var
      */
-    public $module_collection;
+    protected $module_collection;
 
     /**
      * module dir
      *
      * @var
      */
-    public $module_dir;
+    protected $module_dir;
 
     /**
-     * unit names (collection)
+     * unit forms (collection)
      *
      * @var
      */
-    public $unit_collection;
+    protected $unit_collection;
 
     /**
      * schema
      *
      * @var
      */
-    public $schema;
+    protected $schema;
 
     /**
-     * Json
+     * json data (the json that contains the attributes for the unit)
      *
      * @var
      */
-    public $json;
+    protected $json;
 
     /**
      * processors
      *
      * @var
      */
-    public $processors;
+    protected $processors;
 
+    /**
+     * init
+     * 
+     * @param array $args
+     */
     public function __construct(...$args)
     {
         $this->module_dir          = $args[0];
         $this->module_collection   = $args[1];
         $this->unit_collection     = $args[2];
-        $json_path = $this->module_dir . '/data/' . $this->unit_collection['studly'].'.json';
 
-        $this->getData()->setSchema()->setJson($json_path);
+        $this->setProcessors()->setSchema()->setJson();
     }
 
     /**
-     * get data
-     *
-     * @return Processor
+     * set the processors
      */
-    public function getData(): Processor
+    public function setProcessors(): Processor
     {
         $this->processors = [
             'migration_str' => '',
@@ -75,15 +77,22 @@ class Processor
         return $this;
     }
 
+    /**
+     * set the schema
+     */
     public function setSchema(): Processor
     {
         $this->schema = FileManipulator::getSchema();
         return $this;
     }
 
-    public function setJson($path): Processor
+    /**
+     * set the json
+     */
+    public function setJson(): Processor
     {
-        $this->json = FileManipulator::readJson($path);
+        $json_path  = $this->module_dir . '/data/' . $this->unit_collection['studly'].'.json';
+        $this->json = FileManipulator::readJson($json_path);
         return $this;
     }
 }

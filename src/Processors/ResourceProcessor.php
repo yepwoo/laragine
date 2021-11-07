@@ -6,8 +6,6 @@ class ResourceProcessor extends Processor
 {
     /**
      * start processing
-     *
-     * @return string[]
      */
     public function process(): array
     {

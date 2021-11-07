@@ -30,12 +30,12 @@ class #UNIT_NAME#Request extends FormRequest
             }
             case 'POST': {
                 return [
-#REQUEST_STR
+#REQUEST_STR#
                 ];
             }
             case 'PUT': {
                 return [
-#REQUEST_STR
+#REQUEST_STR#
                 ];
             }
         }

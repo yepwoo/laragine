@@ -9,6 +9,7 @@ class ProcessorFactory
     /**
      * processors_data
      *
+     * @var array
      */
     public array $processors_data;
 
@@ -17,45 +18,45 @@ class ProcessorFactory
      *
      * @param $units_data
      * @param array $processors
-     * @return ProcessorFactory
+     * @return void
      */
     public static function create($units_data, array $processors = [])
     {
-        $data = array();
-        foreach ($processors as $processor) {
-            $namespace = self::getNameSpace();
-            $class = "{$namespace}". $processor.'Processor';
-            $operations = new $class($units_data['module_dir'], $units_data['module_collection'], $units_data['unit_collection']);
-            $result_str = $operations->process();
-            $data = $result_str;
+        $data = [];
+        foreach ($processors as $processor_name) {
+            $namespace            = self::getNameSpace();
+            $class                = "{$namespace}". $processor_name.'Processor';
+            $processor            = new $class($units_data['module_dir'], $units_data['module_collection'], $units_data['unit_collection']);
+            $processor_str        = strtolower($processor_name) . '_str';
+            $data[$processor_str] = $processor->process()[$processor_str];
         }
 
-        /**
-         * Prepare to call file manipulate
-         */
-        $source_dir = __DIR__ . '/../Core/Module';;
-        $destination_dir   = $units_data['module_dir'];
+        $source_dir      = __DIR__ . '/../Core/Module';;
+        $destination_dir = $units_data['module_dir'];
+        $files           = config('laragine.module.unit_folders');
 
-        $files      = config('laragine.module.unit_folders');
         $search = [
-            'file'    => ['stub', 'Api', 'Web', 'Unit'],
+            'file'    => ['stub', 'Unit'],
             'content' => [
                 '#UNIT_NAME#',
+                '#UNIT_NAME_PLURAL_LOWER_CASE#',
                 '#MODULE_NAME#',
-                '#RESOURCE_STR',
-                "#REQUEST_STR"
+                '#RESOURCE_STR#',
+                "#REQUEST_STR#"
             ]
         ];
 
         $replace = [
-            'file'    => ['php', '', '', $units_data['unit_collection']['studly']],
+            'file'    => ['php', $units_data['unit_collection']['studly']],
             'content' => [
                 $units_data['unit_collection']['studly'],
-                $units_data['unit_collection']['studly'],
+                $units_data['unit_collection']['plural_lower_case'],
+                $units_data['module_collection']['studly'],
                 $data['resource_str'],
                 $data['request_str']
             ]
         ];
+
         FileManipulator::generate($source_dir, $destination_dir, $files, $search, $replace);
     }
 

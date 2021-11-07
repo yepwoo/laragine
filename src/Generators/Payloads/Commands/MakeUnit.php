@@ -76,8 +76,8 @@ class MakeUnit extends Base
                 'module_collection' => $this->module_collection,
                 'unit_collection'   => $this->unit_collection
             ];
-            $operations = ['Resource', 'Request'];
-            ProcessorFactory::create($unit_data, $operations);
+            $rocessors = ['Resource', 'Request'];
+            ProcessorFactory::create($unit_data, $rocessors);
             $this->command->info('Other stuff in the unit created successfully');
         }
     }

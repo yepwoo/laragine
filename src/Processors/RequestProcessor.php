@@ -38,7 +38,7 @@ class RequestProcessor extends Processor
             /**
              * === Modifier case
              */
-            if($cases['mod']) {
+            if(isset($cases['mod'])) {
                 $modifiers        = explode("|", strtolower($cases['mod']));
                 $schema_modifiers = $this->schema['definitions'];
 

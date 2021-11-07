@@ -1,11 +1,9 @@
 <?php
+
 namespace Yepwoo\Laragine\Processors;
 
-
-use Monolog\Processor\ProcessorInterface;
-
-class MigrationProcessor extends Processor {
-
+class MigrationProcessor extends Processor
+{
     /**
      * Migration str
      *
@@ -36,5 +34,4 @@ class MigrationProcessor extends Processor {
     public function modCase() {
 
     }
-
 }
