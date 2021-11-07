@@ -42,7 +42,8 @@ class ProcessorFactory
             'content' => [
                 '#UNIT_NAME#',
                 '#MODULE_NAME#',
-                '#RESOURCE_STR'
+                '#RESOURCE_STR',
+                "#REQUEST_STR"
             ]
         ];
 
@@ -51,7 +52,8 @@ class ProcessorFactory
             'content' => [
                 $units_data['unit_collection']['studly'],
                 $units_data['unit_collection']['studly'],
-                $data['resource_str']
+                $data['resource_str'],
+                $data['request_str']
             ]
         ];
         FileManipulator::generate($source_dir, $destination_dir, $files, $search, $replace);

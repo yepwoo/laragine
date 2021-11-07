@@ -4,7 +4,7 @@ namespace Yepwoo\Laragine\Processors;
 
 use Monolog\Processor\ProcessorInterface;
 
-class MigrationProcessor extends BaseOperation implements ProcessorInterface {
+class MigrationProcessor extends Processor {
 
     /**
      * Migration str
