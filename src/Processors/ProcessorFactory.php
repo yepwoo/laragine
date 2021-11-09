@@ -36,23 +36,26 @@ class ProcessorFactory
         $files           = config('laragine.module.unit_folders');
 
         $search = [
-            'file'    => ['stub', 'Unit'],
+            'file'    => ['stub', 'Unit', 'units'],
             'content' => [
                 '#UNIT_NAME#',
                 '#UNIT_NAME_PLURAL_LOWER_CASE#',
+                '#UNIT_NAME_PLURAL#',
                 '#MODULE_NAME#',
                 '#RESOURCE_STR#',
                 "#REQUEST_STR#",
                 "#FACTORY_STR#",
-                "#MIGRATION_STR#"
+                "#MIGRATION_STR#",
             ]
         ];
+        $unit_plural_lower = $units_data['unit_collection']['plural_lower_case'];
 
         $replace = [
-            'file'    => ['php', $units_data['unit_collection']['studly']],
+            'file'    => ['php', $units_data['unit_collection']['studly'], $unit_plural_lower],
             'content' => [
                 $units_data['unit_collection']['studly'],
-                $units_data['unit_collection']['plural_lower_case'],
+                $unit_plural_lower,
+                $units_data['unit_collection']['plural'],
                 $units_data['module_collection']['studly'],
                 $data['resource_str'],
                 $data['request_str'],

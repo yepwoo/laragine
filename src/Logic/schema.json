@@ -31,7 +31,7 @@
             "value_type": "array",
             "request": "",
             "factory": "",
-            "migration": "",
+            "migration": "enum",
             "resource" : ""
         }
     },

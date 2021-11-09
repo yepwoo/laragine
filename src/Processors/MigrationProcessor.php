@@ -41,16 +41,26 @@ class MigrationProcessor extends Processor
         return $this->processor;
     }
 
-    public function typeCase($type, $column)
+    public function typeCase($type_str, $column)
     {
         $schema_types = $this->schema['types'];
-        $type = explode(":", strtolower($type))[0];
+        $type = explode(":", strtolower($type_str))[0];
 
         if(($this->isSchemaTypeFound($type))) {
             $has_value = $schema_types[$type]['has_value'];
 
            if($has_value) {
-                // if has value
+               $values = explode(",", explode(":", strtolower($type_str))[1]);
+               $type_value = '';
+               foreach($values as $value) {
+                   if (is_numeric($value)) {
+                       $type_value .= $values[count($values) - 1] == $value ? intval($value) : intval($value). ",";
+                   } else {
+                       $type_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
+                   }
+               }
+
+               $this->type_str .= $schema_types[$type]['migration'] . '('."'$column',". "[$type_value]" .')';
            } else {
                $this->type_str .= $schema_types[$type]['migration']. '('."'$column'".')';
            }
