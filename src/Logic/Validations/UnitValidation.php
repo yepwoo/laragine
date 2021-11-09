@@ -28,6 +28,11 @@ class UnitValidation
     protected $attributes;
 
     /**
+     * Schema data
+     */
+    protected $schema;
+
+    /**
      * init
      *
      * @param  Command $command
@@ -36,6 +41,7 @@ class UnitValidation
     public function __construct(Command $command)
     {
         $this->command = $command;
+        $this->schema  = FileManipulator::getSchema();
     }
 
     /**
@@ -106,7 +112,10 @@ class UnitValidation
 
     /**
      * check attributes
-     *
+     * (1) check if write attributes property in JSON file
+     * (2) check if specify the type of "attribute"
+     * (3) check if the type is exist in our schema
+     * (4) multiple type case: check if write value for this type
      * @param $root_dir
      * @param $module_collection
      * @param $unit_collection
@@ -116,17 +125,40 @@ class UnitValidation
         $full_path = $root_dir . '/' .  $module_collection['studly'] . '/data/' . $file_name;
         if (FileManipulator::exists($full_path)) {
             $this->attributes   = FileManipulator::readJson($full_path)['attributes'] ?? null;
+
+            // ========= (1) ========
             if ($this->attributes == null) {
                 $this->allow_proceed = false;
                 $this->command->error('Please be sure that you write attribute property in JSON file');
             } else {
-                foreach ($this->attributes as $column_name => $column_value) {
-                    if(!isset($column_value['type'])) {
+                foreach ($this->attributes as $column_name => $cases) {
+                    // ========= (2) ========
+                    if(!isset($cases['type'])) {
                         $this->allow_proceed = false;
                         $this->command->error("Please specify the type of '$column_name' property in " .$unit_collection['studly']. ".json file");
+                    }
+
+                    // ========= (3) ========
+                    $type = explode(":", strtolower($cases['type']))[0];
+                    if(!$this->isSchemaTypeFound($type)) {
+                        $this->allow_proceed = false;
+                        $this->command->error("Sorry we didn't recognize $type in our schema");
+                    } else {
+
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Check if type is in our schema
+     *
+     * @param $type
+     * @return bool
+     */
+    protected function isSchemaTypeFound($type): bool
+    {
+        return isset($this->schema['types'][$type]);
     }
 }
