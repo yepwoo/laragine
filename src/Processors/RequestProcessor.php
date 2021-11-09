@@ -24,7 +24,7 @@ class RequestProcessor extends Processor
             $type = strtolower($cases['type']);
             $schema_types = $this->schema['types'];
 
-            if($schema_types[$type]) {
+            if(isset($schema_types[$type])) {
                 $type = $schema_types[$type]['resource'] !== "" ? $schema_types[$type]['resource'] . '|' : "";
                 $this->processors['request_str'] .= <<<STR
                                                 '$column' => '$type

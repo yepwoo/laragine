@@ -4,7 +4,7 @@
             "has_value": false,
             "request": "",
             "factory": "integer",
-            "migration": "",
+            "migration": "integer",
             "resource" : ""
         },
         "string": {
@@ -16,14 +16,14 @@
                 "phone": "phoneNumber",
                 "default": "text"
             },
-            "migration": "",
+            "migration": "string",
             "resource" : ""
         },
         "bigInteger": {
             "has_value": false,
             "request": "",
             "factory": "same_as_integer",
-            "migration": "",
+            "migration": "integer",
             "resource" : ""
         },
         "enum" : {

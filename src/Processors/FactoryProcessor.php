@@ -75,7 +75,7 @@ class FactoryProcessor extends Processor
      */
     private function handleTypeCase($type, $column_name): void
     {
-        $type = strtolower($type);
+        $type = explode(":", strtolower($type))[0];
 
         $schema_types = $this->schema['types'];
 
@@ -109,16 +109,6 @@ class FactoryProcessor extends Processor
                 $this->type_str .= $value . '()';
             }
         }
-    }
-    /**
-     * Check if type is in our schema
-     *
-     * @param $type
-     * @return bool
-     */
-    private function isSchemaTypeFound($type): bool
-    {
-        return isset($this->schema['types'][$type]);
     }
 
     /**

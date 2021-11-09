@@ -50,7 +50,7 @@ class Processor
 
     /**
      * init
-     * 
+     *
      * @param array $args
      */
     public function __construct(...$args)
@@ -94,5 +94,16 @@ class Processor
         $json_path  = $this->module_dir . '/data/' . $this->unit_collection['studly'].'.json';
         $this->json = FileManipulator::readJson($json_path);
         return $this;
+    }
+
+    /**
+     * Check if type is in our schema
+     *
+     * @param $type
+     * @return bool
+     */
+    protected function isSchemaTypeFound($type): bool
+    {
+        return isset($this->schema['types'][$type]);
     }
 }
