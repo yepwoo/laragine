@@ -42,7 +42,8 @@ class ProcessorFactory
                 '#UNIT_NAME_PLURAL_LOWER_CASE#',
                 '#MODULE_NAME#',
                 '#RESOURCE_STR#',
-                "#REQUEST_STR#"
+                "#REQUEST_STR#",
+                "#FACTORY_STR#"
             ]
         ];
 
@@ -53,7 +54,8 @@ class ProcessorFactory
                 $units_data['unit_collection']['plural_lower_case'],
                 $units_data['module_collection']['studly'],
                 $data['resource_str'],
-                $data['request_str']
+                $data['request_str'],
+                $data['factory_str']
             ]
         ];
 

@@ -3,14 +3,19 @@
         "integer": {
             "has_value": false,
             "request": "",
-            "factory": "",
+            "factory": "integer",
             "migration": "",
             "resource" : ""
         },
         "string": {
             "has_value": false,
             "request": "",
-            "factory": "",
+            "factory": {
+                "email": "safeEmail",
+                "url": "url",
+                "phone": "phoneNumber",
+                "default": "text"
+            },
             "migration": "",
             "resource" : ""
         },
@@ -42,7 +47,8 @@
         },
         "unique": {
             "has_value": false,
-            "resource" : "unique"
+            "resource" : "unique",
+            "factory": "unique"
         }
     }
 }
