@@ -112,10 +112,14 @@ class UnitValidation
 
     /**
      * check attributes
-     * (1) check if write attributes property in JSON file
-     * (2) check if specify the type of "attribute"
-     * (3) check if the type is exist in our schema
-     * (4) multiple type case: check if write value for this type
+        (1) check if write attributes property in JSON file
+     * Type case
+        (2) check if specify the type of "attribute"
+        (3) check if the type is exist in our schema
+        (4) multiple type case: check if write value for this type
+     * Modifier case
+        (6) check if module is exist in our schema data
+        (7) multiple modifier case: check if write value for this modifier
      * @param $root_dir
      * @param $module_collection
      * @param $unit_collection
@@ -153,7 +157,7 @@ class UnitValidation
         if(!$this->isSchemaTypeFound($type)) {
             $this->allow_proceed = false;
             $this->command->error("Sorry we didn't recognize $type in our schema");
-        } else {
+        } else { // type found in our schema
             $has_value = $schema_types[$type]['has_value'];
             if($has_value) {
                 // ======= (4) =======
