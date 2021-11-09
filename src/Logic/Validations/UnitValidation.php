@@ -141,6 +141,7 @@ class UnitValidation
 
     protected function typeCase($type_str, $column, $unit_collection) {
         $type = explode(":", strtolower($type_str))[0];
+        $schema_types = $this->schema['types'];
 
         // ========= (2) ========
         if(!isset($type)) {
@@ -153,10 +154,24 @@ class UnitValidation
             $this->allow_proceed = false;
             $this->command->error("Sorry we didn't recognize $type in our schema");
         } else {
-
+            $has_value = $schema_types[$type]['has_value'];
+            if($has_value) {
+                // ======= (4) =======
+                $values    = explode(":", strtolower($type_str));
+                if(!$this->haveValue($values)) {
+                    $this->allow_proceed = false;
+                    $this->command->error("The '$type' type should have values, please specify the value");
+                }
+            }
         }
     }
 
+    /**
+     *
+     */
+    protected function haveValue($arr) {
+        return count($arr) > 1;
+    }
     /**
      * Check if type is in our schema
      *
