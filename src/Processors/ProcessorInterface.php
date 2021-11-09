@@ -7,7 +7,7 @@ interface ProcessorInterface
     /**
      * run the logic
      *
-     * @return void
+     * @return string
      */
     public function process();
 }

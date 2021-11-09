@@ -22,13 +22,13 @@ class FactoryProcessor extends Processor
     /**
      * start processing
      */
-    public function process(): array
+    public function process(): string
     {
         foreach ($this->json['attributes'] as $column => $cases) {
             $this->type_str = '';
             $this->mod_str = '';
 
-            $this->processors['factory_str'] .= <<<STR
+            $this->processor .= <<<STR
                                     '$column' => \$this->faker->
                         STR;
 
@@ -42,11 +42,11 @@ class FactoryProcessor extends Processor
              * Check if type_str is empty or not
              */
 
-            $this->processors['factory_str']   .= ($this->mod_str !== '' ? $this->mod_str . '->': '') . ($this->type_str !== '' ? $this->type_str : 'text()');
-            $this->processors['factory_str']  .= array_key_last($this->json['attributes']) == $column ? ',' : ",\n";
+            $this->processor .= ($this->mod_str !== '' ? $this->mod_str . '->': '') . ($this->type_str !== '' ? $this->type_str : 'text()');
+            $this->processor .= array_key_last($this->json['attributes']) == $column ? ',' : ",\n";
         }
 
-        return $this->processors;
+        return $this->processor;
     }
 
     /**

@@ -29,16 +29,16 @@ class MigrationProcessor extends Processor
             $this->type_str = '';
             $this->mod_str = '';
 
-            $this->processors['migration_str'] .= <<<STR
+            $this->processor .= <<<STR
                                     \$table->
                         STR;
 
             $this->typeCase($cases['type'], $column);
 
-            $this->processors['migration_str'] .= $this->type_str . ($this->mod_str !== '' ? '->' . $this->mod_str : '');
-            $this->processors['migration_str']  .= array_key_last($this->json['attributes']) == $column ? ';' : ";\n";
+            $this->processor .= $this->type_str . ($this->mod_str !== '' ? '->' . $this->mod_str : '');
+            $this->processor  .= array_key_last($this->json['attributes']) == $column ? ';' : ";\n";
         }
-        return $this->processors;
+        return $this->processor;
     }
 
     public function typeCase($type, $column)

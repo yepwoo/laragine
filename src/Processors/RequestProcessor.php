@@ -8,10 +8,8 @@ class RequestProcessor extends Processor
 {
     /**
      * start processing
-     *
-     * @return string[]
      */
-    public function process(): array
+    public function process(): string
     {
         $attributes = $this->json['attributes'];
         $nullable         = false;
@@ -26,11 +24,11 @@ class RequestProcessor extends Processor
 
             if(isset($schema_types[$type])) {
                 $type = $schema_types[$type]['resource'] !== "" ? $schema_types[$type]['resource'] . '|' : "";
-                $this->processors['request_str'] .= <<<STR
+                $this->processor .= <<<STR
                                                 '$column' => '$type
                             STR;
             } else {
-                $this->processors['request_str'] .= <<<STR
+                $this->processor .= <<<STR
                                                 '$column' => '
                             STR;
             }
@@ -45,22 +43,22 @@ class RequestProcessor extends Processor
                 foreach ($modifiers as $modifier) {
                     if($schema_modifiers[$modifier]['resource'] == 'unique') {
                         $nullable = true;
-                        $this->processors['request_str'] .= $schema_modifiers[$modifier]['resource'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
+                        $this->processor .= $schema_modifiers[$modifier]['resource'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
                     } else {
-                        $this->processors['request_str'] .= $modifier . '|';
+                        $this->processor .= $modifier . '|';
                     }
                 }
             }
 
             if($nullable) {
-                $this->processors['request_str'] .= 'nullable' . "'";
+                $this->processor .= 'nullable' . "'";
             } else {
-                $this->processors['request_str'] .= 'required' . "'";
+                $this->processor .= 'required' . "'";
             }
-            $this->processors['request_str']  .= array_key_last($attributes) == $column ? ',' : ",\n";
+            $this->processor  .= array_key_last($attributes) == $column ? ',' : ",\n";
         }
 
-        return $this->processors;
+        return $this->processor;
     }
 
 }

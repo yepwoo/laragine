@@ -16,8 +16,8 @@ class ProcessorFactory
     /**
      * create new instance
      *
-     * @param $units_data
-     * @param array $processors
+     * @param  array $units_data
+     * @param  array $processors
      * @return void
      */
     public static function create($units_data, array $processors = [])
@@ -28,7 +28,7 @@ class ProcessorFactory
             $class                = "{$namespace}". $processor_name.'Processor';
             $processor            = new $class($units_data['module_dir'], $units_data['module_collection'], $units_data['unit_collection']);
             $processor_str        = strtolower($processor_name) . '_str';
-            $data[$processor_str] = $processor->process()[$processor_str];
+            $data[$processor_str] = $processor->process();
         }
 
         $source_dir      = __DIR__ . '/../Core/Module';;
@@ -66,8 +66,6 @@ class ProcessorFactory
 
     /**
      * root namespace in which we can use to create new instance of the class passed
-     *
-     * @return string
      */
     private static function getNameSpace(): string
     {

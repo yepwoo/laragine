@@ -7,15 +7,15 @@ class ResourceProcessor extends Processor
     /**
      * start processing
      */
-    public function process(): array
+    public function process(): string
     {
         foreach ($this->json['attributes'] as $key => $value) {
-            $this->processors['resource_str'] .= <<<STR
+            $this->processor .= <<<STR
                                     '$key' => \$this->$key
                         STR;
-            $this->processors['resource_str']  .= array_key_last($this->json['attributes']) == $key ? ',' : ",\n";
+            $this->processor .= array_key_last($this->json['attributes']) == $key ? ',' : ",\n";
         }
 
-        return $this->processors;
+        return $this->processor;
     }
 }

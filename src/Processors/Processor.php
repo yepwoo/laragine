@@ -42,11 +42,11 @@ class Processor
     protected $json;
 
     /**
-     * processors
+     * processor
      *
      * @var
      */
-    protected $processors;
+    protected $processor;
 
     /**
      * init
@@ -59,21 +59,15 @@ class Processor
         $this->module_collection   = $args[1];
         $this->unit_collection     = $args[2];
 
-        $this->setProcessors()->setSchema()->setJson();
+        $this->setProcessor()->setSchema()->setJson();
     }
 
     /**
-     * set the processors
+     * set the processor
      */
-    public function setProcessors(): Processor
+    public function setProcessor(): Processor
     {
-        $this->processors = [
-            'migration_str' => '',
-            'resource_str'  => '',
-            'request_str'   => '',
-            'factory_str'   => ''
-        ];
-
+        $this->processor = '';
         return $this;
     }
 
