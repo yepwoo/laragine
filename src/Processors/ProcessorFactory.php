@@ -43,7 +43,8 @@ class ProcessorFactory
                 '#MODULE_NAME#',
                 '#RESOURCE_STR#',
                 "#REQUEST_STR#",
-                "#FACTORY_STR#"
+                "#FACTORY_STR#",
+                "#MIGRATION_STR#"
             ]
         ];
 
@@ -55,7 +56,8 @@ class ProcessorFactory
                 $units_data['module_collection']['studly'],
                 $data['resource_str'],
                 $data['request_str'],
-                $data['factory_str']
+                $data['factory_str'],
+                $data['migration_str']
             ]
         ];
 
