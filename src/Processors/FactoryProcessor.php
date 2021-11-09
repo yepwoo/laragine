@@ -78,23 +78,68 @@ class FactoryProcessor extends Processor
         $type = strtolower($type);
 
         $schema_types = $this->schema['types'];
-        if($schema_types[$type]) {
-            if($schema_types[$type]['factory'] !== "" && !is_array($schema_types[$type]['factory'])) {
+
+        if($this->isSchemaTypeFound($type)) {
+            if(!$this->isEmpty($schema_types[$type]['factory']) && !$this->isArray($schema_types[$type]['factory'])) {
+
                 $type = $schema_types[$type]['factory'] .'()' ;
                 $this->mod_str .= $type !== '' ? $type . '()': '';
             }
-            else if(is_array($schema_types[$type]['factory'])) { // have special cases
+            else if($this->isArray($schema_types[$type]['factory'])) { // have special cases
                 $special_cases = $schema_types[$type]['factory'];
-                foreach ($special_cases as $case => $value) { // ex: 'email' => safeEmail
-                    if(strpos($column_name, $case)) {
-                        $this->type_str .= $value . '()';
-                    }
-                }
 
-                if($this->type_str == '') {
+                $this->handleSpecialCases($special_cases, $column_name);
+
+                if($this->isEmpty($this->type_str)) {
                     $this->type_str .= $special_cases['default'] . '(100)';
                 }
             }
         }
+    }
+
+    /**
+     * Handle special cases
+     *
+     * @param $special_cases
+     * @param $column_name
+     */
+    private function handleSpecialCases($special_cases, $column_name) {
+        foreach ($special_cases as $case => $value) { // ex: 'email' => safeEmail
+            if(strpos($column_name, $case)) {
+                $this->type_str .= $value . '()';
+            }
+        }
+    }
+    /**
+     * Check if type is in our schema
+     *
+     * @param $type
+     * @return bool
+     */
+    private function isSchemaTypeFound($type): bool
+    {
+        return isset($this->schema['types'][$type]);
+    }
+
+    /**
+     * Check if var is empty
+     *
+     * @param $var
+     * @return bool
+     */
+    private function isEmpty($var): bool
+    {
+        return $var == "";
+    }
+
+    /**
+     * Check if the var is array
+     *
+     * @param $var
+     * @return bool
+     */
+    private function isArray($var): bool
+    {
+        return is_array($var);
     }
 }
