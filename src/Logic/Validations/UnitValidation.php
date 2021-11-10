@@ -120,7 +120,10 @@ class UnitValidation
         (5) doesn't have value case: check if write value for this type
      * Modifier case
         (6) check if module is exist in our schema data
-        (7) multiple modifier case: check if write value for this modifier
+        (7) has value modifier case: check if write value for this modifier
+        (8) doesn't have value case: check if write value for this modifier
+
+     *
      * @param $root_dir
      * @param $module_collection
      * @param $unit_collection
@@ -138,14 +141,25 @@ class UnitValidation
             } else {
                 foreach ($this->attributes as $column_name => $cases) {
                     $this->typeCase($cases['type'], $column_name, $unit_collection);
+
+                    if(isset($cases['mod'])) {
+                        $this->modCase($cases['mod']);
+                    }
                 }
             }
         }
     }
 
 
-    protected function typeCase($type_str, $column, $unit_collection) {
-        $type = explode(":", strtolower($type_str))[0];
+    /**
+     * Validation type case
+     *
+     * @param $type_value
+     * @param $column
+     * @param $unit_collection
+     */
+    protected function typeCase($type_value, $column, $unit_collection) {
+        $type = explode(":", strtolower($type_value))[0];
         $schema_types = $this->schema['types'];
 
         // ========= (2) ========
@@ -155,18 +169,24 @@ class UnitValidation
         }
 
         // ========= (3) ========
-        if(!$this->isSchemaTypeFound($type)) {
+        if(!$this->isSchemaFound('types', $type)) {
             $this->allow_proceed = false;
-            $this->command->error("Sorry we didn't recognize '$type' in our schema");
+            $this->command->error("Sorry we didn't recognize '$type' type in our schema");
         } else { // type found in our schema
-            $this->handleTypeValue($schema_types, $type_str);
+            $this->handleTypeValue($schema_types, $type_value);
         }
     }
 
-    protected function handleTypeValue($schema_types, $type_str) {
-        $type = explode(":", strtolower($type_str))[0];
+    /**
+     * Validation on type values (single - multiple)
+     *
+     * @param $schema_types
+     * @param $type_value
+     */
+    protected function handleTypeValue($schema_types, $type_value) {
+        $type = explode(":", strtolower($type_value))[0];
         $has_value = $schema_types[$type]['has_value'];
-        $values    = explode(":", strtolower($type_str));
+        $values    = explode(":", strtolower($type_value));
 
         if($has_value) {
             // ======= (4) =======
@@ -182,6 +202,51 @@ class UnitValidation
             }
         }
     }
+
+    /**
+     * Validation mod case
+     *
+     * @param $mod_value
+     */
+    protected function modCase($mod_value) {
+        $mod = explode(":", strtolower($mod_value))[0];
+        $schema_modifiers = $this->schema['definitions'];
+
+        // ===== (6) =====
+        if(!$this->isSchemaFound('definitions', $mod)) {
+            $this->allow_proceed = false;
+            $this->command->error("Sorry we didn't recognize '$mod' modifier in our schema");
+        } else {
+            $this->handleModValue($schema_modifiers, $mod_value);
+        }
+    }
+
+    /**
+     * Validation on modifier values (single - multiple)
+     *
+     * @param $schema_definitions
+     * @param $mod_value
+     */
+    protected function handleModValue($schema_definitions, $mod_value) {
+        $mod       = explode(":", strtolower($mod_value))[0];
+        $has_value = $schema_definitions[$mod]['has_value'];
+        $values    = explode(":", strtolower($mod_value));
+
+        if($has_value) {
+            // ======= (7) =======
+            if(!$this->haveValue($values)) {
+                $this->allow_proceed = false;
+                $this->command->error("The '$mod' modifier should have values, please specify the value");
+            }
+        } else {
+            // ====== (8) ====
+            if($this->haveValue($values)) {
+                $this->allow_proceed = false;
+                $this->command->error("The '$mod' modifier shouldn't have values, please remove the value");
+            }
+        }
+    }
+
     /**
      * Check if type have value or not
      *
@@ -198,9 +263,9 @@ class UnitValidation
      * @param $type
      * @return bool
      */
-    protected function isSchemaTypeFound($type): bool
+    protected function isSchemaFound($prop, $type): bool
     {
-        return isset($this->schema['types'][$type]);
+        return isset($this->schema[$prop][$type]);
     }
 
 }
