@@ -61,6 +61,7 @@ class FactoryProcessor extends Processor
         $schema_modifiers = $this->schema['definitions'];
 
         foreach ($modifiers as $modifier) {
+          $modifier = explode(":", strtolower($modifier))[0];
           if($schema_modifiers[$modifier] && $schema_modifiers[$modifier]['factory'] !== '') {
               $this->mod_str .= $schema_modifiers[$modifier]['factory'] . '()';
           }

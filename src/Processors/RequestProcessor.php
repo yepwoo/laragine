@@ -41,9 +41,10 @@ class RequestProcessor extends Processor
                 $schema_modifiers = $this->schema['definitions'];
 
                 foreach ($modifiers as $modifier) {
-                    if($schema_modifiers[$modifier]['resource'] == 'unique') {
+                    $modifier = explode(":", strtolower($modifier))[0];
+                    if($schema_modifiers[$modifier]['request'] == 'unique') {
                         $nullable = true;
-                        $this->processor .= $schema_modifiers[$modifier]['resource'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
+                        $this->processor .= $schema_modifiers[$modifier]['request'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
                     } else {
                         $this->processor .= $modifier . '|';
                     }

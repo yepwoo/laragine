@@ -37,18 +37,22 @@
     },
     "definitions": {
         "default": {
-            "has_value": true,
-            "value_type": "one_value_argument",
-            "resource" : ""
+            "has_value"  : true,
+            "value_type" : "one_value_argument",
+            "resource"   : "",
+            "request"    : "",
+            "factory"    : ""
         },
         "nullable": {
             "has_value": false,
-            "resource" : "nullalbe"
+            "resource" : "nullable",
+            "factory"  : ""
         },
         "unique": {
             "has_value": false,
             "resource" : "unique",
-            "factory": "unique"
+            "request"  : "unique",
+            "factory"  : "unique"
         }
     }
 }
