@@ -23,7 +23,8 @@ class MigrationProcessor extends Processor
         parent::__construct(...$args);
     }
 
-    public function process() {
+    public function process(): string
+    {
         $attributes = $this->json['attributes'];
         foreach ($attributes as $column => $cases) {
             $this->type_str = '';
@@ -41,12 +42,18 @@ class MigrationProcessor extends Processor
         return $this->processor;
     }
 
+    /**
+     * Type case
+     *
+     * @param $type_str
+     * @param $column
+     */
     public function typeCase($type_str, $column)
     {
         $schema_types = $this->schema['types'];
         $type = explode(":", strtolower($type_str))[0];
 
-        if(($this->isSchemaTypeFound($type))) {
+        if(($this->isSchemaFound('types', $type))) {
             $has_value = $schema_types[$type]['has_value'];
 
            if($has_value) {
@@ -67,7 +74,14 @@ class MigrationProcessor extends Processor
         }
     }
 
-    public function modCase() {
+    public function modCase($mod_value, $column) {
+        $schema_modifiers = $this->schema['definitions'];
+        $mod = explode(":", strtolower($mod_value))[0];
+
+        if($this->isSchemaFound('definitions', $mod)) {
+            $has_value = $schema_modifiers[$mod]['has_value'];
+        }
+
 
     }
 }

@@ -96,8 +96,8 @@ class Processor
      * @param $type
      * @return bool
      */
-    protected function isSchemaTypeFound($type): bool
+    protected function isSchemaFound($prop, $type): bool
     {
-        return isset($this->schema['types'][$type]);
+        return isset($this->schema[$prop][$type]);
     }
 }
