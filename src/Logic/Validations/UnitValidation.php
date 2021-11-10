@@ -116,7 +116,8 @@ class UnitValidation
      * Type case
         (2) check if specify the type of "attribute"
         (3) check if the type is exist in our schema
-        (4) multiple type case: check if write value for this type
+        (4) has value type case: check if write value for this type
+        (5) doesn't have value case: check if write value for this type
      * Modifier case
         (6) check if module is exist in our schema data
         (7) multiple modifier case: check if write value for this modifier
@@ -156,24 +157,39 @@ class UnitValidation
         // ========= (3) ========
         if(!$this->isSchemaTypeFound($type)) {
             $this->allow_proceed = false;
-            $this->command->error("Sorry we didn't recognize $type in our schema");
+            $this->command->error("Sorry we didn't recognize '$type' in our schema");
         } else { // type found in our schema
-            $has_value = $schema_types[$type]['has_value'];
-            if($has_value) {
-                // ======= (4) =======
-                $values    = explode(":", strtolower($type_str));
-                if(!$this->haveValue($values)) {
-                    $this->allow_proceed = false;
-                    $this->command->error("The '$type' type should have values, please specify the value");
-                }
-            }
+            $this->handleTypeValue($schema_types, $type_str);
         }
     }
 
+    protected function handleTypeValue($schema_types, $type_str) {
+        $type = explode(":", strtolower($type_str))[0];
+        $has_value = $schema_types[$type]['has_value'];
+        $values    = explode(":", strtolower($type_str));
+
+        if($has_value) {
+            // ======= (4) =======
+            if(!$this->haveValue($values)) {
+                $this->allow_proceed = false;
+                $this->command->error("The '$type' type should have values, please specify the value");
+            }
+        } else {
+            // ====== (5) ====
+            if($this->haveValue($values)) {
+                $this->allow_proceed = false;
+                $this->command->error("The '$type' type shouldn't have values, please remove the value");
+            }
+        }
+    }
     /**
+     * Check if type have value or not
      *
+     * @param $arr
+     * @return bool
      */
-    protected function haveValue($arr) {
+    protected function haveValue($arr): bool
+    {
         return count($arr) > 1;
     }
     /**
