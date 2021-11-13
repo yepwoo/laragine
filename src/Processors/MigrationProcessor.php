@@ -36,7 +36,11 @@ class MigrationProcessor extends Processor
 
             $this->typeCase($cases['type'], $column);
 
-            $this->processor .= $this->type_str . ($this->mod_str !== '' ? '->' . $this->mod_str : '');
+            if(isset($cases['mod'])) {
+                $this->modCase($cases['mod'], $column);
+            }
+
+            $this->processor  .= $this->type_str . ($this->mod_str !== '' ? '->' . $this->mod_str : '');
             $this->processor  .= array_key_last($this->json['attributes']) == $column ? ';' : ";\n";
         }
         return $this->processor;
@@ -66,22 +70,45 @@ class MigrationProcessor extends Processor
                        $type_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
                    }
                }
+               $value_type = $schema_types[$type]['value_type'] ?? null;
+               $argument   = $this->isOneValueType($value_type) ? "($type_value)" : "([$type_value])";
 
-               $this->type_str .= $schema_types[$type]['migration'] . '('."'$column',". "[$type_value]" .')';
+               $this->type_str .= $schema_types[$type]['migration'] . '('."'$column',". $argument .')';
            } else {
                $this->type_str .= $schema_types[$type]['migration']. '('."'$column'".')';
            }
         }
     }
 
-    public function modCase($mod_value, $column) {
+    public function modCase($mod_str, $column) {
         $schema_modifiers = $this->schema['definitions'];
-        $mod = explode(":", strtolower($mod_value))[0];
+        $modifiers        = explode("|", strtolower($mod_str));
 
-        if($this->isSchemaFound('definitions', $mod)) {
-            $has_value = $schema_modifiers[$mod]['has_value'];
+        foreach ($modifiers as $modifier) {
+            $mod = explode(":", strtolower($modifier))[0];
+
+            if($this->isSchemaFound('definitions', $mod)) {
+                $has_value = $schema_modifiers[$mod]['has_value'];
+
+                if($has_value) {
+                    $values = explode(",", explode(":", strtolower($modifier))[1]);
+                    $mod_value = '';
+
+                    foreach($values as $value) {
+                        if (is_numeric($value)) {
+                            $mod_value .= $values[count($values) - 1] == $value ? intval($value) : intval($value). ",";
+                        } else {
+                            $mod_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
+                        }
+                    }
+                    $value_type = $schema_modifiers[$mod]['value_type'] ?? null;
+                    $argument   = $this->isOneValueType($value_type) ? "($mod_value)" : "([$mod_value])";
+
+                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . $argument;
+                } else {
+                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . '('."'$column'".')';
+                }
+            }
         }
-
-
     }
 }

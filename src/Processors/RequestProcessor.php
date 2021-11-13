@@ -22,7 +22,7 @@ class RequestProcessor extends Processor
             $type = strtolower($cases['type']);
             $schema_types = $this->schema['types'];
 
-            if(isset($schema_types[$type])) {
+            if($this->isSchemaFound('types', $type)) {
                 $type = $schema_types[$type]['resource'] !== "" ? $schema_types[$type]['resource'] . '|' : "";
                 $this->processor .= <<<STR
                                                 '$column' => '$type
@@ -43,9 +43,10 @@ class RequestProcessor extends Processor
                 foreach ($modifiers as $modifier) {
                     $modifier = explode(":", strtolower($modifier))[0];
                     if($schema_modifiers[$modifier]['request'] == 'unique') {
-                        $nullable = true;
+                        $nullable = false;
                         $this->processor .= $schema_modifiers[$modifier]['request'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
                     } else {
+                        $nullable = true;
                         $this->processor .= $modifier . '|';
                     }
                 }

@@ -100,4 +100,9 @@ class Processor
     {
         return isset($this->schema[$prop][$type]);
     }
+
+    protected function isOneValueType($str): bool
+    {
+        return $str == 'one_value_argument';
+    }
 }

@@ -41,18 +41,21 @@
             "value_type" : "one_value_argument",
             "resource"   : "",
             "request"    : "",
-            "factory"    : ""
+            "factory"    : "",
+            "migration"  : "default"
         },
         "nullable": {
-            "has_value": false,
-            "resource" : "nullable",
-            "factory"  : ""
+            "has_value" : false,
+            "resource"  : "nullable",
+            "factory"   : "",
+            "migration" : "nullable"
         },
         "unique": {
-            "has_value": false,
-            "resource" : "unique",
-            "request"  : "unique",
-            "factory"  : "unique"
+            "has_value" : false,
+            "resource"  : "unique",
+            "request"   : "unique",
+            "factory"   : "unique",
+            "migration" : "unique"
         }
     }
 }
