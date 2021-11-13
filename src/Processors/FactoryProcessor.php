@@ -80,7 +80,7 @@ class FactoryProcessor extends Processor
 
         $schema_types = $this->schema['types'];
 
-        if($this->isSchemaTypeFound($type)) {
+        if($this->isSchemaFound('types', $type)) {
             if(!$this->isEmpty($schema_types[$type]['factory']) && !$this->isArray($schema_types[$type]['factory'])) {
 
                 $type = $schema_types[$type]['factory'] .'()' ;
