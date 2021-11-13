@@ -140,11 +140,18 @@ class UnitValidation
                 $this->command->error('Please be sure that you write attribute property in JSON file');
             } else {
                 foreach ($this->attributes as $column_name => $cases) {
-                    $this->typeCase($cases['type'], $column_name, $unit_collection);
+                    // ========= (2) ========
+                    if(!isset($cases['type'])) {
+                        $this->allow_proceed = false;
+                        $this->command->error("Please specify the type of '$column_name' property in " .$unit_collection['studly']. ".json file");
+                    } else {
+                        $this->typeCase($cases['type'], $column_name, $unit_collection);
 
-                    if(isset($cases['mod'])) {
-                        $this->modCase($cases['mod']);
+                        if(isset($cases['mod'])) {
+                            $this->modCase($cases['mod']);
+                        }
                     }
+
                 }
             }
         }
@@ -161,12 +168,6 @@ class UnitValidation
     protected function typeCase($type_value, $column, $unit_collection) {
         $type = explode(":", strtolower($type_value))[0];
         $schema_types = $this->schema['types'];
-
-        // ========= (2) ========
-        if(!isset($type)) {
-            $this->allow_proceed = false;
-            $this->command->error("Please specify the type of '$column' property in " .$unit_collection['studly']. ".json file");
-        }
 
         // ========= (3) ========
         if(!$this->isSchemaFound('types', $type)) {
