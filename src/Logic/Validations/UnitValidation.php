@@ -210,15 +210,18 @@ class UnitValidation
      * @param $mod_value
      */
     protected function modCase($mod_value) {
-        $mod = explode(":", strtolower($mod_value))[0];
-        $schema_modifiers = $this->schema['definitions'];
+        $modifiers = explode('|', $mod_value);
+        foreach ($modifiers as $modifier) {
+            $mod = explode(":", strtolower($modifier))[0];
+            $schema_modifiers = $this->schema['definitions'];
 
-        // ===== (6) =====
-        if(!$this->isSchemaFound('definitions', $mod)) {
-            $this->allow_proceed = false;
-            $this->command->error("Sorry we didn't recognize '$mod' modifier in our schema");
-        } else {
-            $this->handleModValue($schema_modifiers, $mod_value);
+            // ===== (6) =====
+            if(!$this->isSchemaFound('definitions', $mod)) {
+                $this->allow_proceed = false;
+                $this->command->error("Sorry we didn't recognize '$mod' modifier in our schema");
+            } else {
+                $this->handleModValue($schema_modifiers, $modifier);
+            }
         }
     }
 

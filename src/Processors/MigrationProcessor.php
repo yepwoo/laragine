@@ -84,6 +84,7 @@ class MigrationProcessor extends Processor
         $schema_modifiers = $this->schema['definitions'];
         $modifiers        = explode("|", strtolower($mod_str));
 
+        $count = 0;
         foreach ($modifiers as $modifier) {
             $mod = explode(":", strtolower($modifier))[0];
 
@@ -104,10 +105,13 @@ class MigrationProcessor extends Processor
                     $value_type = $schema_modifiers[$mod]['value_type'] ?? null;
                     $argument   = $this->isOneValueType($value_type) ? "($mod_value)" : "([$mod_value])";
 
-                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . $argument;
+                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . $argument . ($count < (count($modifiers) - 1) ? '->' : '');
                 } else {
-                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . '('."'$column'".')';
+                    echo "count: ". $count;
+                    echo "\n";
+                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . '()' . ($count < (count($modifiers) - 1) ? '->' : '');
                 }
+                $count++;
             }
         }
     }

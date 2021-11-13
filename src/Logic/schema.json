@@ -48,7 +48,8 @@
             "has_value" : false,
             "resource"  : "nullable",
             "factory"   : "",
-            "migration" : "nullable"
+            "migration" : "nullable",
+            "request"   : "nullable"
         },
         "unique": {
             "has_value" : false,
