@@ -15,11 +15,11 @@ class Install extends Base
     {
         $allow_publish = true;
         if (FileManipulator::exists($this->root_dir)) {
-            if ($this->command->confirm('The root directory already exists, do you want to override it?', true)) {
+            if ($this->command->confirm(__('laragine::install.root_dir_exists'), true)) {
                 $allow_publish = true;
             } else {
                 $allow_publish = false;
-                $this->command->warn('Existing root directory was not overwritten');
+                $this->command->warn(__('laragine::install.root_dir_not_overwritten'));
             }
         }
 
@@ -46,7 +46,7 @@ class Install extends Base
             ]
         );
     
-        $this->command->info('The installation done successfully!');
+        $this->command->info(__('laragine::install.success'));
     } 
 }
 

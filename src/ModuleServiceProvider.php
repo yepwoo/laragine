@@ -37,6 +37,8 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadTranslationsFrom(__DIR__.'/lang', 'laragine');
+
         if ($this->app->runningInConsole()) {
             /**
              * @todo load the commands dynamically

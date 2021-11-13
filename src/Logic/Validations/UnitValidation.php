@@ -143,7 +143,7 @@ class UnitValidation
                     // ========= (2) ========
                     if(!isset($cases['type'])) {
                         $this->allow_proceed = false;
-                        $this->command->error("Please specify the type of '$column_name' property in " .$unit_collection['studly']. ".json file");
+                        $this->command->error(__('laragine::unit.specify_type', ['column_name' => $column_name, 'unit_studly' => $unit_collection['studly']]));
                     } else {
                         $this->typeCase($cases['type'], $column_name, $unit_collection);
 

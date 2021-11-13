@@ -20,15 +20,15 @@ class MakeModule extends Base
 
         if (!FileManipulator::exists($this->root_dir)) {
             $allow_publish = false;
-            $this->command->error('Please run install command first');
+            $this->command->error(__('laragine::module.run_install'));
         }
 
         if (FileManipulator::exists($module_dir)) {
-            if ($this->command->confirm('the module directory already exists, do you want to override it?', true)) {
+            if ($this->command->confirm(__('laragine::module.exists'), true)) {
                 $allow_publish = true;
             } else {
                 $allow_publish = false;
-                $this->command->warn('Existing module directory was not overwritten');
+                $this->command->warn(__('laragine::module.not_overwritten'));
             }
         }
 
@@ -70,6 +70,6 @@ class MakeModule extends Base
         ];
 
         FileManipulator::generate($source_dir, $destination_dir, $files, $search, $replace);
-        $this->command->info('Module created successfully!');
+        $this->command->info(__('laragine::module.success'));
     }
 }
