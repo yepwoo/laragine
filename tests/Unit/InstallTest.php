@@ -34,10 +34,10 @@ class InstallTest extends TestCase
         $command = $this->artisan('laragine:install');
 
         $command->expectsConfirmation(
-            'The root directory already exists, do you want to override it?', 'yes'
+            __('laragine::install.root_dir_exists'), 'yes'
         );
 
-        $command->expectsOutput('The installation done successfully!');
+        $command->expectsOutput(__('laragine::install.success'));
     }
 
     public function test_when_root_directory_exists_users_can_choose_to_not_override_it()
@@ -45,10 +45,10 @@ class InstallTest extends TestCase
         $command = $this->artisan('laragine:install');
 
         $command->expectsConfirmation(
-            'The root directory already exists, do you want to override it?', 'no'
+            __('laragine::install.root_dir_exists'), 'no'
         );
 
-        $command->expectsOutput('Existing root directory was not overwritten');
+        $command->expectsOutput(__('laragine::install.root_dir_not_overwritten'));
     }
 
 }

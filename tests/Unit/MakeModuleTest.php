@@ -50,11 +50,10 @@ class MakeModuleTest extends TestCase
         $command = $this->artisan("laragine:module $this->module");
 
         $command->expectsConfirmation(
-            'the module directory already exists, do you want to override it?', 'yes'
+            __('laragine::module.exists'), 'yes'
         );
 
-        $command->expectsOutput('Module created successfully!');
-
+        $command->expectsOutput(__('laragine::module.success'));
     }
 
     public function test_when_module_directory_exists_users_can_choose_to_not_override_it()
@@ -62,9 +61,9 @@ class MakeModuleTest extends TestCase
         $command = $this->artisan("laragine:module $this->module");
 
         $command->expectsConfirmation(
-            'the module directory already exists, do you want to override it?', 'no'
+            __('laragine::module.exists'), 'no'
         );
 
-        $command->expectsOutput('Existing module directory was not overwritten');
+        $command->expectsOutput(__('laragine::module.not_overwritten'));
     }
 }
