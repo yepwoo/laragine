@@ -25,6 +25,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Xdebug coverage
+      run: XDEBUG_MODE=coverage ./vendor/bin/infection
+
     - name: Run test suite
       run: composer run-script test
 
