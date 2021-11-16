@@ -25,11 +25,11 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    - name: Xdebug coverage
-      run: XDEBUG_MODE=coverage
+    # - name: Xdebug coverage
+    #   run: XDEBUG_MODE=coverage
 
     - name: Run test suite
-      run: composer run-script test
+      run: XDEBUG_MODE=coverage ./vendor/bin/phpunit
 
     - name: ls
       run: ls
