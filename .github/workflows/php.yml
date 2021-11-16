@@ -26,7 +26,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Xdebug coverage
-      run: echo "${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}"
+      run: php -v
 
     - name: Run test suite
       run: composer run-script test
