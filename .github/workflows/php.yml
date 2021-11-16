@@ -27,3 +27,8 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
+
+    - name: Uploading coverage data to Codacy
+      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r clover.xml
+      env:
+        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
