@@ -25,16 +25,10 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
-    # - name: Xdebug coverage
-    #   run: XDEBUG_MODE=coverage
-
     - name: Run test suite
       run: XDEBUG_MODE=coverage ./vendor/bin/phpunit
 
-    - name: ls
-      run: ls
-
-    # - name: Uploading coverage data to Codacy
-    #   run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r clover.xml
-    #   env:
-    #     CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+    - name: Uploading coverage data to Codacy
+      run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r clover.xml
+      env:
+        CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
