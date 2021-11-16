@@ -26,7 +26,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Xdebug coverage
-      run: php -v
+      run: XDEBUG_MODE=coverage
 
     - name: Run test suite
       run: composer run-script test
