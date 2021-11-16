@@ -39,7 +39,7 @@ class MakeUnit extends Command
     public function handle()
     {
         if (!$this->option('module')) {
-            $this->error('Module is required please add --module=YourModuleName');
+            $this->error(__('laragine::unit.module_required'));
         } else {
             $command = GeneratorFactory::create(
                 $this,

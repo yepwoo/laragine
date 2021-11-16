@@ -78,7 +78,7 @@ class MakeUnit extends Base
             ];
             $processors = ['Resource', 'Request', 'Factory', 'Migration'];
             ProcessorFactory::create($unit_data, $processors);
-            $this->command->info('Other stuff in the unit created successfully');
+            $this->command->info(__('laragine::unit.success_init_not_executed'));
         }
     }
 
@@ -109,6 +109,6 @@ class MakeUnit extends Base
         ];
 
         FileManipulator::generate($source_dir, $destination_dir, $files, $search, $replace);
-        $this->command->info('Unit created successfully');
+        $this->command->info(__('laragine::unit.success_init_executed'));
     }
 }

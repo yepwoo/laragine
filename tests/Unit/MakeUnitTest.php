@@ -51,25 +51,25 @@ class MakeUnitTest extends TestCase
     // public function test_the_unit_command_create_basic_files_init_case_in_specified_module_case_module_not_exist()
     // {
     //     $command = $this->artisan("laragine:unit $this->unit --module=$this->module --init");
-    //     $command->expectsOutput('Please create the module first');
+    //     $command->expectsOutput(__('laragine::unit.module_missing'));
     //     $command->assertExitCode(-1);
     // }
 
     // public function test_the_unit_command_without_init_option_in_case_run_init_option_at_first_in_specified_module()
     // {
     //     $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
-    //     $command->expectsOutput("Please type --init at the end of the command");
+    //     $command->expectsOutput(__('laragine::unit.init_not_executed'));
     // }
 
     public function test_the_unit_command_init_case_in_specified_module()
     {
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module --init");
-        $command->expectsOutput('Unit created successfully');
+        $command->expectsOutput(__('laragine::unit.success_init_executed'));
     }
 
     public function test_the_unit_command_repeat_init_case_in_specified_module()
     {
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module --init");
-        $command->expectsOutput("You already ran this command before");
+        $command->expectsOutput(__('laragine::unit.init_executed'));
     }
 }

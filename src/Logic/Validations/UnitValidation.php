@@ -71,7 +71,7 @@ class UnitValidation
     {
         if (!FileManipulator::exists($module_dir)) {
             $this->allow_proceed = false;
-            $this->command->error('Please create the module first');
+            $this->command->error(__('laragine::unit.module_missing'));
         }
     }
 
@@ -88,23 +88,23 @@ class UnitValidation
         if ($init) {
             if (FileManipulator::exists("{$module_dir}/data/{$unit_collection['studly']}.json")) {
                 $this->allow_proceed = false;
-                $this->command->error('You already ran this command before');
+                $this->command->error(__('laragine::unit.init_executed'));
             }
         } else {
             if (!FileManipulator::exists("{$module_dir}/data/{$unit_collection['studly']}.json")) {
                 $this->allow_proceed = false;
-                $this->command->error('Please type --init at the end of the command');
+                $this->command->error(__('laragine::unit.init_not_executed'));
             }
 
             /**
              * @todo check migrations, factories, requests, resources and tests as it's currently check for requests
              */
             if (FileManipulator::exists("{$module_dir}/Requests/{$unit_collection['studly']}Request.php")) {
-                if ($this->command->confirm('the unit already exists, do you want to override it?', true)) {
+                if ($this->command->confirm(__('laragine::unit.exists'), true)) {
                     $this->allow_proceed = true;
                 } else {
                     $this->allow_proceed = false;
-                    $this->command->warn('Existing unit was not overwritten');
+                    $this->command->warn(__('laragine::unit.not_overwritten'));
                 }
             }
         }
@@ -137,13 +137,14 @@ class UnitValidation
             // ========= (1) ========
             if ($this->attributes == null) {
                 $this->allow_proceed = false;
-                $this->command->error('Please be sure that you write attribute property in JSON file');
+                $this->command->error(__('laragine::unit.attributes_prop_required'));
             } else {
                 foreach ($this->attributes as $column_name => $cases) {
                     // ========= (2) ========
                     if(!isset($cases['type'])) {
                         $this->allow_proceed = false;
-                        $this->command->error(__('laragine::unit.specify_type', ['column_name' => $column_name, 'unit_studly' => $unit_collection['studly']]));
+                        $params = ['column_name' => $column_name, 'unit_studly' => $unit_collection['studly']];
+                        $this->command->error(__('laragine::unit.type_prop_required', $params));
                     } else {
                         $this->typeCase($cases['type'], $column_name, $unit_collection);
 
@@ -172,7 +173,7 @@ class UnitValidation
         // ========= (3) ========
         if(!$this->isSchemaFound('types', $type)) {
             $this->allow_proceed = false;
-            $this->command->error("Sorry we didn't recognize '$type' type in our schema");
+            $this->command->error(__('laragine::unit.type_prop_not_valid', ['type' => $type]));
         } else { // type found in our schema
             $this->handleTypeValue($schema_types, $type_value);
         }
@@ -191,15 +192,15 @@ class UnitValidation
 
         if($has_value) {
             // ======= (4) =======
-            if(!$this->haveValue($values)) {
+            if(!$this->hasValue($values)) {
                 $this->allow_proceed = false;
-                $this->command->error("The '$type' type should have values, please specify the value");
+                $this->command->error(__('laragine::unit.type_prop_has_value', ['type' => $type]));
             }
         } else {
             // ====== (5) ====
-            if($this->haveValue($values)) {
+            if($this->hasValue($values)) {
                 $this->allow_proceed = false;
-                $this->command->error("The '$type' type shouldn't have values, please remove the value");
+                $this->command->error(__('laragine::unit.type_prop_has_no_value', ['type' => $type]));
             }
         }
     }
@@ -218,7 +219,7 @@ class UnitValidation
             // ===== (6) =====
             if(!$this->isSchemaFound('definitions', $mod)) {
                 $this->allow_proceed = false;
-                $this->command->error("Sorry we didn't recognize '$mod' modifier in our schema");
+                $this->command->error(__('laragine::unit.definition_prop_not_valid', ['definition' => $mod]));
             } else {
                 $this->handleModValue($schema_modifiers, $modifier);
             }
@@ -238,29 +239,30 @@ class UnitValidation
 
         if($has_value) {
             // ======= (7) =======
-            if(!$this->haveValue($values)) {
+            if(!$this->hasValue($values)) {
                 $this->allow_proceed = false;
-                $this->command->error("The '$mod' modifier should have values, please specify the value");
+                $this->command->error(__('laragine::unit.definition_prop_has_value', ['definition' => $mod]));
             }
         } else {
             // ====== (8) ====
-            if($this->haveValue($values)) {
+            if($this->hasValue($values)) {
                 $this->allow_proceed = false;
-                $this->command->error("The '$mod' modifier shouldn't have values, please remove the value");
+                $this->command->error(__('laragine::unit.definition_prop_has_no_value', ['definition' => $mod]));
             }
         }
     }
 
     /**
-     * Check if type have value or not
+     * Check if type has value or not
      *
      * @param $arr
      * @return bool
      */
-    protected function haveValue($arr): bool
+    protected function hasValue($arr): bool
     {
         return count($arr) > 1;
     }
+
     /**
      * Check if type is in our schema
      *
