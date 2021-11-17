@@ -17,7 +17,7 @@
             <directory suffix=".php">./src</directory>
         </include>
         <exclude>
-            <directory suffix=".blade.php">./src</directory>
+            <directory suffix=".php">./src/Core</directory>
         </exclude>
         <report>
             <clover outputFile="clover.xml"/>
