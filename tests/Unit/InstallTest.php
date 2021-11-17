@@ -7,6 +7,15 @@ use Yepwoo\Laragine\Logic\FileManipulator;
 
 class InstallTest extends TestCase
 {
+    /**
+     * will keep this test here for now (we need to test creating the module and the user didn't run install command)
+     */
+    public function test_create_module_before_running_install_command()
+    {
+        $command = $this->artisan("laragine:module $this->module");
+        $command->expectsOutput(__('laragine::module.run_install'));
+    }
+
     public function test_the_install_command_create_root_directory()
     {
         $this->artisan('laragine:install');
