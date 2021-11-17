@@ -47,7 +47,7 @@ class MakeUnit extends Base
         $this->unit_collection   = StringManipulator::generate($this->args[0]);
         $this->module_collection = StringManipulator::generate($this->args[1]);
         $this->init              = $this->args[2];
-        $this->module_dir              = $this->root_dir . '/' . $this->module_collection['studly'];
+        $this->module_dir        = $this->root_dir . '/' . $this->module_collection['studly'];
         $validation              = new UnitValidation($this->command);
         $validation->checkModule($this->module_dir)
                    ->checkUnit($this->module_dir, $this->unit_collection, $this->init)

@@ -4,9 +4,34 @@ namespace Yepwoo\Laragine\Tests\Unit;
 
 use Yepwoo\Laragine\Tests\TestCase;
 use Yepwoo\Laragine\Logic\FileManipulator;
+use Yepwoo\Laragine\Logic\StringManipulator;
 
 class MakeUnitTest extends TestCase
 {
+    /**
+     * get the data file for the unit
+     */
+    protected function getDataFile() : array
+    {
+        return FileManipulator::readJson("$this->module_dir/data/$this->unit.json");
+    }
+
+    /**
+     * override the data file for the unit
+     * 
+     * @param array $array
+     */
+    protected function overrideDataFile($array) : void
+    {
+        file_put_contents("$this->module_dir/data/$this->unit.json", json_encode($array));
+    }
+
+    public function test_not_including_module_option()
+    {
+        $command = $this->artisan("laragine:unit $this->unit");
+        $command->expectsOutput(__('laragine::unit.module_required'));
+    }
+
     public function test_the_unit_command_without_init_option_in_case_run_init_option_at_first_in_specified_module()
     {
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
@@ -23,5 +48,51 @@ class MakeUnitTest extends TestCase
     {
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module --init");
         $command->expectsOutput(__('laragine::unit.init_executed'));
+    }
+
+    public function test_attributes_property_is_required()
+    {
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.attributes_prop_required'));
+    }
+
+    public function test_type_property_is_required()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type'];
+        $this->overrideDataFile($data);
+        $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.type_prop_required', $params));
+    }
+
+    public function test_type_property_is_not_valid()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'stringgg'];
+        $this->overrideDataFile($data);
+        $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.type_prop_not_valid', ['type' => 'stringgg']));
+    }
+
+    public function test_the_value_in_type_property_should_have_a_value()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'enum'];
+        $this->overrideDataFile($data);
+        $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.type_prop_has_value', ['type' => 'enum']));
+    }
+
+    public function test_the_value_in_type_property_should_not_have_a_value()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'string:hello'];
+        $this->overrideDataFile($data);
+        $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.type_prop_has_no_value', ['type' => 'string']));
     }
 }
