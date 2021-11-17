@@ -8,37 +8,14 @@ use Yepwoo\Laragine\Logic\FileManipulator;
 class MakeModuleTest extends TestCase
 {
     /**
-     * the module directory
-     *
-     * @var string
+     * will keep this test here for now (as we need to test creating the unit and there is no module created yet)
      */
-    protected $module_dir;
-
-    /**
-     * the module directory
-     *
-     * @var string
-     */
-    protected $module;
-
-    /**
-     * the root directory
-     *
-     * @var string
-     */
-    protected $root_dir;
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
+    public function test_the_unit_command_create_basic_files_init_case_in_specified_module_case_module_not_exist()
     {
-        parent::setUp();
-        $this->module     = 'Blog';
-        $this->root_dir   = config('laragine.root_dir');
-        $this->module_dir = $this->root_dir. '/' . $this->module;
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module --init");
+        $command->expectsOutput(__('laragine::unit.module_missing'));
     }
-    
+
     public function test_the_module_command_create_module_directory()
     {
         $this->artisan("laragine:module $this->module");

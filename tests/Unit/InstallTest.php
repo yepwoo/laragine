@@ -7,22 +7,6 @@ use Yepwoo\Laragine\Logic\FileManipulator;
 
 class InstallTest extends TestCase
 {
-    /**
-     * the root directory
-     *
-     * @var string
-     */
-    protected $root_dir;
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->root_dir = config('laragine.root_dir');
-    }
-
     public function test_the_install_command_create_root_directory()
     {
         $this->artisan('laragine:install');
