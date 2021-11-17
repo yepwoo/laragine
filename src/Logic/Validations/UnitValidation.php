@@ -120,8 +120,8 @@ class UnitValidation
         (5) doesn't have value case: check if write value for this type
      * Modifier case
         (6) check if module is exist in our schema data
-        (7) has value modifier case: check if write value for this modifier
-        (8) doesn't have value case: check if write value for this modifier
+        (7) has value definition case: check if write value for this definition
+        (8) doesn't have value case: check if write value for this definition
 
      *
      * @param $root_dir
@@ -148,8 +148,8 @@ class UnitValidation
                     } else {
                         $this->typeCase($cases['type'], $column_name, $unit_collection);
 
-                        if(isset($cases['mod'])) {
-                            $this->modCase($cases['mod']);
+                        if(isset($cases['definition'])) {
+                            $this->definitionCase($cases['definition']);
                         }
                     }
 
@@ -206,48 +206,48 @@ class UnitValidation
     }
 
     /**
-     * Validation mod case
+     * Validation definition case
      *
-     * @param $mod_value
+     * @param $definition_value
      */
-    protected function modCase($mod_value) {
-        $modifiers = explode('|', $mod_value);
-        foreach ($modifiers as $modifier) {
-            $mod = explode(":", strtolower($modifier))[0];
-            $schema_modifiers = $this->schema['definitions'];
+    protected function definitionCase($definition_value) {
+        $definitions = explode('|', $definition_value);
+        foreach ($definitions as $single_definition) {
+            $definition         = explode(":", strtolower($single_definition))[0];
+            $schema_definitions = $this->schema['definitions'];
 
             // ===== (6) =====
-            if(!$this->isSchemaFound('definitions', $mod)) {
+            if(!$this->isSchemaFound('definitions', $definition)) {
                 $this->allow_proceed = false;
-                $this->command->error(__('laragine::unit.definition_prop_not_valid', ['definition' => $mod]));
+                $this->command->error(__('laragine::unit.definition_prop_not_valid', ['definition' => $definition]));
             } else {
-                $this->handleModValue($schema_modifiers, $modifier);
+                $this->handleModValue($schema_definitions, $single_definition);
             }
         }
     }
 
     /**
-     * Validation on modifier values (single - multiple)
+     * Validation on definition values (single - multiple)
      *
      * @param $schema_definitions
-     * @param $mod_value
+     * @param $definition_value
      */
-    protected function handleModValue($schema_definitions, $mod_value) {
-        $mod       = explode(":", strtolower($mod_value))[0];
-        $has_value = $schema_definitions[$mod]['has_value'];
-        $values    = explode(":", strtolower($mod_value));
+    protected function handleModValue($schema_definitions, $definition_value) {
+        $definition = explode(":", strtolower($definition_value))[0];
+        $has_value  = $schema_definitions[$definition]['has_value'];
+        $values     = explode(":", strtolower($definition_value));
 
         if($has_value) {
             // ======= (7) =======
             if(!$this->hasValue($values)) {
                 $this->allow_proceed = false;
-                $this->command->error(__('laragine::unit.definition_prop_has_value', ['definition' => $mod]));
+                $this->command->error(__('laragine::unit.definition_prop_has_value', ['definition' => $definition]));
             }
         } else {
             // ====== (8) ====
             if($this->hasValue($values)) {
                 $this->allow_proceed = false;
-                $this->command->error(__('laragine::unit.definition_prop_has_no_value', ['definition' => $mod]));
+                $this->command->error(__('laragine::unit.definition_prop_has_no_value', ['definition' => $definition]));
             }
         }
     }
@@ -273,5 +273,4 @@ class UnitValidation
     {
         return isset($this->schema[$prop][$type]);
     }
-
 }

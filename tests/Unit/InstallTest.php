@@ -43,5 +43,4 @@ class InstallTest extends TestCase
 
         $command->expectsOutput(__('laragine::install.root_dir_not_overwritten'));
     }
-
 }
