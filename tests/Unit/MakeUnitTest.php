@@ -4,7 +4,6 @@ namespace Yepwoo\Laragine\Tests\Unit;
 
 use Yepwoo\Laragine\Tests\TestCase;
 use Yepwoo\Laragine\Logic\FileManipulator;
-use Yepwoo\Laragine\Logic\StringManipulator;
 
 class MakeUnitTest extends TestCase
 {

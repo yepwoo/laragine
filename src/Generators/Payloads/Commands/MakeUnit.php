@@ -5,7 +5,7 @@ namespace Yepwoo\Laragine\Generators\Payloads\Commands;
 use Yepwoo\Laragine\Logic\FileManipulator;
 use Yepwoo\Laragine\Logic\StringManipulator;
 use Yepwoo\Laragine\Logic\Validations\UnitValidation;
-use Yepwoo\Laragine\Processors\ProcessorFactory;
+use Yepwoo\Laragine\Processors\Factory;
 
 class MakeUnit extends Base
 {
@@ -77,7 +77,7 @@ class MakeUnit extends Base
                 'unit_collection'   => $this->unit_collection
             ];
             $processors = ['Resource', 'Request', 'Factory', 'Migration'];
-            ProcessorFactory::create($unit_data, $processors);
+            Factory::create($unit_data, $processors);
             $this->command->info(__('laragine::unit.success_init_not_executed'));
         }
     }

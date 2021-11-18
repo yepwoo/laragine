@@ -4,7 +4,7 @@ namespace Yepwoo\Laragine\Processors;
 
 use Yepwoo\Laragine\Logic\FileManipulator;
 
-class ProcessorFactory
+class Factory
 {
     /**
      * processors_data
