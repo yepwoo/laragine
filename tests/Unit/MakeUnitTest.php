@@ -138,8 +138,13 @@ class MakeUnitTest extends TestCase
 
     public function test_override_already_existing_unit()
     {
-        $data                       = $this->getDataFile();
-        $data['attributes']['name'] = ['type' => 'string', 'definition' => 'default:test'];
+        $data               = $this->getDataFile();
+        $data['attributes'] = [
+            'name'   => ['type' => 'string', 'definition' => 'default:test'],
+            'email'  => ['type' => 'string', 'definition' => 'unique|nullable'],
+            'status' => ['type' => 'enum:active,disabled,pending']
+        ];
+
         $this->overrideDataFile($data);
 
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
