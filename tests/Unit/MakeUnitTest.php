@@ -119,4 +119,13 @@ class MakeUnitTest extends TestCase
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.definition_prop_has_no_value', ['definition' => 'nullable']));
     }
+
+    public function test_done_from_the_unit_setup()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'string', 'definition' => 'default:test'];
+        $this->overrideDataFile($data);
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.success_init_not_executed'));
+    }
 }
