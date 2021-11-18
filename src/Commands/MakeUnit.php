@@ -40,16 +40,17 @@ class MakeUnit extends Command
     {
         if (!$this->option('module')) {
             $this->error(__('laragine::unit.module_required'));
-        } else {
-            $command = GeneratorFactory::create(
-                $this,
-                'MakeUnit',
-                $this->argument('name'),
-                $this->option('module'),
-                $this->option('init')
-            );
-    
-            $command->run();
+            return;
         }
+        
+        $command = GeneratorFactory::create(
+            $this,
+            'MakeUnit',
+            $this->argument('name'),
+            $this->option('module'),
+            $this->option('init')
+        );
+
+        $command->run();
     }
 }
