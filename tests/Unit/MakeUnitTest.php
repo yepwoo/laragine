@@ -61,6 +61,7 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type'];
         $this->overrideDataFile($data);
+
         $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.type_prop_required', $params));
@@ -71,6 +72,7 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'stringgg'];
         $this->overrideDataFile($data);
+
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.type_prop_not_valid', ['type' => 'stringgg']));
     }
@@ -80,6 +82,7 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'enum'];
         $this->overrideDataFile($data);
+
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.type_prop_has_value', ['type' => 'enum']));
     }
@@ -89,6 +92,7 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'string:hello'];
         $this->overrideDataFile($data);
+
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.type_prop_has_no_value', ['type' => 'string']));
     }
@@ -98,6 +102,7 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'string', 'definition' => 'defaulttt'];
         $this->overrideDataFile($data);
+
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.definition_prop_not_valid', ['definition' => 'defaulttt']));
     }
@@ -107,6 +112,7 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'string', 'definition' => 'default'];
         $this->overrideDataFile($data);
+
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.definition_prop_has_value', ['definition' => 'default']));
     }
@@ -116,6 +122,7 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'string', 'definition' => 'nullable:test'];
         $this->overrideDataFile($data);
+
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.definition_prop_has_no_value', ['definition' => 'nullable']));
     }
@@ -125,7 +132,38 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'string', 'definition' => 'default:test'];
         $this->overrideDataFile($data);
+
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.success_init_not_executed'));
+    }
+
+    public function test_override_already_existing_unit()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'string', 'definition' => 'default:test'];
+        $this->overrideDataFile($data);
+
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+
+        $command->expectsConfirmation(
+            __('laragine::unit.exists'), 'yes'
+        );
+
+        $command->expectsOutput(__('laragine::unit.success_init_not_executed'));
+    }
+
+    public function test_not_override_already_existing_unit()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'string', 'definition' => 'default:test'];
+        $this->overrideDataFile($data);
+
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+
+        $command->expectsConfirmation(
+            __('laragine::unit.exists'), 'no'
+        );
+
+        $command->expectsOutput(__('laragine::unit.not_overwritten'));
     }
 }
