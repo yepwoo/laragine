@@ -71,9 +71,9 @@ class MigrationProcessor extends Processor
                    }
                }
                $value_type = $schema_types[$type]['value_type'] ?? null;
-               $argument   = $this->isOneValueType($value_type) ? "($type_value)" : "([$type_value])";
+               $argument   = $this->isOneValueType($value_type) ? "$type_value" : "[$type_value]";
 
-               $this->type_str .= $schema_types[$type]['migration'] . '('."'$column',". $argument .')';
+               $this->type_str .= $schema_types[$type]['migration'] . '('."'$column', ". $argument .')';
            } else {
                $this->type_str .= $schema_types[$type]['migration']. '('."'$column'".')';
            }
@@ -107,8 +107,6 @@ class MigrationProcessor extends Processor
 
                     $this->definition_str .= $schema_definitions[$single_definition]['migration'] . $argument . ($count < (count($definitions) - 1) ? '->' : '');
                 } else {
-                    echo "count: ". $count;
-                    echo "\n";
                     $this->definition_str .= $schema_definitions[$single_definition]['migration'] . '()' . ($count < (count($definitions) - 1) ? '->' : '');
                 }
                 $count++;
