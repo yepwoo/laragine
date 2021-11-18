@@ -12,12 +12,11 @@ class FactoryProcessor extends Processor
     private string $type_str;
 
     /**
-     * modifier str
+     * definition str
      *
      * @var string
      */
-    private string $mod_str;
-
+    private string $definition_str;
 
     /**
      * start processing
@@ -25,15 +24,15 @@ class FactoryProcessor extends Processor
     public function process(): string
     {
         foreach ($this->json['attributes'] as $column => $cases) {
-            $this->type_str = '';
-            $this->mod_str = '';
+            $this->type_str       = '';
+            $this->definition_str = '';
 
             $this->processor .= <<<STR
                                     '$column' => \$this->faker->
                         STR;
 
-            if(isset($cases['mod'])) {
-              $this->handleModCase($cases['mod']);
+            if(isset($cases['definition'])) {
+              $this->handledefinitionCase($cases['definition']);
             }
 
             $this->handleTypeCase($cases['type'], $column);
@@ -42,7 +41,7 @@ class FactoryProcessor extends Processor
              * Check if type_str is empty or not
              */
 
-            $this->processor .= ($this->mod_str !== '' ? $this->mod_str . '->': '') . ($this->type_str !== '' ? $this->type_str : 'text()');
+            $this->processor .= ($this->definition_str !== '' ? $this->definition_str . '->': '') . ($this->type_str !== '' ? $this->type_str : 'text()');
             $this->processor .= array_key_last($this->json['attributes']) == $column ? ',' : ",\n";
         }
 
@@ -50,20 +49,20 @@ class FactoryProcessor extends Processor
     }
 
     /**
-     * handle modifier case
+     * handle definition case
      *
-     * @param $mod
+     * @param $definition
      * @return void
      */
-    private function handleModCase($mod): void
+    private function handledefinitionCase($definition): void
     {
-        $modifiers        = explode("|", strtolower($mod));
-        $schema_modifiers = $this->schema['definitions'];
+        $definitions        = explode("|", strtolower($definition));
+        $schema_definitions = $this->schema['definitions'];
 
-        foreach ($modifiers as $modifier) {
-          $modifier = explode(":", strtolower($modifier))[0];
-          if($schema_modifiers[$modifier] && $schema_modifiers[$modifier]['factory'] !== '') {
-              $this->mod_str .= $schema_modifiers[$modifier]['factory'] . '()';
+        foreach ($definitions as $definition) {
+          $definition = explode(":", strtolower($definition))[0];
+          if($schema_definitions[$definition] && $schema_definitions[$definition]['factory'] !== '') {
+              $this->definition_str .= $schema_definitions[$definition]['factory'] . '()';
           }
         }
     }
@@ -84,7 +83,7 @@ class FactoryProcessor extends Processor
             if(!$this->isEmpty($schema_types[$type]['factory']) && !$this->isArray($schema_types[$type]['factory'])) {
 
                 $type = $schema_types[$type]['factory'] .'()' ;
-                $this->mod_str .= $type !== '' ? $type . '()': '';
+                $this->definition_str .= $type !== '' ? $type . '()': '';
             }
             else if($this->isArray($schema_types[$type]['factory'])) { // have special cases
                 $special_cases = $schema_types[$type]['factory'];

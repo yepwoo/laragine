@@ -34,20 +34,20 @@ class RequestProcessor extends Processor
             }
 
             /**
-             * === Modifier case
+             * === definition case
              */
-            if(isset($cases['mod'])) {
-                $modifiers        = explode("|", strtolower($cases['mod']));
-                $schema_modifiers = $this->schema['definitions'];
+            if(isset($cases['definition'])) {
+                $definitions        = explode("|", strtolower($cases['definition']));
+                $schema_definitions = $this->schema['definitions'];
 
-                foreach ($modifiers as $modifier) {
-                    $modifier = explode(":", strtolower($modifier))[0];
-                    if($schema_modifiers[$modifier]['request'] == 'unique') {
+                foreach ($definitions as $definition) {
+                    $definition = explode(":", strtolower($definition))[0];
+                    if($schema_definitions[$definition]['request'] == 'unique') {
                         $nullable = false;
-                        $this->processor .= $schema_modifiers[$modifier]['request'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
+                        $this->processor .= $schema_definitions[$definition]['request'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
                     } else {
                         $nullable = true;
-                        $this->processor .= $modifier . '|';
+                        $this->processor .= $definition . '|';
                     }
                 }
             }
