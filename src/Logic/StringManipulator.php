@@ -26,27 +26,4 @@ class StringManipulator
             'plural_lower_case'   => Str::lower($plural)
         ];
     }
-
-    /**
-     * Check if string contains : symbol
-     *
-     * @param $string
-     * @return bool
-     */
-    static public function containsDots($string): bool
-    {
-        return strpos($string, ":") !== false;
-    }
-
-    /**
-     * Convert string to arr
-     *
-     * @param $string
-     * @param $separator
-     * @return array
-     */
-    static public function toArray($string, $separator): array
-    {
-       return explode($separator, $string);
-    }
 }

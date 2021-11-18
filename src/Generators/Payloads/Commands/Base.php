@@ -46,6 +46,7 @@ class Base implements GeneratorInterface
      * run the logic
      *
      * @return void
+     * @codeCoverageIgnore
      */
     public function run()
     {
