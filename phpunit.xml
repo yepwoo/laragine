@@ -18,6 +18,10 @@
         </include>
         <exclude>
             <directory suffix=".php">./src/Core</directory>
+            <file>./src/autoload.php</file>
+            <file>./src/config.php</file>
+            <file>./src/helpers.php</file>
+            <file>./src/ModuleServiceProvider.php</file>
         </exclude>
         <report>
             <clover outputFile="clover.xml"/>
