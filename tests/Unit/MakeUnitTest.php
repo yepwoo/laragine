@@ -71,7 +71,6 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'stringgg'];
         $this->overrideDataFile($data);
-        $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.type_prop_not_valid', ['type' => 'stringgg']));
     }
@@ -81,7 +80,6 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'enum'];
         $this->overrideDataFile($data);
-        $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.type_prop_has_value', ['type' => 'enum']));
     }
@@ -91,8 +89,34 @@ class MakeUnitTest extends TestCase
         $data                       = $this->getDataFile();
         $data['attributes']['name'] = ['type' => 'string:hello'];
         $this->overrideDataFile($data);
-        $params  = ['column_name' => 'name', 'unit_studly' => $this->unit];
         $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
         $command->expectsOutput(__('laragine::unit.type_prop_has_no_value', ['type' => 'string']));
+    }
+
+    public function test_definition_property_is_not_valid()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'string', 'definition' => 'defaulttt'];
+        $this->overrideDataFile($data);
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.definition_prop_not_valid', ['definition' => 'defaulttt']));
+    }
+
+    public function test_the_value_in_definition_property_should_have_a_value()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'string', 'definition' => 'default'];
+        $this->overrideDataFile($data);
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.definition_prop_has_value', ['definition' => 'default']));
+    }
+
+    public function test_the_value_in_definition_property_should_not_have_a_value()
+    {
+        $data                       = $this->getDataFile();
+        $data['attributes']['name'] = ['type' => 'string', 'definition' => 'nullable:test'];
+        $this->overrideDataFile($data);
+        $command = $this->artisan("laragine:unit $this->unit --module=$this->module");
+        $command->expectsOutput(__('laragine::unit.definition_prop_has_no_value', ['definition' => 'nullable']));
     }
 }

@@ -221,7 +221,7 @@ class UnitValidation
                 $this->allow_proceed = false;
                 $this->command->error(__('laragine::unit.definition_prop_not_valid', ['definition' => $definition]));
             } else {
-                $this->handleModValue($schema_definitions, $single_definition);
+                $this->handleDefinitionValue($schema_definitions, $single_definition);
             }
         }
     }
@@ -232,7 +232,7 @@ class UnitValidation
      * @param $schema_definitions
      * @param $definition_value
      */
-    protected function handleModValue($schema_definitions, $definition_value) {
+    protected function handleDefinitionValue($schema_definitions, $definition_value) {
         $definition = explode(":", strtolower($definition_value))[0];
         $has_value  = $schema_definitions[$definition]['has_value'];
         $values     = explode(":", strtolower($definition_value));
