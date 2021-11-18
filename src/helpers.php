@@ -47,7 +47,7 @@ if (!function_exists('module_autoloader')) {
         $dir = empty($dir) ? base_path().'/core' : $dir;
 
         // instantiate the loader
-        $loader = new \Yepwoo\Laragine\Helpers\Psr4AutoloaderClass;
+        $loader = new \Yepwoo\Laragine\Support\Psr4AutoloaderClass;
         // register the autoloader
         $loader->register();
         // register the base directories for the namespace prefix

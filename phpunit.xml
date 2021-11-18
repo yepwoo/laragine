@@ -18,6 +18,8 @@
         </include>
         <exclude>
             <directory suffix=".php">./src/Core</directory>
+            <file>./src/Support/Psr4AutoloaderClass.php</file>
+            <file>./src/Traits/Exceptions/Handler.php</file>
             <file>./src/autoload.php</file>
             <file>./src/config.php</file>
             <file>./src/helpers.php</file>
