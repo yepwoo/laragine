@@ -12,11 +12,11 @@ class MigrationProcessor extends Processor
     private string $type_str;
 
     /**
-     * modifier str
+     * definition str
      *
      * @var string
      */
-    private string $mod_str;
+    private string $definition_str;
 
     public function __construct(...$args)
     {
@@ -27,8 +27,8 @@ class MigrationProcessor extends Processor
     {
         $attributes = $this->json['attributes'];
         foreach ($attributes as $column => $cases) {
-            $this->type_str = '';
-            $this->mod_str = '';
+            $this->type_str       = '';
+            $this->definition_str = '';
 
             $this->processor .= <<<STR
                                     \$table->
@@ -36,11 +36,11 @@ class MigrationProcessor extends Processor
 
             $this->typeCase($cases['type'], $column);
 
-            if(isset($cases['mod'])) {
-                $this->modCase($cases['mod'], $column);
+            if(isset($cases['definition'])) {
+                $this->definitionCase($cases['definition'], $column);
             }
 
-            $this->processor  .= $this->type_str . ($this->mod_str !== '' ? '->' . $this->mod_str : '');
+            $this->processor  .= $this->type_str . ($this->definition_str !== '' ? '->' . $this->definition_str : '');
             $this->processor  .= array_key_last($this->json['attributes']) == $column ? ';' : ";\n";
         }
         return $this->processor;
@@ -80,36 +80,36 @@ class MigrationProcessor extends Processor
         }
     }
 
-    public function modCase($mod_str, $column) {
-        $schema_modifiers = $this->schema['definitions'];
-        $modifiers        = explode("|", strtolower($mod_str));
+    public function definitionCase($definition_str, $column) {
+        $schema_definitions = $this->schema['definitions'];
+        $definitions        = explode("|", strtolower($definition_str));
 
         $count = 0;
-        foreach ($modifiers as $modifier) {
-            $mod = explode(":", strtolower($modifier))[0];
+        foreach ($definitions as $definition) {
+            $single_definition = explode(":", strtolower($definition))[0];
 
-            if($this->isSchemaFound('definitions', $mod)) {
-                $has_value = $schema_modifiers[$mod]['has_value'];
+            if($this->isSchemaFound('definitions', $single_definition)) {
+                $has_value = $schema_definitions[$single_definition]['has_value'];
 
                 if($has_value) {
-                    $values = explode(",", explode(":", strtolower($modifier))[1]);
-                    $mod_value = '';
+                    $values = explode(",", explode(":", strtolower($definition))[1]);
+                    $definition_value = '';
 
                     foreach($values as $value) {
                         if (is_numeric($value)) {
-                            $mod_value .= $values[count($values) - 1] == $value ? intval($value) : intval($value). ",";
+                            $definition_value .= $values[count($values) - 1] == $value ? intval($value) : intval($value). ",";
                         } else {
-                            $mod_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
+                            $definition_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
                         }
                     }
-                    $value_type = $schema_modifiers[$mod]['value_type'] ?? null;
-                    $argument   = $this->isOneValueType($value_type) ? "($mod_value)" : "([$mod_value])";
+                    $value_type = $schema_definitions[$single_definition]['value_type'] ?? null;
+                    $argument   = $this->isOneValueType($value_type) ? "($definition_value)" : "([$definition_value])";
 
-                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . $argument . ($count < (count($modifiers) - 1) ? '->' : '');
+                    $this->definition_str .= $schema_definitions[$single_definition]['migration'] . $argument . ($count < (count($definitions) - 1) ? '->' : '');
                 } else {
                     echo "count: ". $count;
                     echo "\n";
-                    $this->mod_str .= $schema_modifiers[$mod]['migration'] . '()' . ($count < (count($modifiers) - 1) ? '->' : '');
+                    $this->definition_str .= $schema_definitions[$single_definition]['migration'] . '()' . ($count < (count($definitions) - 1) ? '->' : '');
                 }
                 $count++;
             }

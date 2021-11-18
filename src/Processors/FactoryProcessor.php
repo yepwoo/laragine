@@ -32,7 +32,7 @@ class FactoryProcessor extends Processor
                         STR;
 
             if(isset($cases['definition'])) {
-              $this->handledefinitionCase($cases['definition']);
+              $this->handleDefinitionCase($cases['definition']);
             }
 
             $this->handleTypeCase($cases['type'], $column);
@@ -51,12 +51,12 @@ class FactoryProcessor extends Processor
     /**
      * handle definition case
      *
-     * @param $definition
+     * @param $single_definition
      * @return void
      */
-    private function handledefinitionCase($definition): void
+    private function handleDefinitionCase($single_definition): void
     {
-        $definitions        = explode("|", strtolower($definition));
+        $definitions        = explode("|", strtolower($single_definition));
         $schema_definitions = $this->schema['definitions'];
 
         foreach ($definitions as $definition) {
