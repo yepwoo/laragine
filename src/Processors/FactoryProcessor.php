@@ -57,6 +57,7 @@ class FactoryProcessor extends Processor
     private function handleDefinitionCase($single_definition): void
     {
         $definitions        = explode("|", strtolower($single_definition));
+
         $schema_definitions = $this->schema['definitions'];
 
         foreach ($definitions as $definition) {
@@ -87,7 +88,6 @@ class FactoryProcessor extends Processor
             }
             else if($this->isArray($schema_types[$type]['factory'])) { // have special cases
                 $special_cases = $schema_types[$type]['factory'];
-
                 $this->handleSpecialCases($special_cases, $column_name);
 
                 if($this->isEmpty($this->type_str)) {
@@ -105,7 +105,7 @@ class FactoryProcessor extends Processor
      */
     private function handleSpecialCases($special_cases, $column_name) {
         foreach ($special_cases as $case => $value) { // ex: 'email' => safeEmail
-            if(strpos($column_name, $case)) {
+            if(strpos($column_name, $case) !== false) {
                 $this->type_str .= $value . '()';
             }
         }
