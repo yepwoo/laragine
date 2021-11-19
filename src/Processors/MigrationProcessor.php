@@ -66,9 +66,9 @@ class MigrationProcessor extends Processor
                foreach($values as $value) {
                    if (is_numeric($value)) {
                        $type_value .= $values[count($values) - 1] == $value ? (int)$value : (int)$value. ",";
-                   } else {
-                       $type_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
+                       return;
                    }
+                   $type_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
                }
                $value_type = $schema_types[$type]['value_type'] ?? null;
                $argument   = $this->isOneValueType($value_type) ? "$type_value" : "[$type_value]";
