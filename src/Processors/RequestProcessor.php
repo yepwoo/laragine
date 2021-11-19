@@ -2,8 +2,6 @@
 
 namespace Yepwoo\Laragine\Processors;
 
-use Illuminate\Support\Str;
-
 class RequestProcessor extends Processor
 {
     /**
@@ -12,26 +10,24 @@ class RequestProcessor extends Processor
     public function process(): string
     {
         $attributes = $this->json['attributes'];
-        $nullable         = false;
+        $nullable   = false;
 
         foreach ($attributes as $column => $cases) {
+
+            if (strpos($cases['type'], ':') !== false) {
+                $cases['type'] = explode(':', $cases['type'])[0];
+            }
+
             /**
              * === Type case
              * will extract it to different functions to make the code more readable
              */
             $type = strtolower($cases['type']);
             $schema_types = $this->schema['types'];
-
-            if($this->isSchemaFound('types', $type)) {
-                $type = $schema_types[$type]['resource'] !== "" ? $schema_types[$type]['resource'] . '|' : "";
-                $this->processor .= <<<STR
-                                                '$column' => '$type
-                            STR;
-            } else {
-                $this->processor .= <<<STR
-                                                '$column' => '
-                            STR;
-            }
+            $type = $schema_types[$type]['request'] !== "" ? $schema_types[$type]['request'] . '|' : "";
+            $this->processor .= <<<STR
+                                            '$column' => '$type
+                        STR;
 
             /**
              * === definition case
@@ -42,21 +38,31 @@ class RequestProcessor extends Processor
 
                 foreach ($definitions as $definition) {
                     $definition = explode(":", strtolower($definition))[0];
-                    if($schema_definitions[$definition]['request'] == 'unique') {
-                        $nullable = false;
-                        $this->processor .= $schema_definitions[$definition]['request'] . ':' . $this->unit_collection['plural_lower_case'] . '|';
-                    } else {
+
+                    if ($definition == 'nullable') {
                         $nullable = true;
-                        $this->processor .= $definition . '|';
                     }
+
+                    if($schema_definitions[$definition]['request'] == 'unique') {
+                        $this->processor .= $schema_definitions[$definition]['request'] . ':' . $this->unit_collection['plural_lower_case'];
+                    } else {
+                        $this->processor .= $definition;
+                    }
+
+                    /**
+                     * need some updates here (it's not working properly here)
+                     */
+                    $this->processor .= array_key_last($definitions) == $definition ? '' : '|';
                 }
             }
 
             if($nullable) {
-                $this->processor .= 'nullable' . "'";
+                $this->processor .= "'";
             } else {
                 $this->processor .= 'required' . "'";
             }
+
+            $nullable = false;
             $this->processor  .= array_key_last($attributes) == $column ? ',' : ",\n";
         }
 
