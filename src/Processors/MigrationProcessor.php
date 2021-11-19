@@ -74,9 +74,9 @@ class MigrationProcessor extends Processor
                $argument   = $this->isOneValueType($value_type) ? "$type_value" : "[$type_value]";
 
                $this->type_str .= $schema_types[$type]['migration'] . '('."'$column', ". $argument .')';
-           } else {
-               $this->type_str .= $schema_types[$type]['migration']. '('."'$column'".')';
+               return;
            }
+               $this->type_str .= $schema_types[$type]['migration']. '('."'$column'".')';
         }
     }
 
