@@ -65,7 +65,7 @@ class MigrationProcessor extends Processor
                $type_value = '';
                foreach($values as $value) {
                    if (is_numeric($value)) {
-                       $type_value .= $values[count($values) - 1] == $value ? intval($value) : intval($value). ",";
+                       $type_value .= $values[count($values) - 1] == $value ? (int)$value : (int)$value. ",";
                    } else {
                        $type_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
                    }
@@ -84,7 +84,6 @@ class MigrationProcessor extends Processor
         $schema_definitions = $this->schema['definitions'];
         $definitions        = explode("|", strtolower($definition_str));
 
-        $count = 0;
         foreach ($definitions as $definition) {
             $single_definition = explode(":", strtolower($definition))[0];
 
@@ -97,7 +96,7 @@ class MigrationProcessor extends Processor
 
                     foreach($values as $value) {
                         if (is_numeric($value)) {
-                            $definition_value .= $values[count($values) - 1] == $value ? (int)$value : intval($value). ",";
+                            $definition_value .= $values[count($values) - 1] == $value ? (int)$value : (int)$value. ",";
                         } else {
                             $definition_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
                         }
@@ -105,12 +104,12 @@ class MigrationProcessor extends Processor
                     $value_type = $schema_definitions[$single_definition]['value_type'] ?? null;
                     $argument   = $this->isOneValueType($value_type) ? "($definition_value)" : "([$definition_value])";
 
-                    $this->definition_str .= $schema_definitions[$single_definition]['migration'] . $argument . ($count < (count($definitions) - 1) ? '->' : '');
+                    $this->definition_str .= $schema_definitions[$single_definition]['migration'] . $argument .'->';
                 } else {
-                    $this->definition_str .= $schema_definitions[$single_definition]['migration'] . '()' . ($count < (count($definitions) - 1) ? '->' : '');
+                    $this->definition_str .= $schema_definitions[$single_definition]['migration'] . '()' . '->' ;
                 }
-                $count++;
             }
         }
+        $this->definition_str = substr($this->definition_str, 0, -2);
     }
 }
