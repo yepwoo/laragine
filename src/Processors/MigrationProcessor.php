@@ -97,7 +97,7 @@ class MigrationProcessor extends Processor
 
                     foreach($values as $value) {
                         if (is_numeric($value)) {
-                            $definition_value .= $values[count($values) - 1] == $value ? intval($value) : intval($value). ",";
+                            $definition_value .= $values[count($values) - 1] == $value ? (int)$value : intval($value). ",";
                         } else {
                             $definition_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
                         }
