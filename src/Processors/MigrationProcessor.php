@@ -80,7 +80,7 @@ class MigrationProcessor extends Processor
         }
     }
 
-    public function definitionCase($definition_str, $column) {
+    public function definitionCase($definition_str) {
         $schema_definitions = $this->schema['definitions'];
         $definitions        = explode("|", strtolower($definition_str));
 
