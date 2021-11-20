@@ -7,6 +7,49 @@
             "migration": "integer",
             "resource" : ""
         },
+        "bigIncrements": {
+            "has_value": false,
+            "request": "",
+            "factory": "integer",
+            "migration": "integer",
+            "resource" : ""
+        },
+        "binary": {
+            "has_value": false,
+            "request": "string",
+            "factory": "text",
+            "migration": "binary",
+            "resource" : ""
+        },
+        "char": {
+            "has_value": true,
+            "value_type" : "one_value_argument",
+            "request": "string",
+            "factory": "word",
+            "migration": "char",
+            "resource" : ""
+        },
+        "boolean": {
+            "has_value": false,
+            "request": "",
+            "factory": "boolean",
+            "migration": "boolean",
+            "resource" : ""
+        },
+        "dateTimeTz": {
+            "has_value": false,
+            "request": "",
+            "factory": "dateTime",
+            "migration": "dateTimeTz",
+            "resource" : ""
+        },
+        "dateTime": {
+            "has_value": false,
+            "request": "",
+            "factory": "dateTime",
+            "migration": "dateTimeTz",
+            "resource" : ""
+        },
         "string": {
             "has_value": false,
             "request": "",
