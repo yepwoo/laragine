@@ -37,7 +37,7 @@ class MigrationProcessor extends Processor
             $this->typeCase($cases['type'], $column);
 
             if(isset($cases['definition'])) {
-                $this->definitionCase($cases['definition'], $column);
+                $this->definitionCase($cases['definition']);
             }
 
             $this->processor  .= $this->type_str . ($this->definition_str !== '' ? '->' . $this->definition_str : '');
