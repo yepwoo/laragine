@@ -36,8 +36,8 @@ class Controller extends \App\Http\Controllers\Controller
      *
      * @codeCoverageIgnore
      * @param FormRequest $request
-     * @param Model $model
-     * @param string $resource
+     * @param Model       $model
+     * @param string      $resource
      * @return void
      */
     public function __construct(FormRequest $request, Model $model, $resource)

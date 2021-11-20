@@ -11,8 +11,8 @@ class #UNIT_NAME#Controller extends \Core\Base\Controllers\API\Controller
     /**
      * Init.
      * @param FormRequest $request
-     * @param Model $model
-     * @param string $resource
+     * @param Model       $model
+     * @param string      $resource
      */
     public function __construct(FormRequest $request, Model $model, $resource = Resource::class)
     {
