@@ -20,8 +20,10 @@ class MigrationProcessorTest extends TestCase
 
     public function test_output_str()
     {
+        $this->artisan("laragine:module test");
+
         $data['attributes'] = [
-            'name'   => ['type' => 'string', 'definition' => 'default:test'],
+            'name'   => ['type' => 'string', 'definition' => 'default:test2'],
             'email'  => ['type' => 'string', 'definition' => 'unique|nullable'],
         ];
 
@@ -32,11 +34,11 @@ class MigrationProcessorTest extends TestCase
 
         $migration_processor_obj = new MigrationProcessor($this->module_dir, $module_collection, $unit_collection);
         $output_str = $migration_processor_obj->process();
-
-        $expected_str = '
-            $table->string("name")->default("test");
-            $table->string("email")->unique()->nullable();
-        ';
+        $expected_str = <<<STR
+                                    \$table->string('name')->default('test2');
+                                    \$table->string('email')->unique()->nullable();
+                        STR;
+        $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);
     }
 }
