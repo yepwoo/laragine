@@ -3,28 +3,9 @@
 namespace Yepwoo\Laragine\Tests\Unit;
 
 use Yepwoo\Laragine\Tests\TestCase;
-use Yepwoo\Laragine\Logic\FileManipulator;
 
 class MakeUnitTest extends TestCase
 {
-    /**
-     * get the data file for the unit
-     */
-    protected function getDataFile() : array
-    {
-        return FileManipulator::readJson("$this->module_dir/data/$this->unit.json");
-    }
-
-    /**
-     * override the data file for the unit
-     * 
-     * @param array $array
-     */
-    protected function overrideDataFile($array) : void
-    {
-        file_put_contents("$this->module_dir/data/$this->unit.json", json_encode($array));
-    }
-
     public function test_not_including_module_option()
     {
         $command = $this->artisan("laragine:unit $this->unit");
