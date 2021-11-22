@@ -8,19 +8,9 @@ use Yepwoo\Laragine\Tests\TestCase;
 
 class MigrationProcessorTest extends TestCase
 {
-    /**
-     * override the data file for the unit
-     *
-     * @param array $array
-     */
-    protected function overrideDataFile($array) : void
-    {
-        file_put_contents("$this->module_dir/data/$this->unit.json", json_encode($array));
-    }
-
     public function test_output_str()
     {
-        $this->artisan("laragine:module test");
+        $this->artisan('laragine:module test');
 
         $data['attributes'] = [
             'name'   => ['type' => 'string', 'definition' => 'default:test2'],

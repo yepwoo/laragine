@@ -2,6 +2,8 @@
 
 namespace Yepwoo\Laragine\Tests;
 
+use Yepwoo\Laragine\Logic\FileManipulator;
+
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     /**
@@ -56,5 +58,23 @@ class TestCase extends \Orchestra\Testbench\TestCase
         return [
             'Yepwoo\Laragine\ModuleServiceProvider',
         ];
+    }
+
+    /**
+     * get the data file for the unit
+     */
+    protected function getDataFile() : array
+    {
+        return FileManipulator::readJson("$this->module_dir/data/$this->unit.json");
+    }
+
+    /**
+     * override the data file for the unit
+     * 
+     * @param array $array
+     */
+    protected function overrideDataFile($array) : void
+    {
+        file_put_contents("$this->module_dir/data/$this->unit.json", json_encode($array));
     }
 }
