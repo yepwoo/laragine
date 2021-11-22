@@ -4,6 +4,7 @@ namespace Yepwoo\Laragine\Tests\Unit;
 
 use Yepwoo\Laragine\Logic\StringManipulator;
 use Yepwoo\Laragine\Processors\FactoryProcessor;
+use Yepwoo\Laragine\Processors\Processor;
 use Yepwoo\Laragine\Tests\TestCase;
 
 class FactoryProcessortTest extends TestCase
@@ -26,8 +27,11 @@ class FactoryProcessortTest extends TestCase
         $this->artisan("laragine:module test3");
 
         $data['attributes'] = [
-            'name'   => ['type' => 'string', 'definition' => 'default:test2'],
-            'email'  => ['type' => 'char:8', 'definition' => 'unique|nullable'],
+            'name'       => ['type'   => 'string', 'definition' => 'default:test2'],
+            'email'      => ['type'   => 'char:8', 'definition' => 'unique|nullable'],
+            'image_url'  => ['type'   => 'string', 'definition' => 'unique|nullable'],
+            'phone'      => ['type'   => 'string', 'definition' => 'nullable'],
+
         ];
 
         $this->overrideDataFile($data);
@@ -40,8 +44,12 @@ class FactoryProcessortTest extends TestCase
         $expected_str = <<<STR
                                     'name' => \$this->faker->text(100),
                                     'email' => \$this->faker->unique()->word(),
+                                    'image_url' => \$this->faker->unique()->url(),
+                                    'phone' => \$this->faker->phoneNumber(),
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);
     }
+
+
 }
