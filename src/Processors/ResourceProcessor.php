@@ -10,9 +10,7 @@ class ResourceProcessor extends Processor
     public function process(): string
     {
         foreach ($this->json['attributes'] as $key => $value) {
-            $this->processor .= <<<STR
-                                    '$key' => \$this->$key
-                        STR;
+            $this->setInitStr($key);
             $this->processor .= array_key_last($this->json['attributes']) == $key ? ',' : ",\n";
         }
 
@@ -22,5 +20,12 @@ class ResourceProcessor extends Processor
     public function getProcessorStr()
     {
         return $this->processor;
+    }
+
+    public function setInitStr($key)
+    {
+        $this->processor .= <<<STR
+                                    '$key' => \$this->$key
+                        STR;
     }
 }
