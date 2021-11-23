@@ -26,13 +26,25 @@ class ResourceProcessorTest extends ProcessorTestCase
     /**
      * @test
      */
-    public function test_str_concatenation()
+    public function test_str_is_empty_before_concatenation()
     {
         $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
 
         $processor_str = $resource_processor_obj->getProcessorStr();
 
         $this->assertEmpty($processor_str);
+    }
 
+    /**
+     * @test
+     */
+    public function test_str_is_empty_after_concatenation()
+    {
+        $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
+        $resource_processor_obj->process();
+
+        $processor_str = $resource_processor_obj->getProcessorStr();
+
+        $this->assertNotEmpty($processor_str);
     }
 }
