@@ -65,4 +65,17 @@ class ResourceProcessorTest extends ProcessorTestCase
                         STR;
         $this->assertEquals($expected_str, $processor_str);
     }
+
+    /**
+     * @test
+     */
+    public function test_is_str()
+    {
+        $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
+        $resource_processor_obj->setInitStr('name');
+
+        $processor_str = $resource_processor_obj->getProcessorStr();
+
+        $this->assertIsString($processor_str);
+    }
 }

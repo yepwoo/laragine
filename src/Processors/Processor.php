@@ -46,7 +46,7 @@ class Processor
      *
      * @var
      */
-    protected $processor;
+    protected string $processor;
 
     /**
      * init
