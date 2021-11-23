@@ -42,6 +42,8 @@ class ProcessorTestCase extends TestCase
                 'name'  => ['type' => 'string', 'definition' => 'default:test2'],
                 'email' => ['type' => 'string', 'definition' => 'unique|nullable'],
                 'type'  => ['type' => 'char:8', 'definition' => 'unique|nullable'],
+                'image_url'  => ['type'   => 'string', 'definition' => 'unique|nullable'],
+                'phone'      => ['type'   => 'string', 'definition' => 'nullable'],
             ]
         ];
 

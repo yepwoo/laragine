@@ -1,0 +1,25 @@
+<?php
+
+namespace Yepwoo\Laragine\Tests\Unit\Processors;
+
+use Yepwoo\Laragine\Logic\StringManipulator;
+use Yepwoo\Laragine\Processors\Processor;
+use Yepwoo\Laragine\Processors\ResourceProcessor;
+
+class ResourceProcessorTest extends ProcessorTestCase
+{
+    public function test_output_str()
+    {
+        $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
+        $output_str = $resource_processor_obj->process();
+        $expected_str = <<<STR
+                                    'name' => \$this->name,
+                                    'email' => \$this->email,
+                                    'type' => \$this->type,
+                                    'image_url' => \$this->image_url,
+                                    'phone' => \$this->phone,
+                        STR;
+        $expected_str = preg_replace("/\r/", "", $expected_str);
+        $this->assertEquals($expected_str, $output_str);
+    }
+}

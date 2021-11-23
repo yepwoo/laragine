@@ -14,6 +14,8 @@ class MigrationProcessorTest extends ProcessorTestCase
                                     \$table->string('name')->default('test2');
                                     \$table->string('email')->unique()->nullable();
                                     \$table->char('type', 8)->unique()->nullable();
+                                    \$table->string('image_url')->unique()->nullable();
+                                    \$table->string('phone')->nullable();
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);
