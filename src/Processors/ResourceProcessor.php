@@ -18,4 +18,9 @@ class ResourceProcessor extends Processor
 
         return $this->processor;
     }
+
+    public function getProcessorStr()
+    {
+        return $this->processor;
+    }
 }

@@ -22,4 +22,17 @@ class ResourceProcessorTest extends ProcessorTestCase
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);
     }
+
+    /**
+     * @test
+     */
+    public function test_str_concatenation()
+    {
+        $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
+
+        $processor_str = $resource_processor_obj->getProcessorStr();
+
+        $this->assertEmpty($processor_str);
+
+    }
 }
