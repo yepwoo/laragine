@@ -54,6 +54,9 @@ class ResourceProcessorTest extends ProcessorTestCase
     public function test_init_str()
     {
         $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
+        $processor_str = $resource_processor_obj->getProcessorStr();
+        $this->assertEmpty($processor_str);
+
         $resource_processor_obj->setInitStr('name');
 
         $processor_str = $resource_processor_obj->getProcessorStr();
