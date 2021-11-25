@@ -4,6 +4,7 @@ namespace Yepwoo\Laragine\Traits\Exceptions;
 
 use Throwable;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Validation\ValidationException;
 use Core\Base\Traits\Response\SendResponse;
 
@@ -24,6 +25,10 @@ trait Handler
     {
         $this->renderable(function (AuthenticationException $e, $request) {
             return $this->sendResponse([], $e->getMessage(), false, 401);
+        });
+
+        $this->renderable(function (AuthorizationException $e, $request) {
+            return $this->sendResponse([], $e->getMessage(), false, 403);
         });
 
         $this->renderable(function (ValidationException $e, $request) {
