@@ -16,6 +16,7 @@ class FactoryProcessorTest extends ProcessorTestCase
                                     'type' => \$this->faker->unique()->word(),
                                     'image_url' => \$this->faker->unique()->url(),
                                     'phone' => \$this->faker->phoneNumber(),
+                                    'json_field' => \$this->faker->json_encode(['title'=>'test']),
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);
