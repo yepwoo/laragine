@@ -38,18 +38,77 @@
         },
         "dateTimeTz": {
             "has_value": false,
-            "request": "",
+            "request": "date",
             "factory": "dateTime",
             "migration": "dateTimeTz",
             "resource" : ""
         },
         "dateTime": {
             "has_value": false,
-            "request": "",
+            "request": "date",
             "factory": "dateTime",
             "migration": "dateTimeTz",
             "resource" : ""
         },
+        "date": {
+            "has_value": false,
+            "request": "date",
+            "factory": "date",
+            "migration": "date",
+            "resource" : ""
+        },
+        "decimal": {
+            "has_value": false,
+            "request": "",
+            "factory": "integer",
+            "migration": "decimal",
+            "resource" : ""
+        },
+        "double": {
+            "has_value": false,
+            "request": "",
+            "factory": "integer",
+            "migration": "double",
+            "resource" : ""
+        },
+
+        "enum" : {
+            "has_value": true,
+            "value_type": "array",
+            "request": "",
+            "factory": "",
+            "migration": "enum",
+            "resource" : ""
+        },
+        "float": {
+            "has_value": false,
+            "request": "",
+            "factory": "integer",
+            "migration": "float",
+            "resource" : ""
+        },
+        "foreignId": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "foreignId",
+            "resource" : ""
+        },
+        "geometryCollection": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "geometryCollection",
+            "resource" : ""
+        },
+        "geometry": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "geometry",
+            "resource" : ""
+        },
+
         "string": {
             "has_value": false,
             "request": "",
@@ -62,21 +121,35 @@
             "migration": "string",
             "resource" : ""
         },
+        "ipAddress": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "ipAddress",
+            "resource" : ""
+        },
+        "json": {
+            "has_value": false,
+            "request": "",
+            "factory": "json",
+            "migration": "json",
+            "resource" : ""
+        },
+        "jsonb": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "jsonb",
+            "resource" : ""
+        },
         "bigInteger": {
             "has_value": false,
             "request": "",
             "factory": "same_as_integer",
             "migration": "integer",
             "resource" : ""
-        },
-        "enum" : {
-            "has_value": true,
-            "value_type": "array",
-            "request": "",
-            "factory": "",
-            "migration": "enum",
-            "resource" : ""
         }
+
     },
     "definitions": {
         "default": {
