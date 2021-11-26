@@ -85,7 +85,7 @@ class FactoryProcessor extends Processor
 
                 $type = $schema_types[$type]['factory'];
                 if(strpos($type, 'json') !== false) {
-                    $this->type_str .= 'json_encode'.'(['."'title'" .'=>' . "'test'". '])';
+                    $this->type_str .= 'json_encode'.'(['."'$column_name'" .'=>' . "'test'". '])';
                 } else {
                     $this->type_str .= $type !== '' ? $type . '()': '';
                 }

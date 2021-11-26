@@ -16,7 +16,6 @@ class MigrationProcessorTest extends ProcessorTestCase
                                     \$table->char('type', 8)->unique()->nullable();
                                     \$table->string('image_url')->unique()->nullable();
                                     \$table->string('phone')->nullable();
-                                    \$table->json('json_field');
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);

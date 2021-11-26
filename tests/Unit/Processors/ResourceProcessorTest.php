@@ -18,7 +18,6 @@ class ResourceProcessorTest extends ProcessorTestCase
                                     'type' => \$this->type,
                                     'image_url' => \$this->image_url,
                                     'phone' => \$this->phone,
-                                    'json_field' => \$this->json_field,
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);
