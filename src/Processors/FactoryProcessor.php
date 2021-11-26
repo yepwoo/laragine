@@ -84,11 +84,7 @@ class FactoryProcessor extends Processor
             if(!$this->isEmpty($schema_types[$type]['factory']) && !$this->isArray($schema_types[$type]['factory'])) {
 
                 $type = $schema_types[$type]['factory'];
-                if(strpos($type, 'json') !== false) {
-                    $this->type_str .= 'json_encode'.'(['."'$column_name'" .'=>' . "'test'". '])';
-                } else {
-                    $this->type_str .= $type !== '' ? $type . '()': '';
-                }
+                $this->type_str .= $type !== '' ? $type . '()': '';
             }
             else if($this->isArray($schema_types[$type]['factory'])) { // have special cases
                 $special_cases = $schema_types[$type]['factory'];
