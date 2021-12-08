@@ -184,6 +184,14 @@
             "resource" : ""
         },
 
+        "mediumText": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "mediumText",
+            "resource" : ""
+        },
+
         "morphs": {
             "has_value": false,
             "request": "",
@@ -192,13 +200,7 @@
             "resource" : ""
         },
 
-        "mediumText": {
-            "has_value": false,
-            "request": "",
-            "factory": "",
-            "migration": "mediumText",
-            "resource" : ""
-        },
+
 
         "bigInteger": {
             "has_value": false,
