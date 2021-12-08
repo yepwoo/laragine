@@ -103,7 +103,7 @@ class FactoryProcessor extends Processor
      * @param $column_name
      */
     private function handleSpecialCases($special_cases, $column_name) {
-        foreach ($special_cases as $case => $value) { // ex: 'email' => safeEmail
+        foreach ($special_cases as $case => $value) { // ex: column_name: 'email' => special_case: safeEmail
             if(strpos($column_name, $case) !== false) {
                 $this->type_str .= $value . '()';
             }
