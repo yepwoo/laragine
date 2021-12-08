@@ -1,12 +1,5 @@
 {
     "types": {
-        "integer": {
-            "has_value": false,
-            "request": "",
-            "factory": "integer",
-            "migration": "integer",
-            "resource" : ""
-        },
         "bigIncrements": {
             "has_value": false,
             "request": "",
@@ -108,17 +101,25 @@
             "migration": "geometry",
             "resource" : ""
         },
-
-        "string": {
+        "id": {
             "has_value": false,
             "request": "",
-            "factory": {
-                "email": "safeEmail",
-                "url": "url",
-                "phone": "phoneNumber",
-                "default": "text"
-            },
-            "migration": "string",
+            "factory": "",
+            "migration": "id",
+            "resource" : ""
+        },
+        "increments": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "increments",
+            "resource" : ""
+        },
+        "integer": {
+            "has_value": false,
+            "request": "",
+            "factory": "integer",
+            "migration": "integer",
             "resource" : ""
         },
         "ipAddress": {
@@ -142,14 +143,82 @@
             "migration": "jsonb",
             "resource" : ""
         },
+
+        "lineString": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "lineString",
+            "resource" : ""
+        },
+
+        "longText": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "longText",
+            "resource" : ""
+        },
+
+        "macAddress": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "macAddress",
+            "resource" : ""
+        },
+
+        "mediumIncrements": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "mediumIncrements",
+            "resource" : ""
+        },
+
+        "mediumInteger": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "mediumInteger",
+            "resource" : ""
+        },
+
+        "morphs": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "morphs",
+            "resource" : ""
+        },
+
+        "mediumText": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "mediumText",
+            "resource" : ""
+        },
+
         "bigInteger": {
             "has_value": false,
             "request": "",
             "factory": "same_as_integer",
             "migration": "integer",
             "resource" : ""
+        },
+        "string": {
+            "has_value": false,
+            "request": "",
+            "factory": {
+                "email": "safeEmail",
+                "url": "url",
+                "phone": "phoneNumber",
+                "default": "text"
+            },
+            "migration": "string",
+            "resource" : ""
         }
-
     },
     "definitions": {
         "default": {
