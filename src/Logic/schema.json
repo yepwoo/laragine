@@ -200,15 +200,119 @@
             "resource" : ""
         },
 
-
-
-        "bigInteger": {
+        "multiLineString": {
             "has_value": false,
             "request": "",
-            "factory": "same_as_integer",
-            "migration": "integer",
+            "factory": "",
+            "migration": "multiLineString",
             "resource" : ""
         },
+
+        "multiPoint": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "multiPoint",
+            "resource" : ""
+        },
+
+        "multiPolygon": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "multiPolygon",
+            "resource" : ""
+        },
+
+        "nullableTimestamps": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "nullableTimestamps",
+            "resource" : ""
+        },
+
+        "nullableMorphs": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "nullableMorphs",
+            "resource" : ""
+        },
+
+        "nullableUuidMorphs": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "nullableUuidMorphs",
+            "resource" : ""
+        },
+
+        "point": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "point",
+            "resource" : ""
+        },
+
+        "polygon": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "polygon",
+            "resource" : ""
+        },
+
+        "rememberToken": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "rememberToken",
+            "resource" : ""
+        },
+
+        "set": {
+            "has_value": true,
+            "value_type": "array",
+            "request": "",
+            "factory": "",
+            "migration": "set",
+            "resource" : ""
+        },
+
+        "smallIncrements": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "smallIncrements",
+            "resource" : ""
+        },
+
+        "smallInteger": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "smallInteger",
+            "resource" : ""
+        },
+
+        "softDeletesTz": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "softDeletesTz",
+            "resource" : ""
+        },
+
+        "softDeletes": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "softDeletes",
+            "resource" : ""
+        },
+
         "string": {
             "has_value": false,
             "request": "",
@@ -219,6 +323,21 @@
                 "default": "text"
             },
             "migration": "string",
+            "resource" : ""
+        },
+
+        "text": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "text",
+            "resource" : ""
+        },
+        "bigInteger": {
+            "has_value": false,
+            "request": "",
+            "factory": "same_as_integer",
+            "migration": "integer",
             "resource" : ""
         }
     },
