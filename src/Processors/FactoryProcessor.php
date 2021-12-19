@@ -27,11 +27,6 @@ class FactoryProcessor extends Processor
             $this->type_str       = '';
             $this->definition_str = '';
 
-            // @codeCoverageIgnoreStart
-            $this->processor .= <<<STR
-                                    '$column' => \$this->faker->
-                        STR;
-            // @codeCoverageIgnoreEnd
 
             if(isset($cases['definition'])) {
               $this->handleDefinitionCase($cases['definition']);
@@ -39,11 +34,22 @@ class FactoryProcessor extends Processor
 
             $this->handleTypeCase($cases['type'], $column);
 
+            // @codeCoverageIgnoreStart
+            if($this->definition_str === '' && $this->type_str === '') {
+                $this->processor .= <<<STR
+                                        '$column' => ''
+                            STR;
+            } else {
+                $this->processor .= <<<STR
+                                        '$column' => \$this->faker->
+                            STR;
+            }
+            // @codeCoverageIgnoreEnd
             /**
              * Check if type_str is empty or not
              */
 
-            $this->processor .= ($this->definition_str !== '' ? $this->definition_str . '->': '') . ($this->type_str !== '' ? $this->type_str : 'text()');
+            $this->processor .= ($this->definition_str !== '' ? $this->definition_str . '->': '') . ($this->type_str !== '' ? $this->type_str : '');
             $this->processor .= array_key_last($this->json['attributes']) == $column ? ',' : ",\n";
         }
 
@@ -83,6 +89,7 @@ class FactoryProcessor extends Processor
         $schema_types = $this->schema['types'];
 
         if($this->isSchemaFound('types', $type)) {
+
             if(!$this->isEmpty($schema_types[$type]['factory']) && !$this->isArray($schema_types[$type]['factory'])) {
 
                 $type = $schema_types[$type]['factory'];

@@ -16,6 +16,7 @@ class RequestProcessorTest extends ProcessorTestCase
                                             'type' => 'string|unique:units|nullable',
                                             'image_url' => 'string|unique:units|nullable',
                                             'phone' => 'string|nullable',
+                                            'enum_str' => 'required',
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);

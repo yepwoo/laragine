@@ -44,6 +44,7 @@ class ProcessorTestCase extends TestCase
                 'type'  => ['type' => 'char:8', 'definition' => 'unique|nullable'],
                 'image_url'  => ['type'   => 'string', 'definition' => 'unique|nullable'],
                 'phone'      => ['type'   => 'string', 'definition' => 'nullable'],
+                'enum_str'   => ['type'   => 'enum:1,2,3']
             ]
         ];
 
