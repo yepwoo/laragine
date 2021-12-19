@@ -39,23 +39,24 @@ class RequestProcessor extends Processor
                 $definitions        = explode("|", strtolower($cases['definition']));
                 $schema_definitions = $this->schema['definitions'];
 
-                foreach ($definitions as $definition) {
-                    $definition = explode(":", strtolower($definition))[0];
+                foreach ($definitions as $key => $value) {
+                    $value = explode(":", strtolower($value))[0];
 
-                    if ($definition == 'nullable') {
+                    if ($value == 'nullable') {
                         $nullable = true;
                     }
 
-                    if($schema_definitions[$definition]['request'] == 'unique') {
-                        $this->processor .= $schema_definitions[$definition]['request'] . ':' . $this->unit_collection['plural_lower_case'];
+                    if($schema_definitions[$value]['request'] == 'unique') {
+                        $this->processor .= $schema_definitions[$value]['request'] . ':' . $this->unit_collection['plural_lower_case'];
                     } else {
-                        $this->processor .= $definition;
+                        $this->processor .= $schema_definitions[$value]['request'];
                     }
-
                     /**
                      * need some updates here (it's not working properly here)
                      */
-                    $this->processor .= array_key_last($definitions) == $definition ? '' : '|';
+
+                    $this->processor .= array_key_last($definitions) === $key ||
+                                        $schema_definitions[$value]['request'] === '' ? '' : '|';
                 }
             }
 
