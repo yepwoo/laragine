@@ -20,7 +20,8 @@
             "request": "string",
             "factory": "word",
             "migration": "char",
-            "resource" : ""
+            "resource" : "",
+            "required": true
         },
         "boolean": {
             "has_value": false,
@@ -315,7 +316,7 @@
 
         "string": {
             "has_value": false,
-            "request": "",
+            "request": "string",
             "factory": {
                 "email": "safeEmail",
                 "url": "url",
