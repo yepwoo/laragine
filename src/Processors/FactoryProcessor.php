@@ -27,9 +27,11 @@ class FactoryProcessor extends Processor
             $this->type_str       = '';
             $this->definition_str = '';
 
+            // @codeCoverageIgnoreStart
             $this->processor .= <<<STR
                                     '$column' => \$this->faker->
                         STR;
+            // @codeCoverageIgnoreEnd
 
             if(isset($cases['definition'])) {
               $this->handleDefinitionCase($cases['definition']);
