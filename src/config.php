@@ -71,7 +71,7 @@ return [
             'Unit.json'                  => 'data/'
         ],
         'unit_folders' => [
-            'create_units_table.stub'                      => 'Database/Migrations/',
+            'date_create_units_table.stub'                 => 'Database/Migrations/',
             'UnitRequest.stub'                             => 'Requests/',
             'UnitResource.stub'                            => 'Resources/',
             'UnitTest.stub'                                => 'Tests/Feature/',
@@ -92,7 +92,7 @@ return [
     |
     */
     'messages' => [
-        
+
     ],
 
     /*

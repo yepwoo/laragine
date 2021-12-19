@@ -70,11 +70,29 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     /**
      * override the data file for the unit
-     * 
+     *
      * @param array $array
      */
     protected function overrideDataFile($array) : void
     {
         file_put_contents("$this->module_dir/data/$this->unit.json", json_encode($array));
+    }
+
+    /**
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
+     */
+
+    protected function defineEnvironment($app)
+    {
+        // Setup default database to use sqlite :memory:
+        $app['config']->set('database.default', 'testbench');
+        $app['config']->set('database.connections.testbench', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
     }
 }

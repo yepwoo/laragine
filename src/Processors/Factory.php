@@ -36,7 +36,7 @@ class Factory
         $files           = config('laragine.module.unit_folders');
 
         $search = [
-            'file'    => ['stub', 'Unit', 'units'],
+            'file'    => ['date', 'stub', 'Unit', 'units'],
             'content' => [
                 '#UNIT_NAME#',
                 '#UNIT_NAME_PLURAL_LOWER_CASE#',
@@ -51,7 +51,7 @@ class Factory
         $unit_plural_lower = $units_data['unit_collection']['plural_lower_case'];
 
         $replace = [
-            'file'    => ['php', $units_data['unit_collection']['studly'], date('Y_m_d_His'). '_' .$unit_plural_lower],
+            'file'    => [date('Y_m_d_His'), 'php', $units_data['unit_collection']['studly'], $unit_plural_lower],
             'content' => [
                 $units_data['unit_collection']['studly'],
                 $unit_plural_lower,
