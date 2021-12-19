@@ -25,9 +25,12 @@ class RequestProcessor extends Processor
             $type = strtolower($cases['type']);
             $schema_types = $this->schema['types'];
             $type = $schema_types[$type]['request'] !== "" ? $schema_types[$type]['request'] . '|' : "";
+
+            // @codeCoverageIgnoreStart
             $this->processor .= <<<STR
                                             '$column' => '$type
                         STR;
+            // @codeCoverageIgnoreEnd
 
             /**
              * === definition case

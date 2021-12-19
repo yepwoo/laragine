@@ -24,8 +24,10 @@ class ResourceProcessor extends Processor
 
     public function setInitStr($key)
     {
+        // @codeCoverageIgnoreStart
         $this->processor .= <<<STR
                                     '$key' => \$this->$key
                         STR;
+        // @codeCoverageIgnoreEnd
     }
 }
