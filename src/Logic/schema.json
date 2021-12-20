@@ -2,8 +2,15 @@
     "types": {
         "bigIncrements": {
             "has_value": false,
-            "request": "",
+            "request": "integer",
             "factory": "integer",
+            "migration": "integer",
+            "resource" : ""
+        },
+        "bigInteger": {
+            "has_value": false,
+            "request": "integer",
+            "factory": "same_as_integer",
             "migration": "integer",
             "resource" : ""
         },
@@ -53,14 +60,14 @@
         },
         "decimal": {
             "has_value": false,
-            "request": "",
+            "request": "integer",
             "factory": "integer",
             "migration": "decimal",
             "resource" : ""
         },
         "double": {
             "has_value": false,
-            "request": "",
+            "request": "integer",
             "factory": "integer",
             "migration": "double",
             "resource" : ""
@@ -76,7 +83,7 @@
         },
         "float": {
             "has_value": false,
-            "request": "",
+            "request": "integer",
             "factory": "integer",
             "migration": "float",
             "resource" : ""
@@ -118,7 +125,7 @@
         },
         "integer": {
             "has_value": false,
-            "request": "",
+            "request": "integer",
             "factory": "integer",
             "migration": "integer",
             "resource" : ""
@@ -326,7 +333,6 @@
             "migration": "string",
             "resource" : ""
         },
-
         "text": {
             "has_value": false,
             "request": "",
@@ -334,11 +340,130 @@
             "migration": "text",
             "resource" : ""
         },
-        "bigInteger": {
+        "timeTz": {
             "has_value": false,
             "request": "",
-            "factory": "same_as_integer",
-            "migration": "integer",
+            "factory": "",
+            "migration": "timeTz",
+            "resource" : ""
+        },
+        "time": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "time",
+            "resource" : ""
+        },
+        "timestampTz": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "timestampTz",
+            "resource" : ""
+        },
+        "timestamp": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "timestamp",
+            "resource" : ""
+        },
+        "timestampsTz": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "timestampsTz",
+            "resource" : ""
+        },
+        "timestamps": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "timestamps",
+            "resource" : ""
+        },
+        "tinyIncrements": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "tinyIncrements",
+            "resource" : ""
+        },
+        "tinyInteger": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "tinyInteger",
+            "resource" : ""
+        },
+        "tinyText": {
+            "has_value": false,
+            "request": "string",
+            "factory": "text",
+            "migration": "tinyText",
+            "resource" : ""
+        },
+        "unsignedBigInteger": {
+            "has_value": false,
+            "request": "integer",
+            "factory": "integer",
+            "migration": "unsignedBigInteger",
+            "resource" : ""
+        },
+        "unsignedDecimal": {
+            "has_value": false,
+            "request": "integer",
+            "factory": "integer",
+            "migration": "unsignedDecimal",
+            "resource" : ""
+        },
+        "unsignedInteger": {
+            "has_value": false,
+            "request": "integer",
+            "factory": "integer",
+            "migration": "unsignedInteger",
+            "resource" : ""
+        },
+        "unsignedMediumInteger": {
+            "has_value": false,
+            "request": "integer",
+            "factory": "integer",
+            "migration": "unsignedMediumInteger",
+            "resource" : ""
+        },
+        "unsignedSmallInteger": {
+            "has_value": false,
+            "request": "integer",
+            "factory": "integer",
+            "migration": "unsignedSmallInteger",
+            "resource" : ""
+        },
+        "unsignedTinyInteger": {
+            "has_value": false,
+            "request": "integer",
+            "factory": "integer",
+            "migration": "unsignedTinyInteger",
+            "resource" : ""
+        },
+        "uuidMorphs": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "uuidMorphs",
+            "resource" : ""
+        },
+        "uuid": {
+            "has_value": false,
+            "request": "",
+            "factory": "",
+            "migration": "uuid",
+            "resource" : ""
+        },
+        "year": {
+            "has_value": false,
+            "request": "",
+            "factory": "year",
+            "migration": "year",
             "resource" : ""
         }
     },
