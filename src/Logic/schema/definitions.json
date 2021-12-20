@@ -1,0 +1,24 @@
+{
+  "default": {
+    "has_value"  : true,
+    "value_type" : "one_value_argument",
+    "resource"   : "",
+    "request"    : "",
+    "factory"    : "",
+    "migration"  : "default"
+  },
+  "nullable": {
+    "has_value" : false,
+    "resource"  : "nullable",
+    "factory"   : "",
+    "migration" : "nullable",
+    "request"   : "nullable"
+  },
+  "unique": {
+    "has_value" : false,
+    "resource"  : "unique",
+    "request"   : "unique",
+    "factory"   : "unique",
+    "migration" : "unique"
+  }
+}

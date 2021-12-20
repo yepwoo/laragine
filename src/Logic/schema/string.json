@@ -1,0 +1,65 @@
+{
+  "tinyText": {
+    "has_value": false,
+    "request": "string",
+    "factory": "text",
+    "migration": "tinyText",
+    "resource" : ""
+  },
+  "string": {
+    "has_value": false,
+    "request": "string",
+    "factory": {
+      "email": "safeEmail",
+      "url": "url",
+      "phone": "phoneNumber",
+      "default": "text"
+    },
+    "migration": "string",
+    "resource" : ""
+  },
+  "text": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "text",
+    "resource" : ""
+  },
+  "mediumText": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "mediumText",
+    "resource" : ""
+  },
+  "lineString": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "lineString",
+    "resource" : ""
+  },
+  "longText": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "longText",
+    "resource" : ""
+  },
+  "char": {
+    "has_value": true,
+    "value_type" : "one_value_argument",
+    "request": "string",
+    "factory": "word",
+    "migration": "char",
+    "resource" : "",
+    "required": true
+  },
+  "multiLineString": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "multiLineString",
+    "resource" : ""
+  }
+}

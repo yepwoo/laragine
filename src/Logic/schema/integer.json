@@ -1,0 +1,170 @@
+{
+  "bigIncrements": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "integer",
+    "resource" : ""
+  },
+  "bigInteger": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "same_as_integer",
+    "migration": "integer",
+    "resource" : ""
+  },
+  "decimal": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "decimal",
+    "resource" : ""
+  },
+  "double": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "double",
+    "resource" : ""
+  },
+  "float": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "float",
+    "resource" : ""
+  },
+  "integer": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "integer",
+    "resource" : ""
+  },
+  "mediumIncrements": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "mediumIncrements",
+    "resource" : ""
+  },
+  "mediumInteger": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "mediumInteger",
+    "resource" : ""
+  },
+  "smallIncrements": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "smallIncrements",
+    "resource" : ""
+  },
+  "smallInteger": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "smallInteger",
+    "resource" : ""
+  },
+  "tinyIncrements": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "tinyIncrements",
+    "resource" : ""
+  },
+  "tinyInteger": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "tinyInteger",
+    "resource" : ""
+  },
+  "unsignedBigInteger": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "unsignedBigInteger",
+    "resource" : ""
+  },
+  "unsignedDecimal": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "unsignedDecimal",
+    "resource" : ""
+  },
+  "unsignedInteger": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "unsignedInteger",
+    "resource" : ""
+  },
+  "unsignedMediumInteger": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "unsignedMediumInteger",
+    "resource" : ""
+  },
+  "unsignedSmallInteger": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "unsignedSmallInteger",
+    "resource" : ""
+  },
+  "unsignedTinyInteger": {
+    "has_value": false,
+    "request": "integer",
+    "factory": "integer",
+    "migration": "unsignedTinyInteger",
+    "resource" : ""
+  },
+  "id": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "id",
+    "resource" : ""
+  },
+  "increments": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "increments",
+    "resource" : ""
+  },
+  "binary": {
+    "has_value": false,
+    "request": "string",
+    "factory": "text",
+    "migration": "binary",
+    "resource" : ""
+  },
+  "foreignId": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "foreignId",
+    "resource" : ""
+  },
+  "point": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "point",
+    "resource" : ""
+  },
+  "uuid": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "uuid",
+    "resource" : ""
+  }
+}

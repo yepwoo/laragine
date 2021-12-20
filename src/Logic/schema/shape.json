@@ -1,0 +1,38 @@
+{
+  "geometryCollection": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "geometryCollection",
+    "resource" : ""
+  },
+  "geometry": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "geometry",
+    "resource" : ""
+  },
+  "multiPoint": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "multiPoint",
+    "resource" : ""
+  },
+
+  "multiPolygon": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "multiPolygon",
+    "resource" : ""
+  },
+  "polygon": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "polygon",
+    "resource" : ""
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "json": {
+    "has_value": false,
+    "request": "",
+    "factory": "json",
+    "migration": "json",
+    "resource" : ""
+  },
+  "jsonb": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "jsonb",
+    "resource" : ""
+  }
+}

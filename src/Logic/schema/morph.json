@@ -1,0 +1,30 @@
+{
+  "morphs": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "morphs",
+    "resource" : ""
+  },
+  "nullableMorphs": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "nullableMorphs",
+    "resource" : ""
+  },
+  "nullableUuidMorphs": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "nullableUuidMorphs",
+    "resource" : ""
+  },
+  "uuidMorphs": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "uuidMorphs",
+    "resource" : ""
+  }
+}

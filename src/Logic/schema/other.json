@@ -1,0 +1,69 @@
+{
+  "year": {
+    "has_value": false,
+    "request": "",
+    "factory": "year",
+    "migration": "year",
+    "resource" : ""
+  },
+  "macAddress": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "macAddress",
+    "resource" : ""
+  },
+  "ipAddress": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "ipAddress",
+    "resource" : ""
+  },
+  "boolean": {
+    "has_value": false,
+    "request": "",
+    "factory": "boolean",
+    "migration": "boolean",
+    "resource" : ""
+  },
+  "enum" : {
+    "has_value": true,
+    "value_type": "array",
+    "request": "",
+    "factory": "",
+    "migration": "enum",
+    "resource" : ""
+  },
+  "rememberToken": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "rememberToken",
+    "resource" : ""
+  },
+
+  "set": {
+    "has_value": true,
+    "value_type": "array",
+    "request": "",
+    "factory": "",
+    "migration": "set",
+    "resource" : ""
+  },
+  "softDeletesTz": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "softDeletesTz",
+    "resource" : ""
+  },
+
+  "softDeletes": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "softDeletes",
+    "resource" : ""
+  }
+}

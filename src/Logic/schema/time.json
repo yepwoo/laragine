@@ -1,0 +1,72 @@
+{
+  "timeTz": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "timeTz",
+    "resource" : ""
+  },
+  "time": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "time",
+    "resource" : ""
+  },
+  "timestampTz": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "timestampTz",
+    "resource" : ""
+  },
+  "timestamp": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "timestamp",
+    "resource" : ""
+  },
+  "timestampsTz": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "timestampsTz",
+    "resource" : ""
+  },
+  "timestamps": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "timestamps",
+    "resource" : ""
+  },
+  "nullableTimestamps": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "nullableTimestamps",
+    "resource" : ""
+  },
+  "dateTimeTz": {
+    "has_value": false,
+    "request": "date",
+    "factory": "dateTime",
+    "migration": "dateTimeTz",
+    "resource" : ""
+  },
+  "dateTime": {
+    "has_value": false,
+    "request": "date",
+    "factory": "dateTime",
+    "migration": "dateTimeTz",
+    "resource" : ""
+  },
+  "date": {
+    "has_value": false,
+    "request": "date",
+    "factory": "date",
+    "migration": "date",
+    "resource" : ""
+  }
+}
