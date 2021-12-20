@@ -76,7 +76,7 @@ class Processor
      */
     public function setSchema(): Processor
     {
-        $this->schema = FileManipulator::getSchema();
+        $this->schema = json_decode(json_encode(FileManipulator::getSchema()), true);
         return $this;
     }
 

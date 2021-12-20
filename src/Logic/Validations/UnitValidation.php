@@ -41,7 +41,7 @@ class UnitValidation
     public function __construct(Command $command)
     {
         $this->command = $command;
-        $this->schema  = FileManipulator::getSchema();
+        $this->schema  = json_decode(json_encode(FileManipulator::getSchema()), true);
     }
 
     /**
