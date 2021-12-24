@@ -1,4 +1,26 @@
 {
+  "unique": {
+    "has_value" : false,
+    "resource"  : "unique",
+    "request"   : "unique",
+    "factory"   : "unique",
+    "migration" : "unique"
+  },
+  "after": {
+    "has_value" : true,
+    "value_type" : "one_value_argument",
+    "resource"  : "",
+    "factory"   : "",
+    "request"   : "",
+    "migration" : "after"
+  },
+  "autoIncrement": {
+    "has_value" : false,
+    "resource"  : "",
+    "request"   : "",
+    "factory"   : "",
+    "migration" : "autoIncrement"
+  },
   "default": {
     "has_value"  : true,
     "value_type" : "one_value_argument",
@@ -7,6 +29,28 @@
     "factory"    : "",
     "migration"  : "default"
   },
+  "first": {
+    "has_value" : false,
+    "resource"  : "",
+    "request"   : "",
+    "factory"   : "",
+    "migration" : "first"
+  },
+  "from": {
+    "has_value" : true,
+    "value_type" : "one_value_argument",
+    "resource"  : "",
+    "request"   : "",
+    "factory"   : "",
+    "migration" : "from"
+  },
+  "invisible": {
+    "has_value" : false,
+    "resource"  : "",
+    "request"   : "",
+    "factory"   : "",
+    "migration" : "invisible"
+  },
   "nullable": {
     "has_value" : false,
     "resource"  : "nullable",
@@ -14,11 +58,63 @@
     "migration" : "nullable",
     "request"   : "nullable"
   },
-  "unique": {
+  "storedAs": {
+    "has_value" : true,
+    "value_type" : "one_value_argument",
+    "resource"  : "",
+    "request"   : "",
+    "factory"   : "",
+    "migration" : "storedAs"
+  },
+  "unsigned": {
     "has_value" : false,
-    "resource"  : "unique",
-    "request"   : "unique",
-    "factory"   : "unique",
-    "migration" : "unique"
+    "resource"  : "",
+    "factory"   : "",
+    "migration" : "",
+    "request"   : "unsigned"
+  },
+  "useCurrent": {
+    "has_value" : false,
+    "resource"  : "",
+    "factory"   : "",
+    "migration" : "",
+    "request"   : "useCurrent"
+  },
+  "useCurrentOnUpdate": {
+    "has_value" : false,
+    "resource"  : "",
+    "factory"   : "",
+    "migration" : "",
+    "request"   : "useCurrentOnUpdate"
+  },
+  "virtualAs": {
+    "has_value" : true,
+    "value_type" : "one_value_argument",
+    "resource"  : "",
+    "request"   : "",
+    "factory"   : "",
+    "migration" : "virtualAs"
+  },
+  "generatedAs": {
+    "has_value" : true,
+    "value_type" : "one_value_argument",
+    "resource"  : "",
+    "request"   : "",
+    "factory"   : "",
+    "migration" : "generatedAs"
+  },
+  "always": {
+    "has_value" : false,
+    "resource"  : "",
+    "factory"   : "",
+    "migration" : "",
+    "request"   : "always"
+  },
+  "isGeometry": {
+    "has_value" : false,
+    "resource"  : "",
+    "factory"   : "",
+    "migration" : "",
+    "request"   : "isGeometry"
   }
 }
