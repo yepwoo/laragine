@@ -26,7 +26,7 @@ The `Base` module is the main module in which every new module will be created (
 
 It's also very important to understand the following terms:
 
-* `Module` the directory that contains related files that do specific job, for example Blog module or Sale module or Catalogue Module (last 2 modules examples should be in e-commerce system).
+* `Module` the directory that contains related files that do specific job, for example Blog module or Sale module or Catalogue Module (last 2 modules examples should be in an e-commerce system).
 
 * `Unit` is a part of the module for example Post & Comment units (in Blog Module) and Invoice & Quotation units (in Sale Module).
 
