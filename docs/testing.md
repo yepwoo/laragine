@@ -1,4 +1,4 @@
-### Testing
+## Testing
 
 This section is very important and it's **`required`** to apply all the instructions here, in order for you to run the tests correctly.
 

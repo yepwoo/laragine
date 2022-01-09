@@ -1,22 +1,38 @@
 ## Introduction
 
-To get started, require the package:
+We developed Laragine to make the software development using Laravel faster and cleaner, so you can get things done faster, not only that, Laragine is not about quantity only, it's all about quantity and quality.
 
-```bash
-composer require yepwoo/laragine
-```
+### Features
 
-Note that: Laragine currently is working on **Laravel 8** (`^8.0`).
+It's very important to know why to use Laragine, here is why:
 
-### Install the package
+* A module based, meaning that you can separate all related stuff together
 
-After including Laragine, you have to install it by running the following command:
+* You can create CRUD operations including the `requests`, `resources`, `models`, `migrations`, `factories`, `views` ...etc by doing simple stuff (don't worry, it's explained in the documentation)
 
-```bash
-php artisan laragine:install
-```
+* Unit Tests are also created!
+
+* One clear response for the client side (for example: API response)
+
+* Many helper functions/traits/classes that will come in handy while you develop! (error handling, adding more info to the logs, security helpers ...etc)
+
+* Configuration! each module has its own configuration
+
+### Structure
+
+![Structure](structure.png "Structure")
+
+The `Base` module is the main module in which every new module will be created (keep reading the other sections to know how), will be derived from.
+
+It's also very important to understand the following terms:
+
+* `Module` the directory that contains related files that do specific job, for example Blog module or Sale module or Catalogue Module (last 2 modules examples should be in e-commerce system).
+
+* `Unit` is a part of the module for example Post & Comment units (in Blog Module) and Invoice & Quotation units (in Sale Module).
 
 ### Notes
+
+* Laragine currently is working on **Laravel 8** (`^8.0`)
 
 * Laragine directory will be in the root directory under `Core` directory
 

@@ -8,23 +8,8 @@
 
 We developed Laragine to make the software development using Laravel faster and cleaner, so you can get things done faster, not only that, Laragine is not about quantity only, it's all about quantity and quality.
 
-### Features
-It's very important to know why to use Laragine, here is why:
-
-* A module based, meaning that you can separate all related stuff together
-
-* You can create CRUD operations including the `requests`, `resources`, `models`, `migrations`, `factories`, `views` ...etc by doing simple stuff (don't worry, it's explained in the documentation)
-
-* Unit Tests are also created!
-
-* One clear response for the client side (for example: API response)
-
-* Many helper functions/traits/classes that will come in handy while you develop! (error handling, adding more info to the logs, security helpers ...etc)
-
-* Configuration! each module has its own configuration
-
 ### Getting Started
-To get started please check the [documentation](https://yepwoo.com/laragine/docs/index.html)
+To get started please check the [documentation](https://yepwoo.com/website/laragine/docs/v2/introduction)
 
 ### Contributing
 Please note that Laragine source code isn't in its best version yet, currently our first priority is to rewrite the whole source code again so we can scale fast.
