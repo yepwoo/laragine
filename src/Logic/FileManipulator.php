@@ -15,9 +15,8 @@ class FileManipulator
      * @param  string[] $files
      * @param  string[] $search  str_replace first param
      * @param  string[] $replace str_replace second param
-     * @return void
      */
-    public static function generate($source_dir, $destination_dir, $files, $search = [], $replace = [])
+    public static function generate($source_dir, $destination_dir, $files, $search = [], $replace = []) : void
     {
         foreach ($files as $name => $destination) {
             $file      = $name;
