@@ -76,14 +76,14 @@ class FileManipulator
         $definitions   = __DIR__ .'/schema/definitions.json';
 
 
-        $integers = self::readJson($integers_path);
-        $json     = self::readJson($json_path);
-        $morph    = self::readJson($morph_path);
-        $other    = self::readJson($other_path);
-        $shape    = self::readJson($shape_path);
-        $string   = self::readJson($string_path);
-        $time     = self::readJson($time_path);
-        $schema   = self::readJson($path);
+        $integers    = self::readJson($integers_path);
+        $json        = self::readJson($json_path);
+        $morph       = self::readJson($morph_path);
+        $other       = self::readJson($other_path);
+        $shape       = self::readJson($shape_path);
+        $string      = self::readJson($string_path);
+        $time        = self::readJson($time_path);
+        $schema      = self::readJson($path);
         $definitions = self::readJson($definitions);
 
         $object = new stdClass();
