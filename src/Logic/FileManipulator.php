@@ -103,9 +103,8 @@ class FileManipulator
      * read json file
      *
      * @param  string $path
-     * @return array
      */
-    public static function readJson($path)
+    public static function readJson($path) : array
     {
         $json = file_get_contents($path);
         return json_decode($json, true);
