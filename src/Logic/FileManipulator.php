@@ -7,8 +7,6 @@ use stdClass;
 
 class FileManipulator
 {
-    protected static $main_path;
-
     /**
      * generate the files
      *
