@@ -12,6 +12,4 @@ We developed Laragine to make the software development using Laravel faster and 
 To get started please check the [documentation](https://yepwoo.com/website/laragine/docs/v2/introduction)
 
 ### Contributing
-Please note that Laragine source code isn't in its best version yet, currently our first priority is to rewrite the whole source code again so we can scale fast.
-
 Any contribution including pull requests, issues, suggestions or any thing that will make Laragine better is welcomed and much appreciated.
