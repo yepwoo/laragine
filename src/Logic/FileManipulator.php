@@ -114,7 +114,6 @@ class FileManipulator
      * check if dir/file exists
      *
      * @param  string $path
-     * @return bool
      */
     public static function exists($path)
     {
