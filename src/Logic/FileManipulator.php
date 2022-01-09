@@ -62,7 +62,7 @@ class FileManipulator
      * get the schema
      *
      * @param  string $path
-//     * @return object
+     * @return object
      */
     public static function getSchema($path = __DIR__ . '/schema.json')
     {
