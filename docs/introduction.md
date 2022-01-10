@@ -20,7 +20,7 @@ It's very important to know why to use Laragine, here is why:
 
 ### Structure
 
-![Structure](./structure.png "Structure")
+![Structure](structure.png)
 
 The `Base` module is the main module in which every new module will be created (keep reading the other sections to know how), will be derived from.
 
