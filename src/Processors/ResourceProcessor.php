@@ -10,8 +10,11 @@ class ResourceProcessor extends Processor
     public function process(): string
     {
         foreach ($this->json['attributes'] as $key => $value) {
-            $this->setInitStr($key);
-            $this->processor .= array_key_last($this->json['attributes']) == $key ? ',' : ",\n";
+            $type = explode(':', $value['type'])[0];
+            if (!$this->isRelationType($type)) {
+                $this->setInitStr($key);
+                $this->processor .= ",\n";
+            }
         }
 
         return $this->processor;

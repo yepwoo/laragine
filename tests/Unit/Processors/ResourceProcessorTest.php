@@ -2,8 +2,6 @@
 
 namespace Yepwoo\Laragine\Tests\Unit\Processors;
 
-use Yepwoo\Laragine\Logic\StringManipulator;
-use Yepwoo\Laragine\Processors\Processor;
 use Yepwoo\Laragine\Processors\ResourceProcessor;
 
 class ResourceProcessorTest extends ProcessorTestCase
@@ -19,6 +17,7 @@ class ResourceProcessorTest extends ProcessorTestCase
                                     'image_url' => \$this->image_url,
                                     'phone' => \$this->phone,
                                     'enum_str' => \$this->enum_str,
+                        
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);

@@ -169,7 +169,7 @@ class UnitValidation
      * @param $unit_collection
      */
     protected function typeCase($type_value, $column, $unit_collection) {
-        $type = explode(":", strtolower($type_value))[0];
+        $type = explode(":", $type_value)[0];
         $schema_types = $this->schema['types'];
 
         // ========= (3) ========
@@ -188,9 +188,9 @@ class UnitValidation
      * @param $type_value
      */
     protected function handleTypeValue($schema_types, $type_value) {
-        $type = explode(":", strtolower($type_value))[0];
+        $type = explode(":", $type_value)[0];
         $has_value = $schema_types[$type]['has_value'];
-        $values    = explode(":", strtolower($type_value));
+        $values    = explode(":", $type_value);
 
         if($has_value) {
             // ======= (4) =======
@@ -215,7 +215,7 @@ class UnitValidation
     protected function definitionCase($definition_value) {
         $definitions = explode('|', $definition_value);
         foreach ($definitions as $single_definition) {
-            $definition         = explode(":", strtolower($single_definition))[0];
+            $definition         = explode(":", $single_definition)[0];
             $schema_definitions = $this->schema['definitions'];
 
             // ===== (6) =====
@@ -235,9 +235,9 @@ class UnitValidation
      * @param $definition_value
      */
     protected function handleDefinitionValue($schema_definitions, $definition_value) {
-        $definition = explode(":", strtolower($definition_value))[0];
+        $definition = explode(":", $definition_value)[0];
         $has_value  = $schema_definitions[$definition]['has_value'];
-        $values     = explode(":", strtolower($definition_value));
+        $values     = explode(":", $definition_value);
 
         if($has_value) {
             // ======= (7) =======

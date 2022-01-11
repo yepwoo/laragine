@@ -105,4 +105,10 @@ class Processor
     {
         return $str == 'one_value_argument';
     }
+
+    protected function isRelationType($type): bool
+    {
+        return $type === 'morphs' || $type === 'nullableMorphs' ||
+            $type === 'nullableUuidMorphs' || $type === 'uuidMorphs';
+    }
 }

@@ -22,52 +22,54 @@ class RequestProcessor extends Processor
              * === Type case
              * will extract it to different functions to make the code more readable
              */
-            $type = strtolower($cases['type']);
-            $schema_types = $this->schema['types'];
-            $type = $schema_types[$type]['request'] !== "" ? $schema_types[$type]['request'] . '|' : "";
+            $type = $cases['type'];
+            if (!$this->isRelationType($type)) {
+                $schema_types = $this->schema['types'];
+                $type = $schema_types[$type]['request'] !== "" ? $schema_types[$type]['request'] . '|' : "";
 
-            // @codeCoverageIgnoreStart
-            $this->processor .= <<<STR
+                // @codeCoverageIgnoreStart
+                $this->processor .= <<<STR
                                             '$column' => '$type
                         STR;
-            // @codeCoverageIgnoreEnd
+                // @codeCoverageIgnoreEnd
 
-            /**
-             * === definition case
-             */
-            if(isset($cases['definition'])) {
-                $definitions        = explode("|", strtolower($cases['definition']));
-                $schema_definitions = $this->schema['definitions'];
+                /**
+                 * === definition case
+                 */
+                if(isset($cases['definition'])) {
+                    $definitions        = explode("|", $cases['definition']);
+                    $schema_definitions = $this->schema['definitions'];
 
-                foreach ($definitions as $key => $value) {
-                    $value = explode(":", strtolower($value))[0];
+                    foreach ($definitions as $key => $value) {
+                        $value = explode(":", $value)[0];
 
-                    if ($value == 'nullable') {
-                        $nullable = true;
+                        if ($value == 'nullable') {
+                            $nullable = true;
+                        }
+
+                        if($schema_definitions[$value]['request'] == 'unique') {
+                            $this->processor .= $schema_definitions[$value]['request'] . ':' . $this->unit_collection['plural_lower_case'];
+                        } else {
+                            $this->processor .= $schema_definitions[$value]['request'];
+                        }
+                        /**
+                         * need some updates here (it's not working properly here)
+                         */
+
+                        $this->processor .= array_key_last($definitions) === $key ||
+                        $schema_definitions[$value]['request'] === '' ? '' : '|';
                     }
-
-                    if($schema_definitions[$value]['request'] == 'unique') {
-                        $this->processor .= $schema_definitions[$value]['request'] . ':' . $this->unit_collection['plural_lower_case'];
-                    } else {
-                        $this->processor .= $schema_definitions[$value]['request'];
-                    }
-                    /**
-                     * need some updates here (it's not working properly here)
-                     */
-
-                    $this->processor .= array_key_last($definitions) === $key ||
-                                        $schema_definitions[$value]['request'] === '' ? '' : '|';
                 }
-            }
 
-            if($nullable) {
-                $this->processor .= "'";
-            } else {
-                $this->processor .= 'required' . "'";
-            }
+                if($nullable) {
+                    $this->processor .= "'";
+                } else {
+                    $this->processor .= 'required' . "'";
+                }
 
-            $nullable = false;
-            $this->processor  .= array_key_last($attributes) == $column ? ',' : ",\n";
+                $nullable = false;
+                $this->processor  .= ",\n";
+            }
         }
 
         return $this->processor;

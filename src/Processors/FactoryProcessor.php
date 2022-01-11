@@ -27,30 +27,33 @@ class FactoryProcessor extends Processor
             $this->type_str       = '';
             $this->definition_str = '';
 
+            $type = explode(':', $cases['type'])[0];
 
-            if(isset($cases['definition'])) {
-              $this->handleDefinitionCase($cases['definition']);
+            if (!$this->isRelationType($type)) {
+                if(isset($cases['definition'])) {
+                  $this->handleDefinitionCase($cases['definition']);
+                }
+
+                $this->handleTypeCase($cases['type'], $column);
+
+                // @codeCoverageIgnoreStart
+                if($this->definition_str === '' && $this->type_str === '') {
+                    $this->processor .= <<<STR
+                                            '$column' => ''
+                                STR;
+                } else {
+                    $this->processor .= <<<STR
+                                            '$column' => \$this->faker->
+                                STR;
+                }
+                // @codeCoverageIgnoreEnd
+                /**
+                 * Check if type_str is empty or not
+                 */
+
+                $this->processor .= ($this->definition_str !== '' ? $this->definition_str . '->': '') . ($this->type_str !== '' ? $this->type_str : '');
+                $this->processor .= ",\n";
             }
-
-            $this->handleTypeCase($cases['type'], $column);
-
-            // @codeCoverageIgnoreStart
-            if($this->definition_str === '' && $this->type_str === '') {
-                $this->processor .= <<<STR
-                                        '$column' => ''
-                            STR;
-            } else {
-                $this->processor .= <<<STR
-                                        '$column' => \$this->faker->
-                            STR;
-            }
-            // @codeCoverageIgnoreEnd
-            /**
-             * Check if type_str is empty or not
-             */
-
-            $this->processor .= ($this->definition_str !== '' ? $this->definition_str . '->': '') . ($this->type_str !== '' ? $this->type_str : '');
-            $this->processor .= array_key_last($this->json['attributes']) == $column ? ',' : ",\n";
         }
 
         return $this->processor;
@@ -64,12 +67,12 @@ class FactoryProcessor extends Processor
      */
     private function handleDefinitionCase($single_definition): void
     {
-        $definitions        = explode("|", strtolower($single_definition));
+        $definitions        = explode("|", $single_definition);
 
         $schema_definitions = $this->schema['definitions'];
 
         foreach ($definitions as $definition) {
-          $definition = explode(":", strtolower($definition))[0];
+          $definition = explode(":", $definition)[0];
           if($schema_definitions[$definition] && $schema_definitions[$definition]['factory'] !== '') {
               $this->definition_str .= $schema_definitions[$definition]['factory'] . '()';
           }
@@ -84,7 +87,7 @@ class FactoryProcessor extends Processor
      */
     private function handleTypeCase($type, $column_name): void
     {
-        $type = explode(":", strtolower($type))[0];
+        $type = explode(":", $type)[0];
 
         $schema_types = $this->schema['types'];
 

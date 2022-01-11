@@ -55,13 +55,13 @@ class MigrationProcessor extends Processor
     public function typeCase($type_str, $column)
     {
         $schema_types = $this->schema['types'];
-        $type = explode(":", strtolower($type_str))[0];
+        $type = explode(":", $type_str)[0];
 
         if(($this->isSchemaFound('types', $type))) {
             $has_value = $schema_types[$type]['has_value'];
 
            if($has_value) {
-               $values = explode(",", explode(":", strtolower($type_str))[1]);
+               $values = explode(",", explode(":", $type_str)[1]);
                $type_value = '';
                foreach($values as $value) {
                    if (is_numeric($value)) {
@@ -82,16 +82,16 @@ class MigrationProcessor extends Processor
 
     public function definitionCase($definition_str) {
         $schema_definitions = $this->schema['definitions'];
-        $definitions        = explode("|", strtolower($definition_str));
+        $definitions        = explode("|", $definition_str);
 
         foreach ($definitions as $definition) {
-            $single_definition = explode(":", strtolower($definition))[0];
+            $single_definition = explode(":", $definition)[0];
 
             if($this->isSchemaFound('definitions', $single_definition)) {
                 $has_value = $schema_definitions[$single_definition]['has_value'];
 
                 if($has_value) {
-                    $values = explode(",", explode(":", strtolower($definition))[1]);
+                    $values = explode(",", explode(":", $definition)[1]);
                     $definition_value = '';
 
                     foreach($values as $value) {

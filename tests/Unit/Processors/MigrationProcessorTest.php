@@ -17,6 +17,8 @@ class MigrationProcessorTest extends ProcessorTestCase
                                     \$table->string('image_url')->unique()->nullable();
                                     \$table->string('phone')->nullable();
                                     \$table->enum('enum_str', [1,2,3]);
+                                    \$table->morphs('morph_text');
+                                    \$table->nullableMorphs('nullable_morph_test');
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
         $this->assertEquals($expected_str, $output_str);
