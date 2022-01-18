@@ -52,11 +52,25 @@ class FileManipulator
             if ($file == '') {
                 File::copyDirectory("$source_dir/{$destination}", "$destination_dir/{$destination}");
             } else {
+                $unit = $replace['content'][1]; // plural lower case
+
+                if (strpos($destination, 'Migrations') !== false) {
+                    $full_destination = "$destination_dir/{$destination}";
+                    self::deleteFilesWithMatchSpecificPrefix($full_destination, "create_$unit"."_"."table");
+
+                }
                 file_put_contents("$destination_dir/{$destination}{$file}", $content);
             }
         }
     }
 
+    protected static function deleteFilesWithMatchSpecificPrefix($destination, $prefix) {
+        foreach (glob("$destination".'/*') as $migration_file) {
+            if(strpos($migration_file, $prefix) !== false) {
+                File::delete("$migration_file");
+            }
+        }
+    }
     /**
      * get the schema
      *
