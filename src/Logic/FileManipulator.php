@@ -51,7 +51,7 @@ class FileManipulator
             File::makeDirectory("$destination_dir/{$destination}", $mode = 0775, true, true);
             if ($file == '') {
                 File::copyDirectory("$source_dir/{$destination}", "$destination_dir/{$destination}");
-            } else {
+            } else if(array_key_exists('content', $replace)) {
                 $unit = $replace['content'][1]; // plural lower case
 
                 if (strpos($destination, 'Migrations') !== false) {
@@ -59,6 +59,8 @@ class FileManipulator
                     self::deleteFilesWithMatchSpecificPrefix($full_destination, "create_$unit"."_"."table");
 
                 }
+                file_put_contents("$destination_dir/{$destination}{$file}", $content);
+            } else {
                 file_put_contents("$destination_dir/{$destination}{$file}", $content);
             }
         }
