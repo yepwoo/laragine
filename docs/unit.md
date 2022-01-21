@@ -58,3 +58,7 @@ To create all the related stuff (migration, request, resource, factory, unit tes
 ```bash
 php artisan laragine:unit Task --module=Todo
 ```
+
+### Notes
+
+* when overriding a unit (for example Task unit) by running the command in `Publishing` section again, all related migration files will be deleted for this unit (for example create table migration file and adding new column/s migration file).
