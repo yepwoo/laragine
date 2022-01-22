@@ -56,7 +56,7 @@ class FileManipulator
 
                 if (strpos($destination, 'Migrations') !== false) {
                     $full_destination = "$destination_dir/{$destination}";
-                    self::deleteFilesWithMatchSpecificPrefix($full_destination, "create_$unit"."_"."table");
+                    self::deleteFilesWithMatchSpecificPrefix($full_destination, "$unit"."_"."table");
 
                 }
                 file_put_contents("$destination_dir/{$destination}{$file}", $content);
