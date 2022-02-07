@@ -9,7 +9,7 @@
 We developed Laragine to make the software development using Laravel faster and cleaner, so you can get things done faster, not only that, Laragine is not about quantity only, it's all about quantity and quality.
 
 ### Getting Started
-To get started please check the [documentation](https://yepwoo.com/website/laragine/docs/v2/introduction)
+To get started please check the [documentation](https://yepwoo.com/products/laragine/docs/v2/introduction).
 
 ### Contributing
 Any contribution including pull requests, issues, suggestions or any thing that will make Laragine better is welcomed and much appreciated.
