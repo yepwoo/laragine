@@ -56,7 +56,7 @@ class RequestProcessor extends Processor
                          * need some updates here (it's not working properly here)
                          */
 
-                        $this->processor .= array_key_last($definitions) === $key ||
+                        $this->processor .= (array_key_last($definitions) === $key && $nullable) ||
                         $schema_definitions[$value]['request'] === '' ? '' : '|';
                     }
                 }
