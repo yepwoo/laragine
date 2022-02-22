@@ -29,7 +29,7 @@ class Handler extends ExceptionHandler
 }
 ```
 
-Now, we need to use this helper function `client_validation_response` (it accepts 2 arguments, the first is the rules array and the second (optional) is the start error code) in the validation file `resources\lang\en\validation.php` by assigning the array to a variable and then return the helper function, here is the full code snippet:
+Now, we need to use this helper function `client_validation_response` (it accepts 2 arguments, the first is the rules array and the second (optional) is the start error code) in the validation file (`lang\en\validation.php` in Laravel `9.x` or `resources\lang\en\validation.php` Laravel `8.x`) by assigning the array to a variable and then return the helper function, here is the full code snippet:
 
 ```php
 $array = [
