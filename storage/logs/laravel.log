@@ -1,0 +1,32 @@
+[2021-10-13 16:39:54] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [null] is not defined. at C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:192)
+[stacktrace]
+#0 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(118): Illuminate\\Log\\LogManager->resolve('null')
+#1 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(98): Illuminate\\Log\\LogManager->get('null')
+#2 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(564): Illuminate\\Log\\LogManager->driver()
+#3 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Trait \"Core\\\\Bas...', Array)
+#4 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\orchestra\\testbench-core\\src\\Exceptions\\Handler.php(40): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#5 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(88): Orchestra\\Testbench\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#6 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(130): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#7 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#8 {main}
+"} 
+[2021-10-13 16:39:54] laravel.ERROR: Trait "Core\Base\Traits\Response\SendResponse" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"Core\\Base\\Traits\\Response\\SendResponse\" not found at C:\\xampp_v8\\htdocs\\laragine\\laragine\\src\\Traits\\Exceptions\\Handler.php:14)
+[stacktrace]
+#0 {main}
+"} 
+[2021-10-13 16:39:54] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [null] is not defined. at C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:192)
+[stacktrace]
+#0 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(118): Illuminate\\Log\\LogManager->resolve('null')
+#1 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(98): Illuminate\\Log\\LogManager->get('null')
+#2 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(564): Illuminate\\Log\\LogManager->driver()
+#3 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Trait \"Core\\\\Bas...', Array)
+#4 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\orchestra\\testbench-core\\src\\Exceptions\\Handler.php(40): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#5 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(88): Orchestra\\Testbench\\Exceptions\\Handler->report(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#6 C:\\xampp_v8\\htdocs\\laragine\\laragine\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(130): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Symfony\\Component\\ErrorHandler\\Error\\FatalError))
+#7 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#8 {main}
+"} 
+[2021-10-13 16:39:54] laravel.ERROR: Trait "Core\Base\Traits\Response\SendResponse" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"Core\\Base\\Traits\\Response\\SendResponse\" not found at C:\\xampp_v8\\htdocs\\laragine\\laragine\\src\\Traits\\Exceptions\\Handler.php:14)
+[stacktrace]
+#0 {main}
+"} 

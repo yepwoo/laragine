@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="6" assertions="0" errors="6" warnings="0" failures="0" skipped="0" time="0.376396">
+    <testsuite name="Unit" tests="6" assertions="0" errors="6" warnings="0" failures="0" skipped="0" time="0.376396">
+      <testsuite name="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\InstallLaragineTest.php" tests="3" assertions="0" errors="3" warnings="0" failures="0" skipped="0" time="0.273974">
+        <testcase name="test_the_install_command_create_root_directory" class="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" classname="Yepwoo.Laragine.Tests.Unit.InstallLaragineTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\InstallLaragineTest.php" line="27" assertions="0" time="0.209047">
+          <error type="Error">Yepwoo\Laragine\Tests\Unit\InstallLaragineTest::test_the_install_command_create_root_directory
+Error: Class "Core\laravel\" not found
+
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:735
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:669
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\Traits\ServiceProvider\Module.php:20
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\src\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:649
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php:17
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:333
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:223
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\Testing.php:81
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:43
+C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\InstallLaragineTest.php:23</error>
+        </testcase>
+        <testcase name="test_when_root_directory_exists_users_can_choose_to_override_it" class="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" classname="Yepwoo.Laragine.Tests.Unit.InstallLaragineTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\InstallLaragineTest.php" line="38" assertions="0" time="0.033159">
+          <error type="Error">Yepwoo\Laragine\Tests\Unit\InstallLaragineTest::test_when_root_directory_exists_users_can_choose_to_override_it
+Error: Class "Core\laravel\" not found
+
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:735
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:669
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\Traits\ServiceProvider\Module.php:20
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\src\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:649
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php:17
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:333
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:223
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\Testing.php:81
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:43
+C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\InstallLaragineTest.php:23</error>
+        </testcase>
+        <testcase name="test_when_root_directory_exists_users_can_choose_to_not_override_it" class="Yepwoo\Laragine\Tests\Unit\InstallLaragineTest" classname="Yepwoo.Laragine.Tests.Unit.InstallLaragineTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\InstallLaragineTest.php" line="53" assertions="0" time="0.031768">
+          <error type="Error">Yepwoo\Laragine\Tests\Unit\InstallLaragineTest::test_when_root_directory_exists_users_can_choose_to_not_override_it
+Error: Class "Core\laravel\" not found
+
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:735
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:669
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\Traits\ServiceProvider\Module.php:20
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\src\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:649
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php:17
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:333
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:223
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\Testing.php:81
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:43
+C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\InstallLaragineTest.php:23</error>
+        </testcase>
+      </testsuite>
+      <testsuite name="Yepwoo\Laragine\Tests\Unit\MakeModuleTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\MakeModuleTest.php" tests="3" assertions="0" errors="3" warnings="0" failures="0" skipped="0" time="0.102423">
+        <testcase name="test_the_module_command_create_module_directory" class="Yepwoo\Laragine\Tests\Unit\MakeModuleTest" classname="Yepwoo.Laragine.Tests.Unit.MakeModuleTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\MakeModuleTest.php" line="44" assertions="0" time="0.035978">
+          <error type="Error">Yepwoo\Laragine\Tests\Unit\MakeModuleTest::test_the_module_command_create_module_directory
+Error: Class "Core\laravel\" not found
+
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:735
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:669
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\Traits\ServiceProvider\Module.php:20
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\src\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:649
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php:17
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:333
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:223
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\Testing.php:81
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:43
+C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\MakeModuleTest.php:38</error>
+        </testcase>
+        <testcase name="test_when_module_directory_exists_users_can_choose_to_override_it" class="Yepwoo\Laragine\Tests\Unit\MakeModuleTest" classname="Yepwoo.Laragine.Tests.Unit.MakeModuleTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\MakeModuleTest.php" line="60" assertions="0" time="0.032403">
+          <error type="Error">Yepwoo\Laragine\Tests\Unit\MakeModuleTest::test_when_module_directory_exists_users_can_choose_to_override_it
+Error: Class "Core\laravel\" not found
+
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:735
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:669
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\Traits\ServiceProvider\Module.php:20
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\src\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:649
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php:17
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:333
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:223
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\Testing.php:81
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:43
+C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\MakeModuleTest.php:38</error>
+        </testcase>
+        <testcase name="test_when_module_directory_exists_users_can_choose_to_not_override_it" class="Yepwoo\Laragine\Tests\Unit\MakeModuleTest" classname="Yepwoo.Laragine.Tests.Unit.MakeModuleTest" file="C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\MakeModuleTest.php" line="80" assertions="0" time="0.034042">
+          <error type="Error">Yepwoo\Laragine\Tests\Unit\MakeModuleTest::test_when_module_directory_exists_users_can_choose_to_not_override_it
+Error: Class "Core\laravel\" not found
+
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:735
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:669
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\Traits\ServiceProvider\Module.php:20
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\laravel\core\Base\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\src\ModuleServiceProvider.php:21
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:672
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Application.php:649
+C:\xampp_v8\htdocs\laragine\laragine\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\RegisterProviders.php:17
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:333
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\CreatesApplication.php:223
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:75
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\Concerns\Testing.php:81
+C:\xampp_v8\htdocs\laragine\laragine\vendor\orchestra\testbench-core\src\TestCase.php:43
+C:\xampp_v8\htdocs\laragine\laragine\tests\Unit\MakeModuleTest.php:38</error>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
