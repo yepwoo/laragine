@@ -1,0 +1,10 @@
+<?php
+
+namespace Core\#MODULE_NAME#\Filters;
+
+use Core\Base\Filters\Filter\AbstractFilter;
+
+class #UNIT_NAME#Filter extends AbstractFilter
+{
+    protected $filters = [];
+}
