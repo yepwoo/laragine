@@ -80,6 +80,10 @@ class MigrationProcessor extends Processor
         }
     }
 
+    /**
+     * Definition case
+     * @param $definition_str
+     */
     public function definitionCase($definition_str) {
         $schema_definitions = $this->schema['definitions'];
         $definitions        = explode("|", $definition_str);
@@ -97,7 +101,11 @@ class MigrationProcessor extends Processor
                     foreach($values as $value) {
                         if (is_numeric($value)) {
                             $definition_value .= $values[count($values) - 1] == $value ? (int)$value : (int)$value. ",";
-                        } else {
+                        }
+                        else if($value === 'false' or $value === 'true') {
+                            $definition_value .= $values[count($values) - 1] == $value ? "$value" : "$value". ",";
+                        }
+                        else {
                             $definition_value .= $values[count($values) - 1] == $value ? "'$value'" : "'$value'". ",";
                         }
                     }
