@@ -46,7 +46,8 @@ class ProcessorTestCase extends TestCase
                 'phone'                 => ['type'   => 'string', 'definition' => 'nullable'],
                 'enum_str'              => ['type'   => 'enum:1,2,3'],
                 'morph_text'            => ['type'   => 'morphs'],
-                'nullable_morph_test'   => ['type'   => 'nullableMorphs']
+                'nullable_morph_test'   => ['type'   => 'nullableMorphs'],
+                'is_done'               => ['type'   => 'boolean', 'definition' => 'default:false']
             ]
         ];
 

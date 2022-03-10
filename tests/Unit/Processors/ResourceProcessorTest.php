@@ -17,6 +17,7 @@ class ResourceProcessorTest extends ProcessorTestCase
                                     'image_url' => \$this->image_url,
                                     'phone' => \$this->phone,
                                     'enum_str' => \$this->enum_str,
+                                    'is_done' => \$this->is_done,
                         
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);

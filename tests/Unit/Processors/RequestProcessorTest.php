@@ -17,6 +17,7 @@ class RequestProcessorTest extends ProcessorTestCase
                                             'image_url' => 'string|unique:units|nullable',
                                             'phone' => 'string|nullable',
                                             'enum_str' => 'required',
+                                            'is_done' => 'required',
                         
                         STR;
         $expected_str = preg_replace("/\r/", "", $expected_str);
