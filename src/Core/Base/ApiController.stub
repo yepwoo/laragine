@@ -91,9 +91,9 @@ class Controller extends \App\Http\Controllers\Controller
      */
     public function update($id)
     {
-        $model = $this->model->find($id);
-        $model->update($this->request->all());
-        return $this->sendResponse(new $this->resource($model), 'successfully updated.');
+        $current_model = $this->model->find($id);
+        $current_model->update($this->request->all());
+        return $this->sendResponse(new $this->resource($current_model), 'successfully updated.');
     }
 
     /**
@@ -105,8 +105,8 @@ class Controller extends \App\Http\Controllers\Controller
      */
     public function destroy($id)
     {
-        $model = $this->model->find($id);
-        $model->delete();
+        $current_model = $this->model->find($id);
+        $current_model->delete();
         return $this->sendResponse([], 'successfully deleted.');
     }
 }

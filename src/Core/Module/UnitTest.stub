@@ -76,13 +76,13 @@ class #UNIT_NAME#Test extends TestCase
     public function testItShouldGetListingOfTheResource()
     {
         $this->getNewEntry();
-        $json              = $this->json;
-        $json['data']      = [];
-        $json['data']['*'] = $this->json['data'];
+        $current_json              = $this->json;
+        $current_json['data']      = [];
+        $current_json['data']['*'] = $this->json['data'];
 
         $this->json('GET', $this->base_url, [], $this->getHeaders())
              ->assertStatus(200)
-             ->assertJsonStructure($json);
+             ->assertJsonStructure($current_json);
     }
 
     /**
