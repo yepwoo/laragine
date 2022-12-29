@@ -4,7 +4,7 @@ To create a new unit, there are 2 commands we have to run:
 
 ### Initialization
 
-`php artisan laragine:unit {UnitName} {--module=ModuleName} {--init}`
+`php artisan laragine:unit UnitName --module=ModuleName --init`
 
 To initialize the unit with basic stuff (model, API controller and Web Controller) and after running the command you can configure the unit, here is an example:
 
@@ -51,7 +51,7 @@ You may have noticed that the values in `type` and `definition` are designed the
 
 ### Publishing
 
-`php artisan laragine:unit {UnitName} {--module=ModuleName}`
+`php artisan laragine:unit UnitName --module=ModuleName`
 
 To create all the related stuff (migration, request, resource, factory, unit test ...etc) based on the previous command:
 

@@ -38,6 +38,9 @@ It's also very important to understand the following terms:
 
 * The system response (including errors response if you applied what's in `Error Handling` section) to any request will be as in below examples (`status_code` is the http status code):
 
+* to use pagination you can use the following (ex: index method in the base controller):
+`return $this->sendResponse($this->resource::collection($this->model->paginate(30))->response()->getData(true))`
+
 **Success Response:**
 
 ```json
