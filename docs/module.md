@@ -2,7 +2,7 @@
 
 To create a new module, run the following:
 
-`php artisan laragine:module {ModuleName}`
+`php artisan laragine:module ModuleName`
 
 Here is an example:
 
