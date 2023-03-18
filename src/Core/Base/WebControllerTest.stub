@@ -2,10 +2,10 @@
 
 namespace Core\Base\Tests\Unit;
 
-use Core\Base\Tests\TestCase;
+use Core\Base\Tests\WebTestCase;
 use Core\Base\Controllers\Web\Controller;
 
-class WebControllerTest extends TestCase
+class WebControllerTest extends WebTestCase
 {
     /**
      * the web controller
@@ -26,7 +26,7 @@ class WebControllerTest extends TestCase
 
         $this->controller = $this->getMockBuilder(Controller::class)
                                  ->disableOriginalConstructor()
-                                 ->setMethods(['getExplodedNamespace'])
+                                 ->onlyMethods(['getExplodedNamespace'])
                                  ->getMock();
 
         $this->controller->expects($this->any())
