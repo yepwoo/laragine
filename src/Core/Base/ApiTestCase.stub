@@ -2,12 +2,12 @@
 
 namespace Core\Base\Tests;
 
-use Tests\TestCase as BaseTestCase;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
 // use Tymon\JWTAuth\Facades\JWTAuth;
 
-class TestCase extends BaseTestCase
+class ApiTestCase extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,6 +17,13 @@ class TestCase extends BaseTestCase
      * @var string
      */
     protected $base_url;
+
+    /**
+     * the current model
+     *
+     * @var array
+     */
+    protected $model;
 
     /**
      * the data that will be sent in the request (create/update)
@@ -125,11 +132,11 @@ class TestCase extends BaseTestCase
     /**
      * create new entry
      *
-     * @return Model
+     * @return \Illuminate\Database\Eloquent\Model
      */
     protected function getNewEntry()
     {
-        return Model::factory()->create();
+        return $this->model::factory()->create();
     }
 
     /**

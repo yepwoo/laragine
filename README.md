@@ -6,6 +6,12 @@
 ![Codacy grade](https://img.shields.io/codacy/grade/c8ff813591bf46ee9711e57188149288)
 [![Total Downloads](https://img.shields.io/packagist/dt/yepwoo/laragine.svg)](https://packagist.org/packages/yepwoo/laragine)
 
+| **Supported Laravel Versions** |
+|-------------|
+| 8.x         |
+| 9.x         |
+| 10.x        |
+
 We developed Laragine to make the software development using Laravel faster and cleaner, so you can get things done faster, not only that, Laragine is not about quantity only, it's all about quantity and quality.
 
 #### Quick short video:

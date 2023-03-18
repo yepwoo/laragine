@@ -32,7 +32,7 @@ It's also very important to understand the following terms:
 
 ### Notes
 
-* Laragine currently is working on **Laravel 8.x and 9.x**
+* Laragine currently is working on **Laravel 8.x, 9.x and 10.x**
 
 * Laragine directory will be in the root directory under `Core` directory
 
