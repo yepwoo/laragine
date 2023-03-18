@@ -2,10 +2,10 @@
 
 namespace Core\#MODULE_NAME#\Tests\Feature;
 
-use Core\Base\Tests\TestCase;
+use Core\Base\Tests\ApiTestCase;
 use Core\#MODULE_NAME#\Models\#UNIT_NAME# as Model;
 
-class #UNIT_NAME#Test extends TestCase
+class #UNIT_NAME#Test extends ApiTestCase
 {
     /**
      * setting up
@@ -18,7 +18,8 @@ class #UNIT_NAME#Test extends TestCase
         parent::setUp();
 
         $this->base_url     = $this->getApiBaseUrl() . '#UNIT_NAME_PLURAL_LOWER_CASE#/';
-        $this->data         = Model::factory()->make()->toArray();
+        $this->model        = new Model();
+        $this->data         = $this->model::factory()->make()->toArray();
         $this->json         = $this->getJsonStructure();
         $this->json['data'] = ['id'];
 
