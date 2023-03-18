@@ -51,7 +51,7 @@ trait SendResponse
         }
 
         if (env('APP_DEBUG') == true) {
-            $errors  = $e->errors();
+            $errors  = $e->getTrace();
             $message = $e->getMessage();
         }
 
