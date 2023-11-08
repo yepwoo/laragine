@@ -43,10 +43,10 @@ class CustomizeFormatter
     /**
      * Process Log Record
      *
-     * @param array $record
+     * @param array|\Monolog\LogRecord $record
      * @return array
      */
-    public function processLogRecord(array $record): array
+    public function processLogRecord(array|\Monolog\LogRecord $record): array|\Monolog\LogRecord
     {
         $record['extra'] += [
             'route'   => $this->request->route() ? $this->request->route()->getName() : '',
