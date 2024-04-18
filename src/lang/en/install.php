@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'root_dir_exists'          => 'The root directory already exists, do you want to override it?',
+    'already_installed'        => 'The root directory and the plugins direcotory already exist, do you want to override both directories?',
     'root_dir_not_overwritten' => 'Existing root directory was not overwritten',
     'success'                  => 'The installation done successfully!'
 

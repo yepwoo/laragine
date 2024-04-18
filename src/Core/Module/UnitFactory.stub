@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\#MODULE_NAME#\Database\Factories;
+namespace #SELECTED_DIRECTORY#\#MODULE_NAME#\Database\Factories;
 
-use Core\#MODULE_NAME#\Models\#UNIT_NAME# as Model;
+use #SELECTED_DIRECTORY#\#MODULE_NAME#\Models\#UNIT_NAME# as Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class #UNIT_NAME#Factory extends Factory

@@ -22,7 +22,9 @@ It's very important to know why to use Laragine, here is why:
 
 ![Structure](structure.png)
 
-The `Base` module is the main module in which every new module will be created (keep reading the other sections to know how), will be derived from.
+The `Base` module in the `core` directory is the main module in which every new module will be created (keep reading the other sections to know how), will be derived from.
+
+Also it's worth mentioning that there is another directory called `plugins` for overriding current modules, adding extra functionalities or adding new modules to the system.
 
 It's also very important to understand the following terms:
 
@@ -34,7 +36,7 @@ It's also very important to understand the following terms:
 
 * Laragine currently is working on **Laravel 8.x, 9.x, 10.x and 11.x**
 
-* Laragine directory will be in the root directory under `Core` directory
+* Laragine directory will be in the root directory under `core` directory and as mentioned above there is also `plugins` directory
 
 * The system response (including errors response if you applied what's in `Error Handling` section) to any request will be as in below examples (`status_code` is the http status code):
 

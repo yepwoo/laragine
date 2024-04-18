@@ -22,23 +22,23 @@ class InstallTest extends TestCase
         $this->assertTrue(FileManipulator::exists($this->root_dir));
     }
 
-    public function test_when_root_directory_exists_users_can_choose_to_override_it()
+    public function test_when_the_package_already_installed_users_can_choose_to_override_the_files()
     {
         $command = $this->artisan('laragine:install');
 
         $command->expectsConfirmation(
-            __('laragine::install.root_dir_exists'), 'yes'
+            __('laragine::install.already_installed'), 'yes'
         );
 
         $command->expectsOutput(__('laragine::install.success'));
     }
 
-    public function test_when_root_directory_exists_users_can_choose_to_not_override_it()
+    public function test_when_the_package_already_installed_users_can_choose_to_not_override_the_files()
     {
         $command = $this->artisan('laragine:install');
 
         $command->expectsConfirmation(
-            __('laragine::install.root_dir_exists'), 'no'
+            __('laragine::install.already_installed'), 'no'
         );
 
         $command->expectsOutput(__('laragine::install.root_dir_not_overwritten'));

@@ -9,11 +9,11 @@ trait File
      *
      * @param string $dir
      * @param string $module
-     * @param boolean $is_core
+     * @param boolean $is_plugins
      */
-    protected function loadFiles($dir, $module = 'base', $is_core = true)
+    protected function loadFiles($dir, $module = 'base', $is_plugins = false)
     {
-        $module_root_dir = $is_core ? 'core' : 'plugins';
+        $module_root_dir = $is_plugins ? 'plugins' : 'core';
 
         $this->loadRoutesFrom($dir . '/routes/web.php');
         $this->loadRoutesFrom($dir . '/routes/api.php');

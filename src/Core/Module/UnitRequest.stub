@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\#MODULE_NAME#\Requests;
+namespace #SELECTED_DIRECTORY#\#MODULE_NAME#\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

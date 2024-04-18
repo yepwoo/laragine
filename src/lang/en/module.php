@@ -11,8 +11,8 @@ return [
     |
     */
 
-    'run_install'     => 'Please run install command first',
-    'exists'          => 'the module directory already exists, do you want to override it?',
+    'run_install'     => 'Please run the install command first',
+    'exists'          => 'The module directory already exists, do you want to override it?',
     'not_overwritten' => 'Existing module directory was not overwritten',
     'success'         => 'Module created successfully!',
 

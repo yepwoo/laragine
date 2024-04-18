@@ -12,14 +12,14 @@ class MakeUnit extends Command
      *
      * @var string
      */
-    protected $signature = 'laragine:unit {name} {--module=} {--I|init}';
+    protected $signature = 'laragine:unit {name} {--module=} {--I|init} {--P|plugins}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create new unit';
+    protected $description = 'Create a new unit';
 
     /**
      * Create a new command instance.
@@ -48,7 +48,8 @@ class MakeUnit extends Command
             'MakeUnit',
             $this->argument('name'),
             $this->option('module'),
-            $this->option('init')
+            $this->option('init'),
+            $this->option('plugins')
         );
 
         $command->run();

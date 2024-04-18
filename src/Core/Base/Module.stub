@@ -2,23 +2,43 @@
 
 namespace Core\Base\Traits\ServiceProvider;
 
+use Illuminate\Support\Str;
+
 trait Module
 {
     /**
      * register the service provider for the module
-     *
-     * @param string $excluded_directory
-     * @param string $root_namespace
      */
-    private function registerModules($excluded_directory = 'Base', $root_namespace = 'Core')
+    private function registerModules()
     {
-        $base_path = base_path() . '/core';
-        foreach (glob($base_path.'/*/ModuleServiceProvider.php') as $file) {
+        // Register the core modules
+        $root_namespace = 'Core';
+        $excluded_directory = 'Base';
+        $root_path = config('laragine.root_dir');
+        
+        foreach (glob($root_path.'/*/ModuleServiceProvider.php') as $file) {
             if (!preg_match("/core\/{$excluded_directory}/i", $file)) {
-                $namespace = str_replace('/', '\\', str_replace('.php', '', $file));
-                $namespace = explode('core\\', $namespace)[1];
-                $this->app->register($root_namespace . '\\' . $namespace);
+                $this->registerModuleServiceProvider($file, $root_namespace);
             }
         }
+
+        // Register the plugins modules
+        $plugins_namespace = 'Plugins';
+        $plugins_path = config('laragine.plugins_dir');
+
+        foreach (glob($plugins_path.'/*/ModuleServiceProvider.php') as $file) {
+            $this->registerModuleServiceProvider($file, $plugins_namespace);
+        }
+    }
+
+    /**
+     * handle registering the module service provider
+     */
+    private function registerModuleServiceProvider($file, $root_namespace) 
+    {
+        $root_namespace_lower_case = Str::lower($root_namespace);
+        $namespace = str_replace('/', '\\', str_replace('.php', '', $file));
+        $namespace = explode("{$root_namespace_lower_case}\\", $namespace)[1];
+        $this->app->register($root_namespace . '\\' . $namespace);
     }
 }

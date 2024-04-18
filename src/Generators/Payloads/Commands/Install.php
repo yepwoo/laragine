@@ -15,7 +15,7 @@ class Install extends Base
     {
         $allow_publish = true;
         if (FileManipulator::exists($this->root_dir)) {
-            if ($this->command->confirm(__('laragine::install.root_dir_exists'), true)) {
+            if ($this->command->confirm(__('laragine::install.already_installed'), true)) {
                 $allow_publish = true;
             } else {
                 $allow_publish = false;
@@ -25,6 +25,8 @@ class Install extends Base
 
         if ($allow_publish) {
             $this->publishRootDirectory();
+
+            FileManipulator::generateDir($this->plugins_dir);
         }
     }
 
