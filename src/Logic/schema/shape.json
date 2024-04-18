@@ -20,7 +20,6 @@
     "migration": "multiPoint",
     "resource" : ""
   },
-
   "multiPolygon": {
     "has_value": false,
     "request": "",
@@ -33,6 +32,13 @@
     "request": "",
     "factory": "",
     "migration": "polygon",
+    "resource" : ""
+  },
+  "geography": {
+    "has_value": false,
+    "request": "",
+    "factory": "",
+    "migration": "geography",
     "resource" : ""
   }
 }
