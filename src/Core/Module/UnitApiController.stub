@@ -1,15 +1,16 @@
 <?php
 
-namespace Core\#MODULE_NAME#\Controllers\API\V1;
+namespace #SELECTED_DIRECTORY#\#MODULE_NAME#\Controllers\API\V1;
 
-use Core\#MODULE_NAME#\Requests\#UNIT_NAME#Request as FormRequest;
-use Core\#MODULE_NAME#\Models\#UNIT_NAME# as Model;
-use Core\#MODULE_NAME#\Resources\#UNIT_NAME#Resource as Resource;
+use #SELECTED_DIRECTORY#\#MODULE_NAME#\Requests\#UNIT_NAME#Request as FormRequest;
+use #SELECTED_DIRECTORY#\#MODULE_NAME#\Models\#UNIT_NAME# as Model;
+use #SELECTED_DIRECTORY#\#MODULE_NAME#\Resources\#UNIT_NAME#Resource as Resource;
 
 class #UNIT_NAME#Controller extends \Core\Base\Controllers\API\Controller
 {
     /**
      * Init.
+     *
      * @param FormRequest $request
      * @param Model       $model
      * @param string      $resource

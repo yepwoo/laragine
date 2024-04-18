@@ -29,6 +29,13 @@ class Base implements GeneratorInterface
     protected $root_dir;
 
     /**
+     * the plugins dir
+     *
+     * @var string
+     */
+    protected $plugins_dir;
+
+    /**
      * init
      * 
      * @param  Command $command
@@ -40,6 +47,7 @@ class Base implements GeneratorInterface
         $this->command  = $command;
         $this->args     = $args;
         $this->root_dir = config('laragine.root_dir');
+        $this->plugins_dir = config('laragine.plugins_dir');
     }
 
     /**

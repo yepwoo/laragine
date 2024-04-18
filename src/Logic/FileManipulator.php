@@ -66,6 +66,17 @@ class FileManipulator
         }
     }
 
+    /**
+     * generate directory or directories
+     *
+     * @param string  $destination_dir
+     * @param integer $mode
+     */
+    public static function generateDir($destination_dir, $mode = 0775) : void
+    {
+        File::makeDirectory("$destination_dir", $mode, true, true);
+    }
+
     protected static function deleteFilesWithMatchSpecificPrefix($destination, $prefix) {
         foreach (glob("$destination".'/*') as $migration_file) {
             if(strpos($migration_file, $prefix) !== false) {

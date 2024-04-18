@@ -12,14 +12,14 @@ class MakeModule extends Command
      *
      * @var string
      */
-    protected $signature = 'laragine:module {name}';
+    protected $signature = 'laragine:module {name} {--P|plugins}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create new module';
+    protected $description = 'Create a new module';
 
     /**
      * Create a new command instance.
@@ -33,7 +33,7 @@ class MakeModule extends Command
 
     public function handle()
     {
-        $command = GeneratorFactory::create($this, 'MakeModule', $this->argument('name'));
+        $command = GeneratorFactory::create($this, 'MakeModule', $this->argument('name'), $this->option('plugins'));
         $command->run();
     }
 }

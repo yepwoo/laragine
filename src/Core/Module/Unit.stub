@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\#MODULE_NAME#\Models;
+namespace #SELECTED_DIRECTORY#\#MODULE_NAME#\Models;
 
 use Core\Base\Models\Base;
 

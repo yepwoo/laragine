@@ -46,6 +46,7 @@ class Factory
                 "#REQUEST_STR#",
                 "#FACTORY_STR#",
                 "#MIGRATION_STR#",
+                '#SELECTED_DIRECTORY#',
             ]
         ];
         $unit_plural_lower = $units_data['unit_collection']['plural_lower_case'];
@@ -60,7 +61,8 @@ class Factory
                 $data['resource_str'],
                 $data['request_str'],
                 $data['factory_str'],
-                $data['migration_str']
+                $data['migration_str'],
+                $units_data['selected_directory']
             ]
         ];
 

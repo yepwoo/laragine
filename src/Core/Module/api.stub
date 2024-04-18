@@ -2,7 +2,7 @@
 
 Route::group(['prefix' => 'api', 'middleware' => []], function () {
     # V1
-    Route::namespace('Core\#MODULE_NAME#\Controllers\API\V1')->prefix('v1')->name('api.v1.')->group(function () {
+    Route::namespace('#SELECTED_DIRECTORY#\#MODULE_NAME#\Controllers\API\V1')->prefix('v1')->name('api.v1.')->group(function () {
         #*** Ex: START: #UNIT_NAME# ***#
         // Route::apiResource('#UNIT_NAME_PLURAL_LOWER_CASE#', '#UNIT_NAME#Controller');
         #*** END: #UNIT_NAME# ***#

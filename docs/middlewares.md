@@ -6,7 +6,7 @@ Useful middlewares to help you protect the system and for better security:
 
 to check if the client side includes a valid `api-key` header in any API request.
 
-to use it, first add `API_KEY=your_api_key_here` in `.env` file, second in the **Kernel** (`app\Http\Kernel.php`) add it in `$routeMiddleware` or `middlewareAliases` if it's Laravel `10.x` as below:
+to use it, first add `API_KEY=your_api_key_here` in `.env` file, second in the **Kernel** (`app\Http\Kernel.php`) add it in `$routeMiddleware` or `middlewareAliases` if it's Laravel `10.x` or `11.x` as below:
 
 ```php
 protected $middlewareAliases = [
