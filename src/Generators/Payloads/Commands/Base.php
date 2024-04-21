@@ -44,9 +44,9 @@ class Base implements GeneratorInterface
      */
     public function __construct(Command $command, $args)
     {
-        $this->command  = $command;
-        $this->args     = $args;
-        $this->root_dir = config('laragine.root_dir');
+        $this->command     = $command;
+        $this->args        = $args;
+        $this->root_dir    = config('laragine.root_dir');
         $this->plugins_dir = config('laragine.plugins_dir');
     }
 

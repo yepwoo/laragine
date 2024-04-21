@@ -16,6 +16,7 @@ class ModuleServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/config.php', 'laragine');
 
         module_autoloader();
+        module_autoloader('Plugins', config('laragine.plugins_dir'));
 
         if (class_exists('Core\\Base\\ModuleServiceProvider')) {
             /**
@@ -24,6 +25,17 @@ class ModuleServiceProvider extends ServiceProvider
              */
             try {
                 $this->app->register('Core\\Base\\ModuleServiceProvider');
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+        }
+
+        if (class_exists('Plugins\\Base\\ModuleServiceProvider')) {
+            /**
+             * it's the same error as in the previous try/catch block
+             */
+            try {
+                $this->app->register('Plugins\\Base\\ModuleServiceProvider');
             } catch (\Throwable $th) {
                 //throw $th;
             }
