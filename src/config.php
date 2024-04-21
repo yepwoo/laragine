@@ -62,6 +62,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | The Base (Plugins)
+    |--------------------------------------------------------------------------
+    |
+    | The stubs and files for the Base Module (Plugins)
+    |
+    */
+
+    'plugins_base' => [
+        'main.php'                   => 'config/main.php',
+        'api.php'                    => 'routes/api.php',
+        'web.php'                    => 'routes/web.php',
+        'ModuleServiceProvider.stub' => 'ModuleServiceProvider.php'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | The Module
     |--------------------------------------------------------------------------
     |

@@ -44,7 +44,7 @@ if (!function_exists('module_autoloader')) {
      */
     function module_autoloader($namespace = 'Core', $dir = '')
     {
-        $dir = empty($dir) ? base_path().'/core' : $dir;
+        $dir = empty($dir) ? config('laragine.root_dir') : $dir;
 
         // instantiate the loader
         $loader = new \Yepwoo\Laragine\Support\Psr4AutoloaderClass;

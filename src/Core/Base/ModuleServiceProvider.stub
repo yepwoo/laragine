@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Base;
+namespace #SELECTED_DIRECTORY#\Base;
 
 use Illuminate\Support\ServiceProvider;
 use Core\Base\Traits\ServiceProvider\File;
@@ -17,8 +17,8 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadFiles(__DIR__);
-        $this->registerModules();
+        $this->loadFiles(__DIR__#MODULE_AND_IS_PLUGINS#);
+        $this->registerModules(#IS_PLUGINS#);
     }
 
     /**
