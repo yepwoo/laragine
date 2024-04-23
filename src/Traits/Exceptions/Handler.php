@@ -10,7 +10,7 @@ use Core\Base\Traits\Response\SendResponse;
 
 if (!class_exists(SendResponse::class, false)) {
     module_autoloader();
-    module_autoloader('Plugins', config('laragine.plugins_dir'));
+    module_autoloader('Plugins', base_path() . '/plugins');
 }
 
 trait Handler
