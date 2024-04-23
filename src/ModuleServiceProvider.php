@@ -16,7 +16,7 @@ class ModuleServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/config.php', 'laragine');
 
         module_autoloader();
-        module_autoloader('Plugins', config('laragine.plugins_dir'));
+        module_autoloader('Plugins', base_path() . '/plugins');
 
         if (class_exists('Core\\Base\\ModuleServiceProvider')) {
             /**
