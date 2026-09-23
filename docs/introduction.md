@@ -34,7 +34,7 @@ It's also very important to understand the following terms:
 
 ### Notes
 
-* Laragine currently is working on **Laravel 8.x, 9.x, 10.x and 11.x**
+* Laragine currently is working on **Laravel 11.x, 12.x and 13.x** (PHP 8.2+, and PHP 8.3+ for Laravel 13.x)
 
 * Laragine directory will be in the root directory under `core` directory and as mentioned above there is also `plugins` directory
 

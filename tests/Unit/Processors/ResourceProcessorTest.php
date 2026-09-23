@@ -24,9 +24,6 @@ class ResourceProcessorTest extends ProcessorTestCase
         $this->assertEquals($expected_str, $output_str);
     }
 
-    /**
-     * @test
-     */
     public function test_str_is_empty_before_concatenation()
     {
         $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
@@ -36,9 +33,6 @@ class ResourceProcessorTest extends ProcessorTestCase
         $this->assertEmpty($processor_str);
     }
 
-    /**
-     * @test
-     */
     public function test_str_is_empty_after_concatenation()
     {
         $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
@@ -49,9 +43,6 @@ class ResourceProcessorTest extends ProcessorTestCase
         $this->assertNotEmpty($processor_str);
     }
 
-    /**
-     * @test
-     */
     public function test_init_str()
     {
         $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
@@ -67,9 +58,6 @@ class ResourceProcessorTest extends ProcessorTestCase
         $this->assertEquals($expected_str, $processor_str);
     }
 
-    /**
-     * @test
-     */
     public function test_is_str()
     {
         $resource_processor_obj = new ResourceProcessor($this->module_dir, $this->module_collection, $this->unit_collection);
