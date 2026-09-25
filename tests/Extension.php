@@ -2,26 +2,21 @@
 
 namespace Yepwoo\Laragine\Tests;
 
-use PHPUnit\Runner\BeforeFirstTestHook;
-use PHPUnit\Runner\AfterLastTestHook;
-use Illuminate\Support\Facades\File;
+use PHPUnit\Runner\Extension\Extension as PhpUnitExtension;
+use PHPUnit\Runner\Extension\Facade;
+use PHPUnit\Runner\Extension\ParameterCollection;
+use PHPUnit\TextUI\Configuration\Configuration;
 
-final class Extension implements BeforeFirstTestHook, AfterLastTestHook
+final class Extension implements PhpUnitExtension
 {
     /**
-     * called before the first test is being run
+     * register the subscribers that react to the test runner's events
      */
-    public function executeBeforeFirstTest(): void
-    {
-        //
-    }
-
-    /**
-     * called after the last test has been run
-     */
-    public function executeAfterLastTest(): void
-    {
-        $config = require __DIR__ . '/../src/config.php';
-        File::deleteDirectory($config['root_dir']);
+    public function bootstrap(
+        Configuration $configuration,
+        Facade $facade,
+        ParameterCollection $parameters
+    ): void {
+        $facade->registerSubscriber(new CleanUpGeneratedFiles());
     }
 }

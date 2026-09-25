@@ -6,43 +6,42 @@ Useful middlewares to help you protect the system and for better security:
 
 to check if the client side includes a valid `api-key` header in any API request.
 
-to use it, first add `API_KEY=your_api_key_here` in `.env` file, second in the **Kernel** (`app\Http\Kernel.php`) add it in `$routeMiddleware` or `middlewareAliases` if it's Laravel `10.x` or `11.x` as below:
+To use it, first add `API_KEY=your_api_key_here` in your `.env` file.
+
+Then register it in `bootstrap/app.php`. Give it an alias if you want to apply it route by route:
 
 ```php
-protected $middlewareAliases = [
-    
-    ...
+use Illuminate\Foundation\Configuration\Middleware;
 
-    'api-key' => \Core\Base\Middleware\CheckApiKey::class
-];
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+        'api-key' => \Core\Base\Middleware\CheckApiKey::class,
+    ]);
+})
 ```
 
-then add it in `$middlewareGroups` in the api middleware that you use, so it might be `api` or `auth:api` so it will be like so:
-
 ```php
-protected $middlewareGroups = [
-
-    ...
-
-    'api' => [
-        'throttle:api',
-        \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        \Core\Base\Middleware\CheckApiKey::class
-    ],
-];
+Route::middleware('api-key')->group(function () {
+    // ...
+});
 ```
 
-or like so:
+Or append it to the whole `api` group so every API request is checked:
 
 ```php
-protected $middlewareGroups = [
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->appendToGroup('api', [
+        \Core\Base\Middleware\CheckApiKey::class,
+    ]);
+})
+```
 
-    ...
+`$middleware->api(append: [...])` does the same thing and reads a little better if you are only touching the API group:
 
-    'auth:api' => [
-        'throttle:api',
-        \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        \Core\Base\Middleware\CheckApiKey::class
-    ],
-];
+```php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->api(append: [
+        \Core\Base\Middleware\CheckApiKey::class,
+    ]);
+})
 ```

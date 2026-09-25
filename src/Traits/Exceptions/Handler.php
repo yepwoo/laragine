@@ -18,24 +18,30 @@ trait Handler
     use SendResponse;
 
     /**
-     * Register the exception handling callbacks for the application.
+     * Register the exception handling callbacks on the given target.
      *
+     * The target is anything exposing Laravel's renderable() callback
+     * registration: the Exceptions configurator passed to withExceptions()
+     * in bootstrap/app.php on Laravel 11 and later, or a custom exception
+     * handler class that uses this trait.
+     *
+     * @param  object $target
      * @return void
      */
-    public function handleExceptions()
+    public function registerExceptionHandlers($target)
     {
-        $this->renderable(function (AuthenticationException $e, $request) {
+        $target->renderable(function (AuthenticationException $e, $request) {
             return $this->sendResponse([], $e->getMessage(), false, 401);
         });
 
-        $this->renderable(function (AuthorizationException $e, $request) {
+        $target->renderable(function (AuthorizationException $e, $request) {
             return $this->sendResponse([], $e->getMessage(), false, 403);
         });
 
-        $this->renderable(function (ValidationException $e, $request) {
+        $target->renderable(function (ValidationException $e, $request) {
             $errors         = [];
             $code_attribute = config('laragine.validation.code');
-            
+
             foreach ($e->errors() as $field => $error) {
                 $errors[] = [
                     config('laragine.validation.field')   => $field,
@@ -43,12 +49,26 @@ trait Handler
                     $code_attribute                       => (int)$error[0][$code_attribute],
                 ];
             }
-    
+
             return $this->sendResponse($errors, $e->getMessage(), false, 422);
         });
 
-        $this->renderable(function (Throwable $e, $request) {
+        $target->renderable(function (Throwable $e, $request) {
             return $this->sendExceptionResponse($e, false);
         });
+    }
+
+    /**
+     * Register the exception handling callbacks on the class using this trait.
+     *
+     * For applications that still route exceptions through a handler class of
+     * their own. On Laravel 11 and later, prefer wiring
+     * Yepwoo\Laragine\Exceptions\Handler::handle() into bootstrap/app.php.
+     *
+     * @return void
+     */
+    public function handleExceptions()
+    {
+        $this->registerExceptionHandlers($this);
     }
 }
